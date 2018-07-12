@@ -6,73 +6,73 @@ app.config(function($routeProvider){
 		templateUrl : "templates/home.html"
 	})
 	.when('/about-us', {
-		templateUrl:"templates/about-us.html";
+		templateUrl:"templates/about-us.html"
 	})
 	.when('/account-forgot-password-page', {
-		templateUrl:"templates/account-forgot-password-page.html";
+		templateUrl:"templates/account-forgot-password-page.html"
 	})
 	.when('/account-login-page', {
-		templateUrl:"templates/account-login-page.html";
+		templateUrl:"templates/account-login-page.html"
 	})
 	.when('/account-register-page', {
-		templateUrl:"templates/account-register-page.html";
+		templateUrl:"templates/account-register-page.html"
 	})
 	.when('/admin-change-pass', {
-		templateUrl:"templates/admin-change-pass.html";
+		templateUrl:"templates/admin-change-pass.html"
 	})
 	.when('/admin-empty', {
-		templateUrl:"templates/admin-empty.html";
+		templateUrl:"templates/admin-empty.html"
 	})
 	.when('/admin-profile', {
-		templateUrl:"templates/admin-profile.html";
+		templateUrl:"templates/admin-profile.html"
 	})
 	.when('/admin-saved-job', {
-		templateUrl:"templates/aadmin-saved-job.html";
+		templateUrl:"templates/aadmin-saved-job.html"
 	})
 	.when('/admin', {
-		templateUrl:"templates/admin.html";
+		templateUrl:"templates/admin.html"
 	})
 	.when('/blog-single', {
-		templateUrl:"templates/blog-single.html";
+		templateUrl:"templates/blog-single.html"
 	})
 	.when('/blog', {
-		templateUrl:"templates/blog.html";
+		templateUrl:"templates/blog.html"
 	})
 	.when('/contact', {
-		templateUrl:"templates/contact.html";
+		templateUrl:"templates/contact.html"
 	})
 	.when('/employee-create-resume', {
-		templateUrl:"templates/employee-create-resume.html";
+		templateUrl:"templates/employee-create-resume.html"
 	})
 	.when('/employee-detail', {
-		templateUrl:"templates/employee-detail.html";
+		templateUrl:"templates/employee-detail.html"
 	})
 	.when('/employee', {
-		templateUrl:"templates/employee.html";
+		templateUrl:"templates/employee.html"
 	})
 	.when('/employer-detail', {
-		templateUrl:"templates/employer-detail.html";
+		templateUrl:"templates/employer-detail.html"
 	})
 	.when('/account-forgot-password-page', {
-		templateUrl:"templates/account-forgot-password-page.html";
+		templateUrl:"templates/account-forgot-password-page.html"
 	})
 	.when('/faq', {
-		templateUrl:"templates/faq.html";
+		templateUrl:"templates/faq.html"
 	})
 	.when('/job-browse-job', {
-		templateUrl:"templates/job-browse-job.html";
+		templateUrl:"templates/job-browse-job.html"
 	})
 	.when('/job-category', {
-		templateUrl:"templates/job-category.html";
+		templateUrl:"templates/job-category.html"
 	})
 	.when('/job-detail', {
-		templateUrl:"templates/job-detail.html";
+		templateUrl:"templates/job-detail.html"
 	})
 	.when('/job-location', {
-		templateUrl:"templates/job-location.html";
+		templateUrl:"templates/job-location.html"
 	})
 	.when('/job-result', {
-		templateUrl:"templates/job-result.html";
+		templateUrl:"templates/job-result.html"
 	});
  
 });
