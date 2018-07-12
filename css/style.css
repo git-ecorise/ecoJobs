@@ -417,6 +417,12 @@ ul.nav-mini li a {
     background-color: transparent
 }
 
+.navbar-default .navbar-nav>li > a:focus, 
+.navbar-default .navbar-nav>li > a:hover {
+    /* color: #333; */
+    background-color: transparent;
+}
+
 .navbar-sticky .navbar-nav > .active > a,
 .navbar-sticky .navbar-nav > .active > a:hover,
 .navbar-sticky .navbar-nav > .active > a:focus {
@@ -427,7 +433,7 @@ ul.nav-mini li a {
 .navbar-sticky .navbar-nav > .disabled > a,
 .navbar-sticky .navbar-nav > .disabled > a:hover,
 .navbar-sticky .navbar-nav > .disabled > a:focus {
-    color: #444444;
+    /*color: #444444;*/
     background-color: transparent
 }
 
@@ -5198,7 +5204,7 @@ ul.bottom-footer-menu.for-social li:after {
     padding-top: 60px;
     margin-top: -51px;
     padding-bottom: 50px;
-    margin-bottom: -10px;
+    /*margin-bottom: -10px;*/
     width: 100%;
 }
 
