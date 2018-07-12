@@ -27,7 +27,7 @@ app.config(function($routeProvider){
 		templateUrl:"templates/admin-profile.html"
 	})
 	.when('/admin-saved-job', {
-		templateUrl:"templates/aadmin-saved-job.html"
+		templateUrl:"templates/admin-saved-job.html"
 	})
 	.when('/admin', {
 		templateUrl:"templates/admin.html"
