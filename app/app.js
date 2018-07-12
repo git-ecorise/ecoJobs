@@ -50,6 +50,9 @@ app.config(function($routeProvider){
 	.when('/employee', {
 		templateUrl:"templates/employee.html"
 	})
+	.when('/employer', {
+		templateUrl:"templates/employer.html"
+	})
 	.when('/employer-detail', {
 		templateUrl:"templates/employer-detail.html"
 	})
