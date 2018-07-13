@@ -11,6 +11,15 @@ app.config(function($routeProvider){
 	.when('/account-forgot-password-page', {
 		templateUrl:"templates/account-forgot-password-page.html"
 	})
+	.when('/employer-post-job', {
+		templateUrl:"templates/employer-post-job.html"
+	})
+	.when('/employer-edit', {
+		templateUrl:"templates/employer-edit.html"
+	})
+	.when('/employer-create', {
+		templateUrl:"templates/employer-create.html"
+	})
 	.when('/account-login-page', {
 		templateUrl:"templates/account-login-page.html"
 	})
