@@ -93,7 +93,7 @@
 										
 									</div>
 									
-									<form class="post-form-wrapper">
+									<form class="post-form-wrapper" ng-controller="adminchngpass" name="adminformnm">
 								
 											<div class="row gap-20">
 
@@ -101,7 +101,7 @@
 												
 													<div class="form-group">
 														<label>Current Password</label>
-														<input type="password" class="form-control" value="">
+														<input type="password" placeholder="Enter Current Password" class="form-control" value="" ng-model="currpass">
 													</div>
 													
 												</div>
@@ -112,8 +112,10 @@
 												
 													<div class="form-group">
 														<label>New Password</label>
-														<input type="password" class="form-control" value="">
-													</div>
+														<input type="password" placeholder="Enter New Password" name="anminnewpass" class="form-control" ng-model="adminnwpass" data-minlength="6" data-maxlength="16" ng-pattern="/^.*(?=.{7,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/" data-error="Invalid password" required="true">
+														<span class="red-text" ng-if="adminformnm.anminnewpass.$error.required adminformnm.anminnewpass.$dirty">Password required field</span>
+	               										<span class="red-text" ng-show=" adminformnm.anminnewpass.$error.pattern">Invalid Password</span>
+														</div>
 													
 												</div>
 												
@@ -123,14 +125,16 @@
 												
 													<div class="form-group">
 														<label>Confirm Password</label>
-														<input type="password" class="form-control" value="">
+														<input type="password" placeholder="Re-enter New Password" class="form-control" ng-keyup="admincheckpass()" ng-model="admincnfpas">
+														<span style="color:red;">{{errormsg}}</span>
 													</div>
 													
 												</div>
 												
 												<div class="col-sm-12 mt-10">
-													<a href="#" class="btn btn-primary">Save</a>
-													<a href="#" class="btn btn-primary btn-inverse">Cancel</a>
+													<button class="btn btn-primary" ng-click="saveAdminPass()">Save</button>
+
+													<button class="btn btn-primary btn-inverse">Cancel</button>
 												</div>
 
 											</div>

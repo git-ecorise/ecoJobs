@@ -5896,3 +5896,8 @@ ul.static-page-menu li.active a {
 }
 
 @media (max-width: 479px) {}
+/*==========Forgot password Email Invalid color set to red==============*/
+.red-text{
+  color:red;
+}
+/*===========End of Forgot password Email Invalid color set to red======*/

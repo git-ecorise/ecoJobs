@@ -10,12 +10,16 @@ app.config(function($routeProvider){
 	})
 	.when('/account-forgot-password-page', {
 		templateUrl:"templates/account-forgot-password-page.html"
+
 	})
 	.when('/account-login-page', {
-		templateUrl:"templates/account-login-page.html"
+		templateUrl:"templates/account-login-page.html",
+			
+
 	})
 	.when('/account-register-page', {
 		templateUrl:"templates/account-register-page.html"
+
 	})
 	.when('/admin-change-pass', {
 		templateUrl:"templates/admin-change-pass.html"
@@ -79,3 +83,215 @@ app.config(function($routeProvider){
 	});
  
 });
+
+// Login Controller Started
+
+app.controller('loginCtrl',function($scope){
+	$scope.loginData={};
+	$scope.rememberMe=false;
+
+	$scope.userLogin=function(){
+		if($scope.usernamelogin==null && $scope.passwordlogin==null && $scope.rememberme==null)
+		{
+			alertify.log("Fill Details before Login");
+		}
+		else
+		{
+			if($scope.usernamelogin==null || $scope.passwordlogin==null || $scope.rememberme==null)
+			{
+				alertify.error("Check the Remaining Fields");
+			}
+			else
+			{		
+					alertify.success("Login Successfully!!");
+					$scope.loginData = {
+                    		Name: $scope.usernamelogin,
+                    		Password: $scope.passwordlogin,
+        				};
+        console.log($scope.loginData);
+			}
+		 					$scope.usernamelogin=null;
+                    		$scope.passwordlogin=null;
+                    		$scope.rememberme=null;
+
+		}
+		
+	}
+
+
+});
+// Login Controller Ended
+
+// Registration Controller Started
+
+app.controller('registerCtrl',function($scope){
+	$scope.regData={};
+	$scope.regJsonArray=[];
+	$scope.terms=false;
+	$scope.password = null;
+ 	$scope.passwordConfirmation = null;
+	
+	// Email Validation
+	$scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+	$scope.userReg=function(){
+		if ($scope.regUser==null && $scope.regEmail==null && $scope.regPassword==null && $scope.regContact==null && $scope.regConfirmpass==null && $scope.Regacceptcheckbox==null) {
+			alertify.log("Fill Details before Registration");
+		}
+		else
+		{
+			if($scope.regUser==null || $scope.regEmail==null || $scope.regPassword==null || $scope.regContact==null || $scope.regConfirmpass==null || $scope.Regacceptcheckbox==null)
+			{
+				alertify.error("Check the Remaining Fields");
+			}
+			else
+				if($scope.regPassword != $scope.regConfirmpass)
+				
+				{
+					alertify.error("Password are not Same");
+				}
+			else
+			{
+					alertify.success("Registration Successfull!!");		
+					$scope.regData = {
+                    		name: $scope.regUser,
+                    		contact:$scope.regContact,
+                    		email: $scope.regEmail,
+                    		password:$scope.regPassword,
+                    		
+                    
+        				};
+        				console.log($scope.regData);
+			}
+							$scope.regUser=null;
+                    		$scope.regContact=null;
+                    		$scope.regEmail=null;
+                    		$scope.regPassword=null;
+                    		$scope.regConfirmpass=null;
+                    		$scope.Regacceptcheckbox=null;
+
+
+		}
+	}
+
+
+
+// reggistration password confirmation starts
+  $scope.checkpass = function(){
+				// console.log($scope.cpass);
+				$scope.verifycpass = $scope.regConfirmpass
+				console.log($scope.verifycpass);
+				if ($scope.regPassword != $scope.verifycpass) {
+					console.log($scope.regConfirmpass);
+					$scope.errormsg = "password not match";
+				}
+				else{
+					$scope.errormsg = "Correct password";
+				}
+			}
+
+// reggistration password confirmation Ends
+
+});
+// Registration Controller Ended
+
+
+// Forgot Password Controller Started
+app.controller('forgotPasswordCtrl',function($scope){
+	$scope.forgotPasswordData={};
+	$scope.forgotPasswordJsonArray=[];
+	// $scope.generateNewPassword=false;
+	// Email Validation
+ 	$scope.eml_add = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+	$scope.passwordRestore=function(){
+			if($scope.forgotpasswordemail==null)
+			{
+				alertify.log("Enter Email");
+			}
+			else
+				if($scope.generateNewPassword==null)
+			
+				{
+					alertify.error("Check the Remaining Fields");
+				}
+			else
+			{
+				alertify.success("Check your Mail box");
+			
+
+							$scope.forgotPasswordData= {
+                    		emailId:$scope.forgotpasswordemail,
+                    		newPassword:$scope.generateNewPassword
+        					};
+
+        					console.log($scope.forgotPasswordData);
+    }
+    		$scope.forgotpasswordemail=null;
+    		$scope.generateNewPassword=null;
+
+	}
+});
+// Forgot Password Controller Ended
+
+// Admin Change Password ControllerStarted
+app.controller('adminchngpass',function($scope)
+{		
+		$scope.admincngpwData={};
+
+		
+		$scope.admincheckpass=function(){
+				$scope.chkadminpass=$scope.admincnfpas
+				console.log($scope.chkadminpass);
+				if($scope.adminnwpass!=$scope.chkadminpass)
+				{
+					console.log($scope.admincnfpas);
+					$scope.errormsg = "password not match";
+
+				}
+			else{
+					$scope.errormsg = "Correct Password";
+
+				}
+}
+
+		$scope.saveAdminPass=function()
+		{
+			if ($scope.currpass==null && $scope.adminnwpass==null && $scope.admincnfpas==null) 
+			{
+				alertify.log("Fill Details before Saving Details");	
+			}
+			else
+			{
+				if($scope.currpass==null || $scope.adminnwpass==null || $scope.admincnfpas==null)
+			
+				{
+					alertify.error("Check the Remaining Fields");
+				}
+				else
+				if($scope.adminnwpass != $scope.admincnfpas)
+				
+				{
+					alertify.error("Password are not Same");
+				}
+
+				else
+				{
+					alertify.success("Password Saved Successfull!!");		
+					$scope.admincngpwData={
+						oldpass:$scope.currpass,
+						newpw:$scope.adminnwpass,
+						cnfpw:$scope.admincnfpas
+				}
+        		console.log($scope.admincngpwData);
+			}
+
+							$scope.currpass=null;
+                    		$scope.adminnwpass=null;
+                    		$scope.admincnfpas=null;
+
+			}
+
+		}
+});
+
+
+
