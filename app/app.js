@@ -1,8 +1,8 @@
 var app=angular.module('ecojobs', ['ngRoute']);
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $locationProvider){
 	$routeProvider
-	.when('/', {
+	.when('/home', {
 		templateUrl : "templates/home.html"
 	})
 	.when('/about-us', {
@@ -79,8 +79,8 @@ app.config(function($routeProvider){
 		templateUrl:"templates/job-result.html"
 	});
 
+	$locationProvider.html5Mode(true).hashPrefix('#!');
 
- 
 });
 
 
@@ -153,7 +153,8 @@ app.controller("profilecntrl",function($scope){
   	
   }
  
-})
+});
+
 app.controller("contactcntrl",function($scope){
     	
 	    $scope.submitd= function() {
@@ -194,4 +195,15 @@ app.controller("contactcntrl",function($scope){
 
     
     		}
-	})
+	});
+
+// apply job application button
+app.controller('applyCtrl', function($scope) {
+   
+    $scope.visible =true;
+
+    $scope.toggle = function() {
+        $scope.visible = $scope.visible ? false : true;
+    };
+
+});
