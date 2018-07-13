@@ -82,7 +82,7 @@ app.config(function($routeProvider, $locationProvider){
 
 });
 
-// apply job application button
+// controller for apply job application button
 app.controller('applyCtrl', function($scope) {
    
     $scope.visible =true;
