@@ -79,3 +79,13 @@ app.config(function($routeProvider){
 	});
  
 });
+
+app.controller('applyCtrl', function($scope) {
+   
+    $scope.visible =true;
+
+    $scope.toggle = function() {
+        $scope.visible = $scope.visible ? false : true;
+    };
+
+});
