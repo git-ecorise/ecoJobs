@@ -1,8 +1,8 @@
 var app=angular.module('ecojobs', ['ngRoute']);
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $locationProvider){
 	$routeProvider
-	.when('/', {
+	.when('/home', {
 		templateUrl : "templates/home.html"
 	})
 	.when('/about-us', {
@@ -77,9 +77,12 @@ app.config(function($routeProvider){
 	.when('/job-result', {
 		templateUrl:"templates/job-result.html"
 	});
- 
+
+	$locationProvider.html5Mode(true).hashPrefix('#!');
+
 });
 
+// apply job application button
 app.controller('applyCtrl', function($scope) {
    
     $scope.visible =true;
