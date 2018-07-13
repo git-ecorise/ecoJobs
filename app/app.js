@@ -43,7 +43,8 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl:"templates/blog.html"
 	})
 	.when('/contact', {
-		templateUrl:"templates/contact.html"
+		templateUrl:"templates/contact.html",
+		controller:"contactcntrl"
 	})
 	.when('/employee-create-resume', {
 		templateUrl:"templates/employee-create-resume.html"
@@ -294,6 +295,118 @@ app.controller('adminchngpass',function($scope)
 		}
 });
 
+app.controller("profilecntrl",function($scope){
+	
+	$scope.profilelist={};
+    $scope.dob=[];
+   
+   
+  $scope.submitprofile=function(){
+  	
+   if($scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
+	    	            {
+	    	        	 
+	    	        	  alertify.log("Fill details before submitting the form. ");
+	    	        	}
+	    	        else
+	    	        	{
+	                   if($scope.pmodeldate== null || $scope.pmodellast== null || $scope.pmodelemail== null || $scope.pmodeldate==null || $scope.pmodelmonth== null || $scope.pmodelyear== null || $scope.pmodelcity==null || $scope.pmodelstate==null || $scope.pmodelstreet==null || $scope.pmodeledu==null || $scope.pmodelpin==null || $scope.pmodelcontact==null || $scope.pmodelabout==null)
+	
+	    	                {
+	    	        	      
+	    	        	       alertify.error("Check the remaining field");
+	    	        	     }
+	                      else
+	                         {
+	    	     	
+	    	     				alertify.success("Form successfully submitted..!!!");
+			    				$scope.dob.push({date:$scope.pmodeldate, month:$scope.pmodelmonth, year:$scope.pmodelyear})
+								$scope.profilelist={
+											  		Name:$scope.pmodelname,
+											  		Last:$scope.pmodellast,
+											  		Email:$scope.pmodelemail,
+											  		DOB:$scope.dob,
+											  		Add:$scope.pmodeladdress,
+											  		City:$scope.pmodelcity,
+											  		State:$scope.pmodelstate,
+											  		Street:$scope.pmodelstreet,
+											  		Education:$scope.pmodeledu,
+											  		Pin:$scope.pmodelpin,
+											  		Contact:$scope.pmodelcontact,
+											  		About:$scope.pmodelabout,
+											  		Country:$scope.pmodelcountry
+										           };
+  											console.log($scope.profilelist);
+
+	          				}
+													$scope.pmodelname=null;
+											  		$scope.pmodellast=null;
+											  		$scope.pmodelemail=null;
+											  		$scope.dob=null;
+											  		$scope.pmodeladdress=null;
+											  		$scope.pmodelcity=null;
+											  		$scope.pmodelstate=null;
+											  		$scope.pmodelstreet=null;
+											  		$scope.pmodeledu=null;
+											  		$scope.pmodelpin=null;
+											  		$scope.pmodelcontact=null;
+											  		$scope.pmodelabout=null;
+											  		$scope.pmodelcountry=null;
+													$scope.pmodeldate=null;
+													$scope.pmodelmonth=null;
+													$scope.pmodelyear=null;
+	    	       
+					}
+
+    
+
+
+  	
+  }
+ 
+});
+
+app.controller("contactcntrl",function($scope){
+    	
+	    $scope.submitd= function() {
+	        $scope.userdetails={};
+	           
+	    	      	if($scope.yournamemodel== null && $scope.youremailmodel== null && $scope.contactmodel== null && $scope.msgmodel==null)
+	    	            {
+	    	        	 
+	    	        	  alertify.log("Fill details before submitting the form. ");
+	    	        	}
+	    	        else
+	    	        	{
+	                 	  if($scope.yournamemodel== null || $scope.youremailmodel== null || $scope.contactmodel== null || $scope.msgmodel==null)
+	    	                {
+	    	        	      
+	    	        	       alertify.error("Check the remaining field");
+	    	        	     }
+	                      else
+	                         {
+	    	     	
+	    	     				alertify.success("Form successfully submitted..!!!");
+			    				$scope.userdetails={
+	       												FirstName:$scope.yournamemodel, 
+	       												EmailId:$scope.youremailmodel,
+	       												Contact:$scope.contactmodel,
+	       												Message:$scope.msgmodel };
+	       						console.log($scope.userdetails);
+
+	          				}
+
+	           						 $scope.yournamemodel= null; 
+	       							 $scope.youremailmodel =null;
+	       							 $scope.contactmodel=null;
+	       							 $scope.msgmodel=null;
+	
+	    	       
+					}
+
+    
+    		}
+	});
 
 // apply job application button
 app.controller('applyCtrl', function($scope) {
