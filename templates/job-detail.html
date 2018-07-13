@@ -1,11 +1,7 @@
-
-
 <div class="not-transparent-header">
 
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
-
-		
 
 		<!-- start Main Wrapper -->
 		<div class="main-wrapper">
@@ -16,7 +12,7 @@
 				<div class="container">
 				
 					<ol class="breadcrumb-list booking-step">
-						<li><a href="#">Home</a></li>
+						<li><a href="home">Home</a></li>
 						<li><a href="#">Your Admin</a></li>
 						<li><span>Post a Job</span></li>
 					</ol>
@@ -122,19 +118,15 @@
 										<p>Justice joy manners boy met resolve produce. Bed head loud next plan rent had easy add him. As earnestly shameless elsewhere defective estimable fulfilled of.</p>
 									
 									</div>
-									
-									<div class="apply-job-wrapper">
-								
-										<button class="btn btn-primary btn-hidden btn-lg collapsed" data-toggle="collapse" data-target="#apply-job-toggle">Apply this job</button>
-										
-										<div id="apply-job-toggle" class="collapse">
+							
+								<div ng-controller="applyCtrl">
 
-											<div class="collapse-inner clearfix">
-											
-												<div class="apply-job-inner">
+									<button class="btn btn-primary" ng-click="toggle()"> Apply this job </button>
 										
-													<h3 class="heading mb-5">Apply for Audio Visual Field Engineer</h3>
-													<p>Have a findJob.com account? <a href="#">Sign in</a> now and we'll pre-fill this application for you.</p>
+										<div ng-hide="visible"> 
+
+												<h3 class="heading mb-5">Apply for Audio Visual Field Engineer</h3>
+												<p >Have a findJob.com account? <a href="#">Sign in</a> now and we'll pre-fill this application for you.</p>
 													
 													<div class="bg-light padding-30">
 													
@@ -260,19 +252,15 @@
 															<p class="font12 line16">Manor we shall merit by chief wound no or would. Oh towards between subject passage sending mention or it. Sight happy do burst fruit to woody begin at. <a href="#">Assurance perpetual</a> he in oh determine as. The year paid met him does eyes same. Own marianne improved sociable not out. Thing do sight blush mr an. Celebrated am announcing <a href="#">delightful remarkably</a> we in literature it solicitude. Design use say <a href="#">piqued any</a> gay supply. Front sex match vexed her those great.</p>
 															
 															<button class="btn btn-primary">Send Application</button>
+
+															<button class="btn btn-primary" ng-click="toggle()"> Cancel </button>
 															
 														</form>
 													
 													</div>
 													
-												</div>
-								
-												
-											</div>
-										
-										</div>
-
-									</div>
+												</div>										
+											</div>			
 									
 									<div class="tab-style-01">
 									

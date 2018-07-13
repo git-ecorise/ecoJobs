@@ -36,7 +36,8 @@
 	<link rel="stylesheet" href="icons/flaticon-streamline-outline/flaticon-streamline-outline.css">
 	<link rel="stylesheet" href="icons/flaticon-thick-icons/flaticon-thick.css">
 	<link rel="stylesheet" href="icons/flaticon-ventures/flaticon-ventures.css">
-
+	<link rel="stylesheet" href="css/alertify.core.css" />
+	<link rel="stylesheet" href="css/alertify.default.css" id="toggleCSS" />
 	<!-- CSS Custom -->
 	<link href="css/style.css" rel="stylesheet">
 
@@ -45,9 +46,10 @@
 	<script type="text/javascript" src="js/angular-route.min.js"></script>
 	<script type="text/javascript" src="app/app.js"></script>
 
+	<base href="/ecoJobs/">
 
 </head>
-<body class="home" ng-app="ecojobs">
+<body class="home" ng-app="ecojobs" novalidate>
 	<div id="introLoader" class="introLoading"></div>
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
@@ -58,33 +60,33 @@
 	      <div class="container">
 	        <div class="logo-wrapper">
 	          <div class="logo">
-	            <a href="#!"><img src="images/logo.png" alt="Logo" /></a>
+	            <a href="/"><img src="images/logo.png" alt="Logo" /></a>
 	          </div>
 	        </div>
 	        <div id="navbar" class="navbar-nav-wrapper navbar-arrow">
 	          <ul class="nav navbar-nav" id="responsive-menu">
 	            <li>
-	              <a href="#!">Home</a>
+	              <a href="home">Home</a>
 	            </li>
 	            <li>
-	              <a href="#!/job-result">Job</a>
+	              <a href="job-result">Job</a>
 	              <ul>
-	                <li><a href="#!/job-detail">Detail</a></li>
-	                <li><a href="#!/job-category">Category</a></li>
-	                <li><a href="#!/job-location">Location</a></li>
-	                <li><a href="#!/job-browse-job">Browse Job</a></li>
+	                <li><a href="job-detail">Detail</a></li>
+	                <li><a href="job-category">Category</a></li>
+	                <li><a href="job-location">Location</a></li>
+	                <li><a href="job-browse-job">Browse Job</a></li>
 	              </ul>
 	            </li>
 	            <li>
-	              <a href="#!/employer">Employer</a>
+	              <a href="employer">Employer</a>
 	              <ul>
-	                <li><a href="#!/employer-detail">Employer Detail</a></li>
+	                <li><a href="employer-detail">Employer Detail</a></li>
 	              </ul>
 	            </li>
-	            <li><a href="#!/about-us">About Us</a></li>
-	            <li><a href="#!/contact">Contact</a></li>
-	            <li><a href="#!/blog">Blog</a></li>
-	            <li><a href="#!/faq">Faq</a></li>
+	            <li><a href="about-us">About Us</a></li>
+	            <li><a href="contact">Contact</a></li>
+	            <li><a href="blog">Blog</a></li>
+	            <li><a href="faq">Faq</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 
@@ -102,7 +104,7 @@
 	    <!-- end Navbar (Header) -->
 
 	    <!-- start Sign-in Modal -->
-	    <div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true">
+	    <div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true" ng-controller="loginCtrl">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        <h4 class="modal-title text-center">Sign-in into your account</h4>
@@ -122,19 +124,23 @@
 	          </div>
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
-	              <label>Username</label>
-	              <input class="form-control" placeholder="Min 4 and Max 10 characters" type="text">
+	              <label>Username<span class="font10 text-danger">(required)</span></label></label>
+	              <input class="form-control" placeholder="Enter Your Full Name" type="text" ng-model="usernamelogin" data-error="Your name is required" required>
+	              <div class="help-block with-errors"></div>
 	            </div>
 	          </div>
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
 	              <label>Password</label>
-	              <input class="form-control" placeholder="Min 4 and Max 10 characters" type="text">
+	              <input class="form-control" placeholder="Enter password" type="password" ng-model="passwordlogin">
 	            </div>
 	          </div>
+
+
+
 	          <div class="col-sm-6 col-md-6">
 	            <div class="checkbox-block">
-	              <input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox">
+	              <input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" type="checkbox" ng-model="rememberme">
 	              <label class="" for="remember_me_checkbox">Remember me</label>
 	            </div>
 	          </div>
@@ -151,14 +157,15 @@
 	        </div>
 	      </div>
 	      <div class="modal-footer text-center">
-	        <button type="button" class="btn btn-primary">Log-in</button>
+	        <button type="button" class="btn btn-primary" ng-click="userLogin()">Log-in</button>
 	        <button type="button" data-dismiss="modal" class="btn btn-primary btn-inverse">Close</button>
 	      </div>
 	    </div>
 	    <!-- end Sign-in Modal -->
 
 	    <!-- start Register Modal -->
-	    <div id="registerModal" class="modal fade login-box-wrapper" tabindex="-1" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true">
+	    <form name="registerForm">
+	    <div id="registerModal" class="modal fade login-box-wrapper" tabindex="-1" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true" ng-controller="registerCtrl">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        <h4 class="modal-title text-center">Create your account for free</h4>
@@ -179,30 +186,51 @@
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
 	              <label>Username</label>
-	              <input class="form-control" placeholder="Min 4 and Max 10 characters" type="text">
+	              <input class="form-control" placeholder="Enter Full Name" type="text" ng-model="regUser" data-error="Your name is required" required>
+	              <div class="help-block with-errors"></div>
 	            </div>
 	          </div>
+
+	           <div class="col-sm-12 col-md-12">
+	            <div class="form-group">
+	              <label>Contact</label>
+	              <input class="form-control" placeholder="Enter Contact" type="number" name="cnt"ng-model="regContact" data-maxlength="10" ng-pattern="/^[7-9][0-9]{9}$/" data-error="Enter 10 Digit" required="true">
+	               <span class="red-text" ng-if="registerForm.cnt.$error.required registerForm.cnt.$dirty">mob no required field</span>
+	               <span class="red-text" ng-show=" registerForm.cnt.$error.pattern">Invalid contact</span>
+	            </div>
+	          </div>
+
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
 	              <label>Email Address</label>
-	              <input class="form-control" placeholder="Enter your email address" type="text">
+	              <input class="form-control" placeholder="Enter your email address" name="regemail" ng-pattern="emlvalid" type="text" autocomplete="off" ng-model="regEmail" ng-required="true"> 
+	              <span class="red-text" ng-if="registerForm.regemail.$error.required registerForm.regemail.$dirty">Email Required</span>
+            
+            	  <span class="red-text" ng-show=" registerForm.regemail.$error.pattern">Enter valid Email</span>
+
 	            </div>
 	          </div>
 	          <div class="col-sm-12 col-md-12">
+	          
 	            <div class="form-group">
 	              <label>Password</label>
-	              <input class="form-control" placeholder="Min 8 and Max 20 characters" type="text">
+	              <input class="form-control" placeholder="Enter Password" type="password" name="regpass" ng-model="regPassword" data-minlength="6" data-maxlength="16" ng-change="passwordChanged()" ng-pattern="/^.*(?=.{7,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/" data-error="Invalid password" required="true">
+	              <span class="red-text" ng-if="registerForm.regpass.$error.required registerForm.regpass.$dirty">Password required field</span>
+	               <span class="red-text" ng-show=" registerForm.regpass.$error.pattern">Invalid Password</span>
 	            </div>
-	          </div>
+	            </div>
+
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
 	              <label>Password Confirmation</label>
-	              <input class="form-control" placeholder="Re-type password again" type="text">
+	              <input class="form-control" placeholder="Re-type password again" type="password" name="regpassconf" ng-model="regConfirmpass" ng-keyup="checkpass()">
+	              <p style="color: red; font-size: 12px;">{{errormsg}}</p>
 	            </div>
 	          </div>
+		
 	          <div class="col-sm-12 col-md-12">
 	            <div class="checkbox-block">
-	              <input id="register_accept_checkbox" name="register_accept_checkbox" class="checkbox" value="First Choice" type="checkbox">
+	              <input id="register_accept_checkbox" name="register_accept_checkbox" class="checkbox" type="checkbox" ng-model="Regacceptcheckbox" >
 	              <label class="" for="register_accept_checkbox">By register, I read &amp; accept <a href="#">the terms</a></label>
 	            </div>
 	          </div>
@@ -215,14 +243,16 @@
 	      </div>
 
 	      <div class="modal-footer text-center">
-	        <button type="button" class="btn btn-primary">Register</button>
+	        <button type="button" class="btn btn-primary" ng-click="userReg()">Register</button>
 	        <button type="button" data-dismiss="modal" class="btn btn-primary btn-inverse">Close</button>
 	      </div>
 	    </div>
+	    </form>
 	    <!-- end Register Modal -->
 
 	    <!-- start Forget Password Modal -->
-	    <div id="forgotPasswordModal" class="modal fade login-box-wrapper" tabindex="-1" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true">
+	    <form name="forgotPasswordForm">
+	    <div id="forgotPasswordModal" class="modal fade login-box-wrapper" tabindex="-1" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true" ng-controller="forgotPasswordCtrl">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        <h4 class="modal-title text-center">Restore your forgotten password</h4>
@@ -235,12 +265,14 @@
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
 	              <label>Email Address</label>
-	              <input class="form-control" placeholder="Enter your email address" type="text">
+	              <input class="form-control" placeholder="Enter your email address" name="forgotpasswordemail" type="text" ng-model="forgotpasswordemail" ng-pattern="eml_add" autocomplete="off" ng-required="true">
+	              <span class="red-text" ng-if=" forgotPasswordForm. forgotpasswordemail.$error.required && forgotPasswordForm.forgotpasswordemail.$dirty">Email  required</span>
+            	  <span class="red-text" ng-show=" forgotPasswordForm. forgotpasswordemail.$error.pattern">Enter Valid Email</span>
 	            </div>
 	          </div>
 	          <div class="col-sm-12 col-md-12">
 	            <div class="checkbox-block">
-	              <input id="forgot_password_checkbox" name="forgot_password_checkbox" class="checkbox" value="First Choice" type="checkbox">
+	              <input id="forgot_password_checkbox" name="forgot_password_checkbox" class="checkbox" value="First Choice" type="checkbox" ng-model="generateNewPassword">
 	              <label class="" for="forgot_password_checkbox">Generate new password</label>
 	            </div>
 	          </div>
@@ -252,10 +284,11 @@
 	        </div>
 	      </div>
 	      <div class="modal-footer text-center">
-	        <button type="button" class="btn btn-primary">Restore</button>
+	        <button type="button" class="btn btn-primary" ng-click="passwordRestore()">Restore</button>
 	        <button type="button" data-dismiss="modal" class="btn btn-primary btn-inverse">Close</button>
 	      </div>
 	    </div>
+	    </form>
 	    <!-- end Forget Password Modal -->
 	  </header>
 
@@ -279,7 +312,7 @@
                   <div class="footer-about-us">
                     <h5 class="footer-title">about HaNgan</h5>
                     <p>Sudden looked elinor off gay estate nor silent. Son read such next see the rest two. Was use extent old entire sussex...</p>
-                    <a href="#!/about-us">read more</a>
+                    <a href="/about-us">read more</a>
                   </div>
 
                 </div>
@@ -424,7 +457,8 @@
 <script type="text/javascript" src="js/jquery.sheepItPlugin.js"></script>
 <script type="text/javascript" src="js/customs-sheepItPlugin.js"></script>
 <!-- end employee-create-resume.html -->
+<!-- alertify js file -->
 
-
+<script src="js/alertify.min.js"></script>
 </body>
 </html>

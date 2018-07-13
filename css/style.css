@@ -419,14 +419,14 @@ ul.nav-mini li a {
 
 .navbar-default .navbar-nav>li> a:focus, 
 .navbar-default .navbar-nav>li> a:hover {
-    color: white;
+    color: #33B6CB;
     background-color: transparent;
 }
 
 .navbar-sticky .navbar-nav > .active > a,
 .navbar-sticky .navbar-nav > .active > a:hover,
 .navbar-sticky .navbar-nav > .active > a:focus {
-    color: white;
+    color: #33B6CB;
     background-color: transparent
 }
 
@@ -5901,4 +5901,10 @@ ul.static-page-menu li.active a {
     }
 }
 
+@media (max-width: 479px) {}
+/*==========Forgot password Email Invalid color set to red==============*/
+.red-text{
+  color:red;
+}
+/*===========End of Forgot password Email Invalid color set to red======*/
 @media (max-width: 479px) {}
