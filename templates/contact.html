@@ -1,7 +1,7 @@
 <div class="not-transparent-header">
 
 	<!-- start Container Wrapper -->
-	<div class="container-wrapper">
+	<div class="container-wrapper" >
 
 			<!-- start Sign-in Modal -->
 			<div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true">
@@ -252,15 +252,16 @@
 
 						<div class="col-sm-7 col-md-6 col-md-offset-1 mb-30">
 						
-							<form class="contact-form-wrapper" data-toggle="validator">
-							
+							<form class="contact-form-wrapper" data-toggle="validator" novalidate name="myform">
+							   
+                       
 								<div class="row">
 								
 									<div class="col-sm-6">
 									
 										<div class="form-group">
 											<label for="inputName">Your Name <span class="font10 text-danger">(required)</span></label>
-											<input id="inputName" type="text" class="form-control" data-error="Your name is required" required>
+											<input id="inputName" type="text"  class="form-control" data-error="Your name is required"  ng-model="yournamemodel" required>
 											<div class="help-block with-errors"></div>
 										</div>
 										
@@ -270,8 +271,9 @@
 									
 										<div class="form-group">
 											<label for="inputEmail">Your Email <span class="font10 text-danger">(required)</span></label>
-											<input id="inputEmail" type="email" class="form-control" data-error="Your email is required and must be a valid email address" required>
-											<div class="help-block with-errors"></div>
+											<input id="inputEmail" name="emaill" type="email" class="form-control" data-error="Your email is required and must be a valid email address"  ng-model="youremailmodel" ng-pattern= "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+											<small class="text-danger" ng-show="myform.emaill.$error.pattern"  style="color:red">Type correct email id </small>
+											<!-- <div class="help-block with-errors"></div> -->
 										</div>
 										
 									</div>
@@ -279,8 +281,19 @@
 									<div class="col-sm-12">
 									
 										<div class="form-group">
-											<label>Subject</label>
-											<input type="text" class="form-control" />
+											<!-- <label>Contact No<span class="font10 text-danger">(required)</span></label>
+											<input type="number" class="form-control"  data-error="Your contact number is required and must be a valid number" ng-model="contactmodel"  required> -->
+											<label>Contact No <span class="font10 text-danger">(required)</span></label>
+											<input  type="number" ng-maxlength="10" class="form-control"   data-error="Enter 10 dogit mob no" name="contactmodel"  ng-model="contactmodel" ng-pattern="/^[7-9][0-9]{9}$/" required>
+
+											<small class="text-danger" ng-show="myform.contactmodel.$error.pattern"  style="color:red">Mobile number should be start from 7/8/9 </small>
+ 
+											<small class="text-danger"
+
+                                   ng-show="myform.contactmodel.$error.maxlength">
+                                Your contact no  cannot be longer than 10 digits
+                            </small>
+											<div class="help-block with-errors"></div>
 										</div>
 										
 									</div>
@@ -289,14 +302,14 @@
 									
 										<div class="form-group">
 											<label for="inputMessage">Message <span class="font10 text-danger">(required)</span></label>
-											<textarea id="inputMessage" class="form-control" rows="8" data-minlength="50" data-error="Your message is required and must not less than 50 characters" required></textarea>
+											<textarea id="inputMessage" class="form-control" rows="8" data-minlength="10" data-error="Your message is required and must not less than 10 characters"  ng-model="msgmodel" required></textarea>
 											<div class="help-block with-errors"></div>
 										</div>
 
 									</div>
 									
 									<div class="col-sm-12 text-right">
-										<button type="submit" class="btn btn-primary mt-5">Send Message</button>
+										<button type="submit" class="btn btn-primary mt-5" ng-click="submitd()">Send Message</button>
 									</div>
 									
 								</div>
