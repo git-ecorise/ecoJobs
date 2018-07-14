@@ -306,51 +306,112 @@ app.controller('adminchngpass',function($scope)
 
 		}
 });
-
+//admin-profile
 app.controller("profilecntrl",function($scope){
 	
 	$scope.profilelist={};
     $scope.dob=[];
-   
-   
+    
+    $scope.profilestate=[{'statename':"Maharashtra"},
+    	{'statename':"Goa"},
+    	{'statename':"Andhra Pradesh"},
+    	{'statename':"Arunachal Pradesh"},
+    	{'statename':"Bihar"},
+    	{'statename':"Gujarat"},
+    	{'statename':"Haryana"},
+    	{'statename':"Chhattisgad"}
+    	
+
+    ];
+   var range = [];
+for(var i=1;i<=30;i++) {
+  range.push(i);
+}
+$scope.ddata = range;
+
+
+ var range = [];
+for(var i=1980;i<=2015;i++) {
+  range.push(i);
+}
+$scope.ddata1 = range;
+
+
+
+var range=[];
+for(var i=1;i<=12;i++) {
+  range.push(i);
+}
+$scope.ddata2 = range;
+
+$scope.month=[{'monthname':"Jan"},
+               {'monthname':'Feb'},
+               {'monthname':'March'},
+               {'monthname':'April'},
+               {'monthname':'May'},              
+               {'monthname':'Jun'},               
+                {'monthname':'Jul'},
+                {'monthname':'Oug'},
+                {'monthname':'Sept'},
+                {'monthname':'Oct'},
+                {'monthname':'Nov'},
+                {'monthname':'Dec'}
+               ];
+$scope.education=[
+                  {'name':"Diploma"},
+                  {'name':'Bacholor'},
+                  {'name':"Masters"},
+                  {'name':'Doctorate'}];
+
+$scope.stream=[{'strname':"Computer engineering"},
+                 {'strname':"Information Technology"},
+                 {'strname':"Civil engineering"},
+                 {'strname':"Mechanical engineering"},
+                 {'strname':"Electical engineering"}];
+   // $scope.pmodelstate=[{'name':"MH"},{'name':"Goa"}];
+
   $scope.submitprofile=function(){
   	
-   if($scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
+   if($scope.modelstream==null && $scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
 	    	            {
 	    	        	 
 	    	        	  alertify.log("Fill details before submitting the form. ");
 	    	        	}
 	    	        else
 	    	        	{
-	                   if($scope.pmodeldate== null || $scope.pmodellast== null || $scope.pmodelemail== null || $scope.pmodeldate==null || $scope.pmodelmonth== null || $scope.pmodelyear== null || $scope.pmodelcity==null || $scope.pmodelstate==null || $scope.pmodelstreet==null || $scope.pmodeledu==null || $scope.pmodelpin==null || $scope.pmodelcontact==null || $scope.pmodelabout==null)
+	                   if($scope.modelstream==null || $scope.pmodeldate== null || $scope.pmodellast== null || $scope.pmodelemail== null || $scope.pmodeldate==null || $scope.pmodelmonth== null || $scope.pmodelyear== null || $scope.pmodelcity==null || $scope.pmodelstate==null || $scope.pmodelstreet==null || $scope.pmodeledu==null || $scope.pmodelpin==null || $scope.pmodelcontact==null || $scope.pmodelabout==null)
 	
 	    	                {
 	    	        	      
 	    	        	       alertify.error("Check the remaining field");
 	    	        	     }
 	                      else
-	                         {
+	                         { 
+
+	                         	$scope.dob=$scope.pmodeldate+"- "+$scope.pmodelmonth+" -"+$scope.pmodelyear;
 	    	     	
 	    	     				alertify.success("Form successfully submitted..!!!");
-			    				$scope.dob.push({date:$scope.pmodeldate, month:$scope.pmodelmonth, year:$scope.pmodelyear})
+			    				 // $scope.dob.push({date:$scope.pmodeldate, month:$scope.pmodelmonth, year:$scope.pmodelyear})
 								$scope.profilelist={
-											  		Name:$scope.pmodelname,
-											  		Last:$scope.pmodellast,
-											  		Email:$scope.pmodelemail,
-											  		DOB:$scope.dob,
-											  		Add:$scope.pmodeladdress,
-											  		City:$scope.pmodelcity,
-											  		State:$scope.pmodelstate,
-											  		Street:$scope.pmodelstreet,
-											  		Education:$scope.pmodeledu,
-											  		Pin:$scope.pmodelpin,
-											  		Contact:$scope.pmodelcontact,
-											  		About:$scope.pmodelabout,
-											  		Country:$scope.pmodelcountry
+											  		firstName:$scope.pmodelname,
+											  		lastName:$scope.pmodellast,
+											  		email:$scope.pmodelemail,
+											  		dob:$scope.dob,
+											  		address:$scope.pmodeladdress,
+											  		city:$scope.pmodelcity,
+											  		state:$scope.pmodelstate,
+											  		streetName:$scope.pmodelstreet,
+											  		education:$scope.pmodeledu,
+											  		stream:$scope.modelstream,
+											  		pincode:$scope.pmodelpin,
+											  		mobile:$scope.pmodelcontact,
+											  		about:$scope.pmodelabout
+											  		
 										           };
   											console.log($scope.profilelist);
 
 	          				}
+	          										$scope.modelstream=null;
 													$scope.pmodelname=null;
 											  		$scope.pmodellast=null;
 											  		$scope.pmodelemail=null;
@@ -400,10 +461,10 @@ app.controller("contactcntrl",function($scope){
 	    	     	
 	    	     				alertify.success("Form successfully submitted..!!!");
 			    				$scope.userdetails={
-	       												FirstName:$scope.yournamemodel, 
-	       												EmailId:$scope.youremailmodel,
-	       												Contact:$scope.contactmodel,
-	       												Message:$scope.msgmodel };
+	       												firstName:$scope.yournamemodel, 
+	       												email:$scope.youremailmodel,
+	       												mobile:$scope.contactmodel,
+	       												message:$scope.msgmodel };
 	       						console.log($scope.userdetails);
 
 	          				}
