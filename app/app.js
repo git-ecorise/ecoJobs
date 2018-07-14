@@ -12,15 +12,10 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl:"templates/account-forgot-password-page.html"
 
 	})
-	.when('/employer-post-job', {
-		templateUrl:"templates/employer-post-job.html"
+	.when('/post-job', {
+		templateUrl:"Admin/employer-post-job.html"
 	})
-	.when('/employer-edit', {
-		templateUrl:"templates/employer-edit.html"
-	})
-	.when('/employer-create', {
-		templateUrl:"templates/employer-create.html"
-	})
+	
 	.when('/account-login-page', {
 		templateUrl:"templates/account-login-page.html",
 			
@@ -64,8 +59,11 @@ app.config(function($routeProvider, $locationProvider){
 	.when('/employee', {
 		templateUrl:"templates/employee.html"
 	})
-	.when('/employer', {
-		templateUrl:"templates/employer.html"
+	.when('/add-company', {
+		templateUrl:"Admin/employer-create.html"
+	})
+	.when('/update-company', {
+		templateUrl:"Admin/employer-edit.html"
 	})
 	.when('/employer-detail', {
 		templateUrl:"templates/employer-detail.html"
