@@ -88,6 +88,9 @@ app.config(function($routeProvider, $locationProvider){
 	})
 	.when('/job-result', {
 		templateUrl:"templates/job-result.html"
+	})
+	.otherwise({
+		templateUrl:"templates/404-error-page.html"
 	});
 
  	$locationProvider.html5Mode(true).hashPrefix('#!');
