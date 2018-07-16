@@ -110,6 +110,7 @@
 	    <!-- end Navbar (Header) -->
 
 	    <!-- start Sign-in Modal -->
+	    <form name="loginfrmnm">
 	    <div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true" ng-controller="loginCtrl">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -128,21 +129,23 @@
 	              <div><span>or</span></div>
 	            </div>
 	          </div>
+	      
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
-	              <label>Username<span class="font10 text-danger">(required)</span></label></label>
-	              <input class="form-control" placeholder="Enter Your Full Name" type="text" ng-model="usernamelogin" data-error="Your name is required" required>
+	              <label>Email Address</label>
+	              <input class="form-control" placeholder="Enter Your Email" type="email" ng-model="usernamelogin" name="lgnname" data-error="Your name is required" autocomplete="off" ng-required="true" ng-pattern="lgnpattern">
+	              <span class="red-text" ng-if="loginfrmnm.lgnname.$error.required loginfrmnm.lgnname.$dirty">Email Required</span>
+            	  <span class="red-text" ng-show=" loginfrmnm.lgnname.$error.pattern">Enter valid Email</span>
 	              <div class="help-block with-errors"></div>
 	            </div>
 	          </div>
+
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
 	              <label>Password</label>
 	              <input class="form-control" placeholder="Enter password" type="password" ng-model="passwordlogin">
 	            </div>
 	          </div>
-
-
 
 	          <div class="col-sm-6 col-md-6">
 	            <div class="checkbox-block">
@@ -167,6 +170,7 @@
 	        <button type="button" data-dismiss="modal" class="btn btn-primary btn-inverse">Close</button>
 	      </div>
 	    </div>
+	    </form>
 	    <!-- end Sign-in Modal -->
 
 	    <!-- start Register Modal -->
@@ -189,18 +193,27 @@
 	              <div><span>or</span></div>
 	            </div>
 	          </div>
-	          <div class="col-sm-12 col-md-12">
+	        
+	          <div class="col-sm-6 col-md-6">
 	            <div class="form-group">
-	              <label>Username</label>
-	              <input class="form-control" placeholder="Enter Full Name" type="text" ng-model="regUser" data-error="Your name is required" required>
+	              <label>First Name</label>
+	              <input class="form-control" placeholder="Enter First Name" type="text" ng-model="regUser" data-error="Your name is required" required>
 	              <div class="help-block with-errors"></div>
 	            </div>
 	          </div>
+	          <div class="col-sm-6 col-md-6">
+	            <div class="form-group">
+	              <label>Last Name</label>
+	              <input class="form-control" placeholder="Enter Last Name" type="text" ng-model="regUserLast" data-error="Your name is required" required>
+	              <div class="help-block with-errors"></div>
+	            </div>
+	          
 
+	        </div>
 	           <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
 	              <label>Contact</label>
-	              <input class="form-control" placeholder="Enter Contact" type="number" name="cnt"ng-model="regContact" data-maxlength="10" ng-pattern="/^[7-9][0-9]{9}$/" data-error="Enter 10 Digit" required="true">
+	              <input class="form-control" placeholder="Enter Contact" type="number" name="cnt" ng-model="regContact" data-maxlength="10" ng-pattern="/^[7-9][0-9]{9}$/" data-error="Enter 10 Digit" required="true">
 	               <span class="red-text" ng-if="registerForm.cnt.$error.required registerForm.cnt.$dirty">mob no required field</span>
 	               <span class="red-text" ng-show=" registerForm.cnt.$error.pattern">Invalid contact</span>
 	            </div>
@@ -209,7 +222,7 @@
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
 	              <label>Email Address</label>
-	              <input class="form-control" placeholder="Enter your email address" name="regemail" ng-pattern="emlvalid" type="text" autocomplete="off" ng-model="regEmail" ng-required="true"> 
+	              <input class="form-control" placeholder="Enter your email address" name="regemail" ng-pattern="emlvalid" type="email" autocomplete="off" ng-model="regEmail" ng-required="true"> 
 	              <span class="red-text" ng-if="registerForm.regemail.$error.required registerForm.regemail.$dirty">Email Required</span>
             
             	  <span class="red-text" ng-show=" registerForm.regemail.$error.pattern">Enter valid Email</span>
@@ -222,7 +235,7 @@
 	              <label>Password</label>
 	              <input class="form-control" placeholder="Enter Password" type="password" name="regpass" ng-model="regPassword" data-minlength="6" data-maxlength="16" ng-change="passwordChanged()" ng-pattern="/^.*(?=.{7,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/" data-error="Invalid password" required="true">
 	              <span class="red-text" ng-if="registerForm.regpass.$error.required registerForm.regpass.$dirty">Password required field</span>
-	               <span class="red-text" ng-show=" registerForm.regpass.$error.pattern">Invalid Password</span>
+	               <span class="red-text" ng-show=" registerForm.regpass.$error.pattern">Use 6 or more characters with a mix of capital, small letters & numbers</span>
 	            </div>
 	            </div>
 
@@ -271,7 +284,7 @@
 	          <div class="col-sm-12 col-md-12">
 	            <div class="form-group">
 	              <label>Email Address</label>
-	              <input class="form-control" placeholder="Enter your email address" name="forgotpasswordemail" type="text" ng-model="forgotpasswordemail" ng-pattern="eml_add" autocomplete="off" ng-required="true">
+	              <input class="form-control" placeholder="Enter your email address" name="forgotpasswordemail" type="email" ng-model="forgotpasswordemail" ng-pattern="eml_add" autocomplete="off" ng-required="true">
 	              <span class="red-text" ng-if=" forgotPasswordForm. forgotpasswordemail.$error.required && forgotPasswordForm.forgotpasswordemail.$dirty">Email  required</span>
             	  <span class="red-text" ng-show=" forgotPasswordForm. forgotpasswordemail.$error.pattern">Enter Valid Email</span>
 	            </div>
