@@ -11,15 +11,10 @@ app.config(function($routeProvider, $locationProvider){
 	.when('/account-forgot-password-page', {
 		templateUrl:"templates/account-forgot-password-page.html"
 	})
-	.when('/employer-post-job', {
-		templateUrl:"templates/employer-post-job.html"
+	.when('/post-job', {
+		templateUrl:"Admin/employer-post-job.html"
 	})
-	.when('/employer-edit', {
-		templateUrl:"templates/employer-edit.html"
-	})
-	.when('/employer-create', {
-		templateUrl:"templates/employer-create.html"
-	})
+	
 	.when('/account-login-page', {
 		templateUrl:"templates/account-login-page.html",
 	})
@@ -60,8 +55,11 @@ app.config(function($routeProvider, $locationProvider){
 	.when('/employee', {
 		templateUrl:"templates/employee.html"
 	})
-	.when('/employer', {
-		templateUrl:"templates/employer.html"
+	.when('/add-company', {
+		templateUrl:"Admin/employer-create.html"
+	})
+	.when('/update-company', {
+		templateUrl:"Admin/employer-edit.html"
 	})
 	.when('/employer-detail', {
 		templateUrl:"templates/employer-detail.html"
@@ -96,9 +94,10 @@ app.config(function($routeProvider, $locationProvider){
 
 // Login Controller Started
 
-app.controller('loginCtrl',function($scope){
+app.controller('loginCtrl',function($scope, $http){
 	$scope.loginData={};
 	$scope.rememberMe=false;
+	$scope.lgnpattern=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 	$scope.userLogin=function(){
 		if($scope.usernamelogin==null && $scope.passwordlogin==null && $scope.rememberme==null)
@@ -113,10 +112,19 @@ app.controller('loginCtrl',function($scope){
 			}
 			else
 			{		
+				$http.get("http://192.168.2.11/mySlim/public/")
+				    .then(function(response) {
+				        console.log(response);
+				    });
+
+					// console.log('after http Service');
+					// 	$http.get('http://192.168.2.11/mySlim/public/').then(function(res){
+					// 		console.log(res);
+					// 	})
 					alertify.success("Login Successfully!!");
 					$scope.loginData = {
-                    		Name: $scope.usernamelogin,
-                    		Password: $scope.passwordlogin,
+                    		email: $scope.usernamelogin,
+                    		password: $scope.passwordlogin,
         				};
         console.log($scope.loginData);
 			}
@@ -134,52 +142,76 @@ app.controller('loginCtrl',function($scope){
 
 // Registration Controller Started
 
-app.controller('registerCtrl',function($scope){
+app.controller('registerCtrl',function($scope,$http){
 	$scope.regData={};
-	$scope.regJsonArray=[];
-	$scope.terms=false;
 	$scope.password = null;
  	$scope.passwordConfirmation = null;
 	
 	// Email Validation
 	$scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 	$scope.userReg=function(){
-		if ($scope.regUser==null && $scope.regEmail==null && $scope.regPassword==null && $scope.regContact==null && $scope.regConfirmpass==null && $scope.Regacceptcheckbox==null) {
+		if ($scope.regUser==null && $scope.regEmail==null && $scope.regPassword==null && $scope.regContact==null && $scope.regConfirmpass==null && $scope.Regacceptcheckbox==null && $scope.regUserLast==null) {
 			alertify.log("Fill Details before Registration");
 		}
 		else
 		{
-			if($scope.regUser==null || $scope.regEmail==null || $scope.regPassword==null || $scope.regContact==null || $scope.regConfirmpass==null || $scope.Regacceptcheckbox==null)
+			if($scope.regUser==null || $scope.regEmail==null || $scope.regPassword==null || $scope.regContact==null || $scope.regConfirmpass==null || $scope.Regacceptcheckbox==null || $scope.regUserLast==null)
 			{
 				alertify.error("Check the Remaining Fields");
 			}
-			else
-				if($scope.regPassword != $scope.regConfirmpass)
-				
-				{
-					alertify.error("Password are not Same");
-				}
+			
 			else
 			{
-					alertify.success("Registration Successfull!!");		
-					$scope.regData = {
-                    		name: $scope.regUser,
+
+				$scope.regData = {
+                    		firstName: $scope.regUser,
+                    		lastName:$scope.regUserLast,
                     		contact:$scope.regContact,
                     		email: $scope.regEmail,
                     		password:$scope.regPassword,
-                    		
-                    
         				};
         				console.log($scope.regData);
+        					// HTTP Service
+
+      //   				var config = {
+						//         method: "POST",
+						//         url: 'http://192.168.2.3/g/mySlim/public/user_add',
+						//         data: $scope.regData,
+						//         headers: {
+						//             'Content-Type': 'application/json; charset=utf-8'
+						//         }
+						//     };
+						// $http(config);
+						// $http.post('http://192.168.2.3/g/app_api/admin/newWorker.php', $scope.regData).then(function(data){
+						// 	console.log(data);
+						//     });
+
+						console.log('after http Service');
+						$http.get('http://192.168.2.11/mySlim/public/').then(function(res){
+							console.log(res);
+						})
+
+
+        				// $http.post('http://192.168.2.3/g/mySlim/public/user_add',$scope.regData).then(function(res){
+        				// 	console.log(res);
+        				// 	if(res.data=="true")
+        				// 	{
+        				// 		alertify.success("Registration Successfull!!");
+        				// 		$scope.regUser=null;
+	           //          		$scope.regContact=null;
+	           //          		$scope.regEmail=null;
+	           //          		$scope.regPassword=null;
+	           //          		$scope.regConfirmpass=null;
+	           //          		$scope.Regacceptcheckbox=null;
+	           //          		$scope.regUserLast=null;		
+        				// 	}
+        				// 	else
+        				// 	{
+        				// 		alertify.error("Something went wrong, please try again");
+        				// 	}
+
+        				// });
 			}
-							$scope.regUser=null;
-                    		$scope.regContact=null;
-                    		$scope.regEmail=null;
-                    		$scope.regPassword=null;
-                    		$scope.regConfirmpass=null;
-                    		$scope.Regacceptcheckbox=null;
-
-
 		}
 	}
 
@@ -192,11 +224,14 @@ app.controller('registerCtrl',function($scope){
 				console.log($scope.verifycpass);
 				if ($scope.regPassword != $scope.verifycpass) {
 					console.log($scope.regConfirmpass);
-					$scope.errormsg = "password not match";
+					$scope.errormsg = "Invalid Password";
 				}
-				else{
-					$scope.errormsg = "Correct password";
+				else
+				{
+					$scope.errormsg="";
+
 				}
+				
 			}
 
 // reggistration password confirmation Ends
@@ -229,9 +264,8 @@ app.controller('forgotPasswordCtrl',function($scope){
 			
 
 							$scope.forgotPasswordData= {
-                    		emailId:$scope.forgotpasswordemail,
-                    		newPassword:$scope.generateNewPassword
-        					};
+                    		email:$scope.forgotpasswordemail,
+               					};
 
         					console.log($scope.forgotPasswordData);
     }
@@ -254,13 +288,10 @@ app.controller('adminchngpass',function($scope)
 				if($scope.adminnwpass!=$scope.chkadminpass)
 				{
 					console.log($scope.admincnfpas);
-					$scope.errormsg = "password not match";
+					$scope.errormsg = "Use 6 or more characters with a mix of capital, small letters & numbers";
 
 				}
-			else{
-					$scope.errormsg = "Correct Password";
-
-				}
+		
 }
 
 		$scope.saveAdminPass=function()
@@ -276,20 +307,14 @@ app.controller('adminchngpass',function($scope)
 				{
 					alertify.error("Check the Remaining Fields");
 				}
-				else
-				if($scope.adminnwpass != $scope.admincnfpas)
-				
-				{
-					alertify.error("Password are not Same");
-				}
 
 				else
 				{
 					alertify.success("Password Saved Successfull!!");		
 					$scope.admincngpwData={
-						oldpass:$scope.currpass,
-						newpw:$scope.adminnwpass,
-						cnfpw:$scope.admincnfpas
+						oldPassword:$scope.currpass,
+						newPassword:$scope.adminnwpass,
+						confirmPassword:$scope.admincnfpas
 				}
         		console.log($scope.admincngpwData);
 			}
@@ -302,51 +327,112 @@ app.controller('adminchngpass',function($scope)
 
 		}
 });
-
+//admin-profile
 app.controller("profilecntrl",function($scope){
 	
 	$scope.profilelist={};
     $scope.dob=[];
-   
-   
+    
+    $scope.profilestate=[{'statename':"Maharashtra"},
+    	{'statename':"Goa"},
+    	{'statename':"Andhra Pradesh"},
+    	{'statename':"Arunachal Pradesh"},
+    	{'statename':"Bihar"},
+    	{'statename':"Gujarat"},
+    	{'statename':"Haryana"},
+    	{'statename':"Chhattisgad"}
+    	
+
+    ];
+   var range = [];
+for(var i=1;i<=30;i++) {
+  range.push(i);
+}
+$scope.ddata = range;
+
+
+ var range = [];
+for(var i=1980;i<=2015;i++) {
+  range.push(i);
+}
+$scope.ddata1 = range;
+
+
+
+var range=[];
+for(var i=1;i<=12;i++) {
+  range.push(i);
+}
+$scope.ddata2 = range;
+
+$scope.month=[{'monthname':"Jan"},
+               {'monthname':'Feb'},
+               {'monthname':'March'},
+               {'monthname':'April'},
+               {'monthname':'May'},              
+               {'monthname':'Jun'},               
+                {'monthname':'Jul'},
+                {'monthname':'Oug'},
+                {'monthname':'Sept'},
+                {'monthname':'Oct'},
+                {'monthname':'Nov'},
+                {'monthname':'Dec'}
+               ];
+$scope.education=[
+                  {'name':"Diploma"},
+                  {'name':'Bacholor'},
+                  {'name':"Masters"},
+                  {'name':'Doctorate'}];
+
+$scope.stream=[{'strname':"Computer engineering"},
+                 {'strname':"Information Technology"},
+                 {'strname':"Civil engineering"},
+                 {'strname':"Mechanical engineering"},
+                 {'strname':"Electical engineering"}];
+   // $scope.pmodelstate=[{'name':"MH"},{'name':"Goa"}];
+
   $scope.submitprofile=function(){
   	
-   if($scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
+   if($scope.modelstream==null && $scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
 	    	            {
 	    	        	 
 	    	        	  alertify.log("Fill details before submitting the form. ");
 	    	        	}
 	    	        else
 	    	        	{
-	                   if($scope.pmodeldate== null || $scope.pmodellast== null || $scope.pmodelemail== null || $scope.pmodeldate==null || $scope.pmodelmonth== null || $scope.pmodelyear== null || $scope.pmodelcity==null || $scope.pmodelstate==null || $scope.pmodelstreet==null || $scope.pmodeledu==null || $scope.pmodelpin==null || $scope.pmodelcontact==null || $scope.pmodelabout==null)
+	                   if($scope.modelstream==null || $scope.pmodeldate== null || $scope.pmodellast== null || $scope.pmodelemail== null || $scope.pmodeldate==null || $scope.pmodelmonth== null || $scope.pmodelyear== null || $scope.pmodelcity==null || $scope.pmodelstate==null || $scope.pmodelstreet==null || $scope.pmodeledu==null || $scope.pmodelpin==null || $scope.pmodelcontact==null || $scope.pmodelabout==null)
 	
 	    	                {
 	    	        	      
 	    	        	       alertify.error("Check the remaining field");
 	    	        	     }
 	                      else
-	                         {
+	                         { 
+
+	                         	$scope.dob=$scope.pmodeldate+"- "+$scope.pmodelmonth+" -"+$scope.pmodelyear;
 	    	     	
 	    	     				alertify.success("Form successfully submitted..!!!");
-			    				$scope.dob.push({date:$scope.pmodeldate, month:$scope.pmodelmonth, year:$scope.pmodelyear})
+			    				 // $scope.dob.push({date:$scope.pmodeldate, month:$scope.pmodelmonth, year:$scope.pmodelyear})
 								$scope.profilelist={
-											  		Name:$scope.pmodelname,
-											  		Last:$scope.pmodellast,
-											  		Email:$scope.pmodelemail,
-											  		DOB:$scope.dob,
-											  		Add:$scope.pmodeladdress,
-											  		City:$scope.pmodelcity,
-											  		State:$scope.pmodelstate,
-											  		Street:$scope.pmodelstreet,
-											  		Education:$scope.pmodeledu,
-											  		Pin:$scope.pmodelpin,
-											  		Contact:$scope.pmodelcontact,
-											  		About:$scope.pmodelabout,
-											  		Country:$scope.pmodelcountry
+											  		firstName:$scope.pmodelname,
+											  		lastName:$scope.pmodellast,
+											  		email:$scope.pmodelemail,
+											  		dob:$scope.dob,
+											  		address:$scope.pmodeladdress,
+											  		city:$scope.pmodelcity,
+											  		state:$scope.pmodelstate,
+											  		streetName:$scope.pmodelstreet,
+											  		education:$scope.pmodeledu,
+											  		stream:$scope.modelstream,
+											  		pincode:$scope.pmodelpin,
+											  		mobile:$scope.pmodelcontact,
+											  		about:$scope.pmodelabout
+											  		
 										           };
   											console.log($scope.profilelist);
 
 	          				}
+	          										$scope.modelstream=null;
 													$scope.pmodelname=null;
 											  		$scope.pmodellast=null;
 											  		$scope.pmodelemail=null;
@@ -396,10 +482,10 @@ app.controller("contactcntrl",function($scope){
 	    	     	
 	    	     				alertify.success("Form successfully submitted..!!!");
 			    				$scope.userdetails={
-	       												FirstName:$scope.yournamemodel, 
-	       												EmailId:$scope.youremailmodel,
-	       												Contact:$scope.contactmodel,
-	       												Message:$scope.msgmodel };
+	       												firstName:$scope.yournamemodel, 
+	       												email:$scope.youremailmodel,
+	       												mobile:$scope.contactmodel,
+	       												message:$scope.msgmodel };
 	       						console.log($scope.userdetails);
 
 	          				}

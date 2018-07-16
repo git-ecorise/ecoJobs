@@ -105,6 +105,10 @@
 													
 			 									</div>
 												
+
+
+                                                
+
 												<div class="col-sm-6 col-md-4">
 												
 													<div class="form-group">
@@ -115,9 +119,39 @@
 													
 												</div>
 												
+
+												<div class="col-sm-6 col-md-4">
+												
+													<div class="form-group">
+														<label>Born<span class="font10 text-danger">(required)</span></label>
+														<div class="row gap-5">
+															<!-- <input type="date" name="" ng-model="dob"> -->
+															<div class="col-xs-3 col-sm-3">
+                                                             <select class="selectpicker form-control" data-live-search="false" ng-model="pmodeldate">
+																	<option disabled selected value>Select</option>
+																	 <option ng-repeat="g in ddata" value="{{g}}">{{g}}</option>
+																</select>
+															</div>
+															<div class="col-xs-5 col-sm-5">
+																<select class="selectpicker form-control" data-live-search="false" ng-model="pmodelmonth">
+																	<option disabled selected value>Select</option>
+																	<option ng-repeat="g in month" value="{{g.monthname}}">{{g.monthname}}</option>
+																</select>
+															</div>
+															<div class="col-xs-4 col-sm-4">
+																<select class="selectpicker form-control" data-live-search="false" ng-model="pmodelyear">
+																	<option disabled selected value>Select</option>
+																	 <option ng-repeat="g in ddata1" value="{{g}}">{{g}}</option>
+																
+																</select>
+															</div>
+														</div>
+													</div>
+													
+												</div>
 												<div class="clear"></div>
 												
-												<div class="col-sm-6 col-md-4">
+												<!-- <div class="col-sm-6 col-md-4">
 												
 													<div class="form-group">
 														<label>Born<span class="font10 text-danger">(required)</span></label>
@@ -149,7 +183,7 @@
 														</div>
 													</div>
 													
-												</div>
+												</div> -->
 												
 												<div class="col-sm-6 col-md-4">
 												
@@ -161,37 +195,58 @@
 													</div>
 													
 												</div>
+												<div class="col-sm-6 col-md-4">
 												
-												<div class="clear"></div>
+													 <div class="form-group">
+														<label>Phone Number<span class="font10 text-danger">(required)</span></label>
+														<input type="tel" name="phno" class="form-control" ng-maxlength="10" class="form-control"   data-error="Enter 10 dogit mob no" ng-model="pmodelcontact" ng-pattern="/^[7-9][0-9]{9}$/" required>
+														<div class="help-block with-errors"></div>
 
-												<div class="form-group">
-												
-													<div class="col-sm-12">
-														<label>Education</label>
-													</div>
+											<small class="text-danger" ng-show="myform.phno.$error.pattern"  style="color:red">Mobile number should be start from 7/8/9 </small>
+ 
+										
 													
-													<div class="col-sm-6 col-md-4">
+												</div>
+ 
+												</div>
+
+
+                                               <div class="col-sm-6 col-md-4">
+                                               	<div class="form-group">
+														<label>Education<span class="font10 text-danger">(required)</span></label>
 														<select class="selectpicker show-tick form-control mb-15" data-error="Select your education" ng-model="pmodeledu" required>
 															<option  value="">Select</option>
-															<option  value="Diploma">Diploma</option>
+															<option ng-repeat="x in education" ng-value="x.name">{{x.name}}</option>
+															<!-- <option  value="Diploma">Diploma</option>
 															<option  value="Bachelor" selected>Bachelor</option>
 															<option  value="Master">Master</option>
 															<option  value="Doctoral">Doctoral </option>
-															<option value="Certificate">Certificate</option>
+															<option value="Certificate">Certificate</option> -->
 														    </select>
 														<div class="help-block with-errors"></div>
 														
 													</div>
-													
-													<div class="col-sm-6 col-md-4">
-														<input type="text" class="form-control mb-15" value="Engineering">
 													</div>
+
+
+
+													 <div class="col-sm-6 col-md-4">
+                                               	<div class="form-group">
+														<label>Stream<span class="font10 text-danger">(required)</span></label>
+														<select class="selectpicker show-tick form-control mb-15" " ng-model="modelstream">
+															<option  value="">Select</option>
+															<option ng-repeat="y in stream" ng-value="y.strname">{{y.strname}}</option>
+															<!-- <option  value="Computer Engineering">Computer Enginerring</option>
+															<option  value="Information Technology" selected>Information Technology</option>
+															<option  value="Civil Enginerring">Civil Engineering</option>
+															<option  value="Mechanical Engineering">Mechanical Engineering </option>
+															<option value="ENTC">ENTC</option> -->
+														    </select>
 														
-												</div>
-												
-												<div class="clear"></div>
-												
-												<div class="col-sm-6 col-md-4">
+														
+													</div>
+													</div>
+                                                    <div class="col-sm-6 col-md-4">
 												
 													<div class="form-group">
 														<label>Address<span class="font10 text-danger">(required)</span></label>
@@ -200,7 +255,40 @@
 													</div>
 													
 												</div>
+													
 												
+												
+												<!-- <div class="clear"></div> -->
+
+												
+												<!-- <div class="clear"></div> -->
+												
+												<!-- <div class="col-sm-6 col-md-4">
+												
+													<div class="form-group">
+														<label>Address<span class="font10 text-danger">(required)</span></label>
+														<input type="text" class="form-control" data-error="Enter your Address" ng-model="pmodeladdress" required="">
+														<div class="help-block with-errors"></div>
+													</div>
+													
+												</div> -->
+												
+												<div class="col-sm-6 col-md-4">
+                                               	<div class="form-group">
+														<label>State<span class="font10 text-danger">(required)</span></label>
+														<select class="selectpicker show-tick form-control mb-15" data-error="Select your education" ng-model="pmodelstate" required>
+															<option  value="">Select</option>
+															<option ng-repeat="x1 in profilestate" ng-value="x1.statename">{{x1.statename}}</option>
+															<!-- <option  value="Maharashtra">Maharashtra</option>
+															<option  value="Goa" selected>Goa</option>
+															<option  value="Gujrat">Gujrat</option>
+															<option  value="UP">UP </option>
+															<option value="MP">MP</option> -->
+														    </select>
+														<div class="help-block with-errors"></div>
+														
+													</div>
+													</div>
 												<div class="col-sm-6 col-md-4">
 												
 													<div class="form-group">
@@ -211,13 +299,25 @@
 													
 												</div>
 												
-												<div class="clear"></div>
-												
+                                                <!-- <div class="clear"></div> -->
+
+
 												<div class="col-sm-6 col-md-4">
 												
 													<div class="form-group">
-														<label>Province/State<span class="font10 text-danger">(required)</span></label>
-														<input type="text" class="form-control" data-error="Enter your State " ng-model="pmodelstate" required="">
+														<label>Street</label>
+														<input type="text" class="form-control" data-error="Enter your street" ng-model="pmodelstreet" required="">
+														<div class="help-block with-errors"></div>
+													</div>
+													
+												</div>
+												<!-- <div class="clear"></div> -->
+												
+												<!-- <div class="col-sm-6 col-md-4">
+												
+													<div class="form-group">
+														<label>City/town<span class="font10 text-danger">(required)</span></label>
+														<input type="text" class="form-control" data-error="Enter your city " ng-model="pmodelcity" required="">
 														<div class="help-block with-errors"></div>
 													</div>
 													
@@ -232,19 +332,19 @@
 													</div>
 													
 												</div>
-
-												<div class="clear"></div>
+ -->
+												<!-- <div class="clear"></div> -->
 												
 												<div class="col-sm-6 col-md-4">
 												
 													<div class="form-group">
-														<label>Zip Code<span class="font10 text-danger">(required)</span></label>
-														<input type="text" name="zipcode"class="form-control" ng-maxlength="5" ng-model="pmodelpin" ng-pattern="/^[4][0-9]{4}$/" data-error="Enter pin code of your city" required="">
+														<label>Pin Code<span class="font10 text-danger">(required)</span></label>
+														<input type="text" name="zipcode"class="form-control" ng-maxlength="6" ng-model="pmodelpin" ng-pattern="/^[4][0-9]{5}$/" data-error="Enter pin code of your city" required="">
 														<div class="help-block with-errors"></div>
 
 														<small class="text-danger"
 												ng-show="myform.zipcode.$error.maxlength">
-                                Your pin no  cannot be longer than 5 digits
+                                Your pin no  cannot be longer than 6 digits
                             </small>
                              <small class="text-danger" ng-show="myform.zipcode.$error.pattern"  style="color:red">Pin code  should be start from 4 </small>
 													</div>
@@ -252,28 +352,9 @@
 													
 												</div>
 												
-												<div class="col-sm-6 col-md-4">
+												<!-- <div class="col-sm-6 col-md-4">
 												
-													<div class="form-group">
-														<label>Country</label>
-														<select class="selectpicker show-tick form-control" data-error="Enter your country"data-live-search="false" ng-model="pmodelcountry">
-															<option disabled selected value>Select</option>
-															<option >Thailand</option>
-															<option >France</option>
-															<option >China</option>
-															<option >Malaysia </option>
-															<option >Italy</option>
-														</select>
-														<div class="help-block with-errors"></div>
-													</div>
-													
-												</div>
-
-												<div class="clear"></div>
-												
-												<div class="col-sm-6 col-md-4">
-												
-													<div class="form-group">
+													 <div class="form-group">
 														<label>Phone Number<span class="font10 text-danger">(required)</span></label>
 														<input type="number" name="phno" class="form-control" ng-maxlength="10" class="form-control"   data-error="Enter 10 dogit mob no" ng-model="pmodelcontact" ng-pattern="/^[7-9][0-9]{9}$/" required>
 														<div class="help-block with-errors"></div>
@@ -283,7 +364,14 @@
 										
 													
 												</div>
+ 
+												</div> -->
 
+												<div class="clear"></div>
+												
+												<div class="col-sm-6 col-md-4">
+												
+													
 												<div class="clear"></div>
 												
 												<div class="col-sm-12 col-md-12">

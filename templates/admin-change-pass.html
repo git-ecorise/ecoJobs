@@ -84,7 +84,7 @@
 												<div class="col-sm-6 col-md-4">
 												
 													<div class="form-group">
-														<label>Current Password</label>
+														<label>current Password</label>
 														<input type="password" placeholder="Enter Current Password" class="form-control" value="" ng-model="currpass">
 													</div>
 													
@@ -95,10 +95,10 @@
 												<div class="col-sm-6 col-md-4">
 												
 													<div class="form-group">
-														<label>New Password</label>
+														<label>new Password</label>
 														<input type="password" placeholder="Enter New Password" name="anminnewpass" class="form-control" ng-model="adminnwpass" data-minlength="6" data-maxlength="16" ng-pattern="/^.*(?=.{7,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/" data-error="Invalid password" required="true">
 														<span class="red-text" ng-if="adminformnm.anminnewpass.$error.required adminformnm.anminnewpass.$dirty">Password required field</span>
-	               										<span class="red-text" ng-show=" adminformnm.anminnewpass.$error.pattern">Invalid Password</span>
+	               										<span class="red-text" ng-show=" adminformnm.anminnewpass.$error.pattern">Use 6 or more characters with a mix of capital, small letters & numbers</span>
 														</div>
 													
 												</div>
@@ -108,7 +108,7 @@
 												<div class="col-sm-6 col-md-4">
 												
 													<div class="form-group">
-														<label>Confirm Password</label>
+														<label>confirm Password</label>
 														<input type="password" placeholder="Re-enter New Password" class="form-control" ng-keyup="admincheckpass()" ng-model="admincnfpas">
 														<span style="color:red;">{{errormsg}}</span>
 													</div>
