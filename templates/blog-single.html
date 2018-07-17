@@ -24,9 +24,9 @@
 			
 			<div class="section sm">
 			
-				<div class="container">
+				<div class="container" ng-controller="blogSingleCtrl">
 					
-					<div class="row">
+					<div class="row" ng-repeat="x in blogSinglejson">
 					
 						<div class="col-sm-8 col-md-9">
 						
@@ -35,63 +35,37 @@
 								<div class="blog-item blog-single">
 								
 									<div class="blog-media">
-										<img src="images/blog/blog-01.jpg" alt="" />
+										<!-- <img src="images/blog/blog-01.jpg" alt="" /> -->
+										<img src="{{x.blogTitleimage}}">
 									</div>
 											
 									<div class="blog-content">
-										<h3>Blog title post with a featured image</h3>
+										<h3>{{x.blogTitle}}</h3>
 										<ul class="blog-meta clearfix">
-											<li>by <a href="#">Admin</a></li>
-											<li>by January 09, 2016</li>
+											<li>by <a href="#">{{x.author}}</a></li>
+											<li>{{x.date}}</li>
 											<li>in <a href="#">Adventure</a>, <a href="#">Backpack</a></li>
 											<li>32 comments</li>
 										</ul>
 										<div class="blog-entry">  
 											
-											<p>Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued. </p>
+											<p>{{x.jobDesc}}</p>
 									
-											<div class="blockquote">She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Bed one supposing breakfast day fulfilled off depending questions. Whatever boy her exertion his extended. Ecstatic followed handsome drawings entirely mrs one yet outweigh. Of acceptance insipidity remarkably is invitation.</div>
-											
-											<p>Abilities or he perfectly pretended so strangers be exquisite. Oh to another chamber pleased imagine do in. Went me rank at last loud shot an draw. Excellent so to no sincerity smallness. Removal request delight if on he we. Unaffected in we by apartments astonished to decisively themselves. Offended ten old consider speaking. </p>
-											
-											<ul class="mb-15">
-												<li>Lorem ipsum dolor sit amet</li>
-												<li>Consectetur adipiscing elit</li>
-												<li>Nulla volutpat aliquam velit
-													<ul>
-														<li>Phasellus iaculis neque</li>
-														<li>Purus sodales ultricies</li>
-														<li>Vestibulum laoreet</li>
-														<li>Ac tristique libero</li>
-													</ul>
-												</li>
-												<li>Faucibus porta lacus fringilla vel</li>
-												<li>Aenean sit amet erat nunc</li>
-											</ul>
-											
-											<p>Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued. </p>
-											
-											<p>Breakfast agreeable incommode departure it an. By ignorant at on wondered relation. Enough at tastes really so cousin am of. Extensive therefore supported by extremity of contented. Is pursuit compact demesne invited elderly be. View him she roof tell her case has sigh. Moreover is possible he admitted sociable concerns. By in cold no less been sent hard hill. </p> 
+											<div class="blockquote">{{x.quotes}}</div>
 										</div>
 									</div>
 								
 									<div class="blog-extra">
 										<div class="row">
 											<div class="col-xs-12 col-sm-6 col-md-7 xs-mb">
-												<div class="tag-cloud clearfix mt-0">
-													<span><i class="fa fa-tags"></i> tags: </span>
-													<a href="#" class="tag-item">HTML5</a> <a href="#" class="tag-item">CSS3</a> <a href="#" class="tag-item">jQuery</a> 
-													<a href="#" class="tag-item">Creative</a> 
-												</div>
 											</div>
 											
-											<div class="col-xs-12 col-sm-6 col-md-5 xs-mb">
-												<ul class="social-share-sm mt-5 pull-right pull-left-xs mt-20-xs">
-																		
-													<li><span><i class="fa fa-share-square"></i> share</span></li>
-													<li class="the-label"><a href="#">Facebook</a></li>
-													<li class="the-label"><a href="#">Twitter</a></li>
-													<li class="the-label"><a href="#">Google Plus</a></li>
+											<div class="col-xs-12 col-sm-12 col-md-12 xs-mb">
+												<ul class="social-share-sm mt-3 ">				
+													<li><span><a href="https://720kb.github.io/angular-socialshare/"><i class="fa fa-share-square"></i>share</span></a></li>
+													<li class="the-label"><a href="https://www.facebook.com/dialog/share?&app_id=145634995501895&href=https%3A%2F%2Fwww.training.ecorise.in%2F&quote=ecoRise%20Internship%20Training%20Program%202018">Facebook</a></li>
+													<li class="the-label"><a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fecorise-software-solutions&title=ecoRise%20Internship%20Training%20Program%202018">LinkedIn</a></li>
+													<li class="the-label"><a href="#">Whats App</a></li>
 													
 												</ul>
 											</div>
@@ -104,120 +78,38 @@
 									<h4 class="uppercase">About author</h4>
 									<div class="blog-author">
 										<div class="author-label">
-											<img src="images/man/01.jpg" alt="author image" class="img-circle" />
+											<img src="{{x.aboutAuthorImage}}" alt="author image" class="img-circle" />
 										</div>
 										<div class="author-details">
 											<ul class="social-share-sm pull-right pull-left-xs">
-												<li class="the-label"><a href="#">Facebook</a></li>
-												<li class="the-label"><a href="#">Twitter</a></li>
-												<li class="the-label"><a href="#">Google Plus</a></li>
+												<li class="the-label"><a ng-href="{{x.facebook}}">Facebook</a></li>
+												<li class="the-label"><a href="{{x.twitter}}">Twitter</a></li>
+												<li class="the-label"><a href="{{x.googlePlus}}">Google Plus</a></li>
 											</ul>
 											<div class="clear-xs"></div>
-											<h5 class="heading"><a href="#">John Joe</a></h5>
-											<p>Prepared do an dissuade be so whatever steepest. Yet her beyond looked either day wished nay. By doubtful disposed do juvenile an. Now curiosity you explained immediate why behaviour. An dispatched impossible of of melancholy favourable. </p>
+											<h5 class="heading"><a href="#">{{x.authorName}}</a></h5>
+											<p>{{x.aboutAuthorInfo}} </p>
 										</div>
 									</div>
 									
 									<div class="clear mb-50"></div>
 									
-									<h3 class="uppercase">9 Comments</h3>
+									<h3 class="uppercase">{{x.commentCount}} comments</h3>
 									
 									<div id="comment-wrapper">
 									
 										<ul class="comment-item">
 											<li>
 												<div class="comment-avatar">
-													<img src="images/man/03.jpg" alt="author image" />
+													<img src="{{x.commentImage}}" alt="author image" />
 												</div>
 												<div class="comment-header">
 													<a href="#" class="comment-reply">reply</a>
-													<h6 class="heading mt-0">Ibrahim ibn al-Walid</h6>
-													<span class="comment-time">23 minutes</span>
+													<h6 class="heading mt-0">{{x.comentsName}}</h6>
+													<span class="comment-time">{{x.commentimestamp}}</span>
 												</div>
 												<div class="comment-content">
-													<p>Received the likewise law graceful his. Nor might set along charm now equal green. Pleased yet equally correct colonel not one. Say anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic quitting greatest formerly. </p>
-												</div>
-												<ul class="comment-item">
-													<li>
-														<div class="comment-avatar">
-															<img src="images/man/01.jpg" alt="author image" />
-														</div>
-														<div class="comment-header">
-															<a href="#" class="comment-reply">reply</a>
-															<h6 class="heading mt-0">Ibrahim ibn al-Walid</h6>
-															<span class="comment-time">18 minutes</span>
-														</div>
-														<div class="comment-content">
-															<p>Received the likewise law graceful his. Nor might set along charm now equal green. Pleased yet equally correct colonel not one. Say anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic quitting greatest formerly. </p>
-														</div>
-														<ul class="comment-item">
-															<li>
-																<div class="comment-avatar">
-																	<img src="images/man/02.jpg" alt="author image" />
-																</div>
-																<div class="comment-header">
-																	<a href="#" class="comment-reply">reply</a>
-																	<h6 class="heading mt-0">Admin</h6>
-																	<span class="comment-time">16 minutes</span>
-																</div>
-																<div class="comment-content">
-																	<p>Received the likewise law graceful his. Nor might set along charm now equal green. Pleased yet equally correct colonel not one. Say anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic quitting greatest formerly. </p>
-																</div>
-															</li>
-															<li>
-																<div class="comment-avatar">
-																	<img src="images/man/04.jpg" alt="author image" />
-																</div>
-																<div class="comment-header">
-																	<a href="#" class="comment-reply">reply</a>
-																	<h6 class="heading mt-0">Uthman ibn Affan</h6>
-																	<span class="comment-time">5 minutes</span>
-																</div>
-																<div class="comment-content">
-																	<p>Received the likewise law graceful his. Nor might set along charm now equal green. Pleased yet equally correct colonel not one. Say anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic quitting greatest formerly. </p>
-																</div>
-															</li>
-														</ul>
-													</li>
-													<li>
-														<div class="comment-avatar">
-															<img src="images/man/02.jpg" alt="author image" />
-														</div>
-														<div class="comment-header">
-															<a href="#" class="comment-reply">reply</a>
-															<h6 class="heading mt-0">Admin</h6>
-															<span class="comment-time">22 minutes</span>
-														</div>
-														<div class="comment-content">
-															<p>Received the likewise law graceful his. Nor might set along charm now equal green. Pleased yet equally correct colonel not one. Say anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic quitting greatest formerly. </p>
-														</div>
-													</li>
-												</ul>
-											</li>
-											<li>
-												<div class="comment-avatar">
-													<img src="images/man/01.jpg" alt="author image" />
-												</div>
-												<div class="comment-header">
-													<a href="#" class="comment-reply">reply</a>
-													<h6 class="heading mt-0">Admin</h6>
-													<span class="comment-time">23 days</span>
-												</div>
-												<div class="comment-content">
-													<p>Received the likewise law graceful his. Nor might set along charm now equal green. Pleased yet equally correct colonel not one. Say anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic quitting greatest formerly. </p>
-												</div>
-											</li>
-											<li>
-												<div class="comment-avatar">
-													<img src="images/man/04.jpg" alt="author image" />
-												</div>
-												<div class="comment-header">
-													<a href="#" class="comment-reply">reply</a>
-													<h6 class="heading mt-0">Uthman ibn Affan</h6>
-													<span class="comment-time">Nov, 23, 2013</span>
-												</div>
-												<div class="comment-content">
-													<p>Received the likewise law graceful his. Nor might set along charm now equal green. Pleased yet equally correct colonel not one. Say anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic quitting greatest formerly. </p>
+													<p>{{x.commentsDesc}}</p>
 												</div>
 											</li>
 										</ul>
@@ -227,44 +119,11 @@
 										<div class="text-center">
 											<a href="#" class="btn btn-primary">Load More</a>
 										</div>
-										
 									</div><!-- End Comment -->
 									
 									<div class="clear mb-30"></div>
 									
-									<h3 class="uppercase">Leave a Comment</h3>
-
-									<form method="post" id="contactForm" action="http://crenoveative.com/envato/hangan/post" class="comment-form">
-										<div class="row">
-											<div class="col-xs-12 col-sm-6 col-md-6">
-												<div class="form-group">
-													<label for="comment-name">Your Name <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" id="comment-name" >
-												</div>
-											</div>
-											<div class="col-xs-12 col-sm-6 col-md-6">
-												<div class="form-group">
-													<label for="comment-email">Your Email <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" id="comment-email" >
-												</div>
-											</div>
-										</div>
-										<div class="clear"></div>
-										<div class="row">
-											<div class="col-md-12 mb-15">
-												<div class="form-group">
-													<label for="comment-message">Message <span class="text-danger">*</span></label>
-													<textarea name="message" id="comment-message" class="form-control" rows="8"></textarea>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<button type="submit" class="btn btn-primary">Comment</button>
-											</div>
-										</div>
-									</form>
-
+									
 									<div class="clear"></div>
 									
 								</div>
@@ -272,7 +131,6 @@
 							</div>
 							
 						</div>
-						
 						<div class="col-sm-4 col-md-3 mt-50-xs">
 						
 							<aside class="sidebar">
@@ -283,7 +141,7 @@
 										<div class="sidebar-module-inner">
 											<div class="sidebar-mini-search">
 												<div class="input-group">
-													<input type="text" class="form-control" placeholder="Search for...">
+													<input type="text" class="form-control" placeholder="Search for..." ng-model="blogSearcBbox" >
 													<span class="input-group-btn">
 														<button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
 													</span>
@@ -295,18 +153,10 @@
 									<div class="clear"></div>
 
 									<div class="sidebar-module">
-										<h4 class="sidebar-title">Categories</h4>
+										<h4 class="sidebar-title">Similar Blogs</h4>
 										<div class="sidebar-module-inner">
-											<ul class="sidebar-category">
-												<li><a href="#">Business<span>(25)</span></a></li>
-												<li class="active"><a href="#">Commerce<span>(2)</span></a></li>
-												<li><a href="#">Coporate<span>(14)</span></a></li>
-												<li><a href="#">Creative<span>(157)</span></a></li>
-												<li><a href="#">Entertainment<span>(87)</span></a></li>
-												<li><a href="#">Nonprofit<span>(47)</span></a></li>
-												<li><a href="#">Personal<span>(8)</span></a></li>
-												<li><a href="#">Technology<span>(32)</span></a></li>
-												<li><a href="#">Miscellaneous<span>(26)</span></a></li>
+											<ul class="sidebar-category" ng-repeat="y in blogSinglejson | filter:blogSearcBbox">
+												<li><a ng-click="sndDate(y.similarjob.blogDate)">{{y.similarjob.blogName}}<span>({{y.similarjob.blogndCount}})</span></a></li>
 											</ul>
 										</div>
 									</div>
@@ -317,10 +167,51 @@
 							
 							</aside>
 							
-						</div>
-						
+						</div>	
 					</div>
-					
+
+					<div class="row">
+						<div class="col-md-9 col-sm-8">
+							<h3 class="uppercase">Leave a Comment</h3>
+
+										<form method="post" id="contactForm" class="comment-form">
+											<div class="row">
+												<div class="col-xs-12 col-sm-6 col-md-6">
+													<div class="form-group">
+														<label for="comment-name">Your Name <span class="text-danger">*</span></label>
+														<input type="text" class="form-control" id="comment-name" ng-model="nameComment">
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-6 col-md-6">
+													<div class="form-group">
+														<label for="comment-email">Your Email <span class="text-danger">*</span></label>
+														<input type="text" class="form-control" id="comment-email" ng-model="emailComment" >
+													</div>
+												</div>
+											</div>
+											<div class="clear"></div>
+											<div class="row">
+												<div class="col-md-12 mb-15">
+													<div class="form-group">
+														<label for="comment-message">Message <span class="text-danger">*</span></label>
+														<textarea name="message" id="comment-message" class="form-control" rows="8" ng-model="commentMsg"></textarea>
+													</div>
+												</div>
+											</div>
+
+										</form>
+
+							
+										<div class="row">
+											<div class="col-md-12">
+												<button type="submit" class="btn btn-primary" ng-model="commentbtn" ng-click="sendcommentData()">Comment</button>
+											</div>
+										</div>
+						</div>
+					</div>						
+
+
+				</div>
 				</div>
 			
 			</div>

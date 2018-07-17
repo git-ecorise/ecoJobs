@@ -97,12 +97,11 @@ app.config(function($routeProvider, $locationProvider){
 });
 
 // Login Controller Started
-
 app.controller('loginCtrl',function($scope, $http){
 	$scope.loginData={};
 	$scope.rememberMe=false;
 	$scope.lgnpattern=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
+// Login Function Stars here
 	$scope.userLogin=function(){
 		if($scope.usernamelogin==null && $scope.passwordlogin==null && $scope.rememberme==null)
 		{
@@ -120,11 +119,6 @@ app.controller('loginCtrl',function($scope, $http){
 				    .then(function(response) {
 				        console.log(response);
 				    });
-
-					// console.log('after http Service');
-					// 	$http.get('http://192.168.2.11/mySlim/public/').then(function(res){
-					// 		console.log(res);
-					// 	})
 					alertify.success("Login Successfully!!");
 					$scope.loginData = {
                     		email: $scope.usernamelogin,
@@ -135,22 +129,17 @@ app.controller('loginCtrl',function($scope, $http){
 		 					$scope.usernamelogin=null;
                     		$scope.passwordlogin=null;
                     		$scope.rememberme=null;
-
 		}
 		
 	}
-
-
+	// Login Function Stars here
 });
 // Login Controller Ended
-
 // Registration Controller Started
-
 app.controller('registerCtrl',function($scope,$http){
 	$scope.regData={};
 	$scope.password = null;
  	$scope.passwordConfirmation = null;
-	
 	// Email Validation
 	$scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 	$scope.userReg=function(){
@@ -163,64 +152,23 @@ app.controller('registerCtrl',function($scope,$http){
 			{
 				alertify.error("Check the Remaining Fields");
 			}
-			
 			else
 			{
-
 				$scope.regData = {
                     		firstName: $scope.regUser,
                     		lastName:$scope.regUserLast,
                     		contact:$scope.regContact,
                     		email: $scope.regEmail,
-                    		password:$scope.regPassword,
+                    		password:$scope.regPassword
         				};
         				console.log($scope.regData);
-        					// HTTP Service
-
-      //   				var config = {
-						//         method: "POST",
-						//         url: 'http://192.168.2.3/g/mySlim/public/user_add',
-						//         data: $scope.regData,
-						//         headers: {
-						//             'Content-Type': 'application/json; charset=utf-8'
-						//         }
-						//     };
-						// $http(config);
-						// $http.post('http://192.168.2.3/g/app_api/admin/newWorker.php', $scope.regData).then(function(data){
-						// 	console.log(data);
-						//     });
-
 						console.log('after http Service');
 						$http.get('http://192.168.2.11/mySlim/public/').then(function(res){
 							console.log(res);
-						})
-
-
-        				// $http.post('http://192.168.2.3/g/mySlim/public/user_add',$scope.regData).then(function(res){
-        				// 	console.log(res);
-        				// 	if(res.data=="true")
-        				// 	{
-        				// 		alertify.success("Registration Successfull!!");
-        				// 		$scope.regUser=null;
-	           //          		$scope.regContact=null;
-	           //          		$scope.regEmail=null;
-	           //          		$scope.regPassword=null;
-	           //          		$scope.regConfirmpass=null;
-	           //          		$scope.Regacceptcheckbox=null;
-	           //          		$scope.regUserLast=null;		
-        				// 	}
-        				// 	else
-        				// 	{
-        				// 		alertify.error("Something went wrong, please try again");
-        				// 	}
-
-        				// });
+						})			
 			}
 		}
 	}
-
-
-
 // reggistration password confirmation starts
   $scope.checkpass = function(){
 				// console.log($scope.cpass);
@@ -237,18 +185,13 @@ app.controller('registerCtrl',function($scope,$http){
 				}
 				
 			}
-
 // reggistration password confirmation Ends
-
 });
 // Registration Controller Ended
-
-
 // Forgot Password Controller Started
 app.controller('forgotPasswordCtrl',function($scope){
 	$scope.forgotPasswordData={};
 	$scope.forgotPasswordJsonArray=[];
-	// $scope.generateNewPassword=false;
 	// Email Validation
  	$scope.eml_add = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 	$scope.passwordRestore=function(){
@@ -265,13 +208,10 @@ app.controller('forgotPasswordCtrl',function($scope){
 			else
 			{
 				alertify.success("Check your Mail box");
-			
-
-							$scope.forgotPasswordData= {
-                    		email:$scope.forgotpasswordemail,
+					$scope.forgotPasswordData= {
+                    		email:$scope.forgotpasswordemail
                					};
-
-        					console.log($scope.forgotPasswordData);
+        			console.log($scope.forgotPasswordData);
     }
     		$scope.forgotpasswordemail=null;
     		$scope.generateNewPassword=null;
@@ -284,8 +224,6 @@ app.controller('forgotPasswordCtrl',function($scope){
 app.controller('adminchngpass',function($scope)
 {		
 		$scope.admincngpwData={};
-
-		
 		$scope.admincheckpass=function(){
 				$scope.chkadminpass=$scope.admincnfpas
 				console.log($scope.chkadminpass);
@@ -293,11 +231,9 @@ app.controller('adminchngpass',function($scope)
 				{
 					console.log($scope.admincnfpas);
 					$scope.errormsg = "Use 6 or more characters with a mix of capital, small letters & numbers";
-
 				}
 		
 }
-
 		$scope.saveAdminPass=function()
 		{
 			if ($scope.currpass==null && $scope.adminnwpass==null && $scope.admincnfpas==null) 
@@ -307,11 +243,9 @@ app.controller('adminchngpass',function($scope)
 			else
 			{
 				if($scope.currpass==null || $scope.adminnwpass==null || $scope.admincnfpas==null)
-			
 				{
 					alertify.error("Check the Remaining Fields");
 				}
-
 				else
 				{
 					alertify.success("Password Saved Successfull!!");		
@@ -319,14 +253,12 @@ app.controller('adminchngpass',function($scope)
 						oldPassword:$scope.currpass,
 						newPassword:$scope.adminnwpass,
 						confirmPassword:$scope.admincnfpas
-				}
+											}
         		console.log($scope.admincngpwData);
-			}
-
-							$scope.currpass=null;
-                    		$scope.adminnwpass=null;
-                    		$scope.admincnfpas=null;
-
+				}
+					$scope.currpass=null;
+                    $scope.adminnwpass=null;
+                    $scope.admincnfpas=null;
 			}
 
 		}
@@ -455,10 +387,6 @@ $scope.stream=[{'strname':"Computer engineering"},
 													$scope.pmodelyear=null;
 	    	       
 					}
-
-    
-
-
   	
   }
  
@@ -471,7 +399,6 @@ app.controller("contactcntrl",function($scope){
 	           
 	    	      	if($scope.yournamemodel== null && $scope.youremailmodel== null && $scope.contactmodel== null && $scope.msgmodel==null)
 	    	            {
-	    	        	 
 	    	        	  alertify.log("Fill details before submitting the form. ");
 	    	        	}
 	    	        else
@@ -480,16 +407,17 @@ app.controller("contactcntrl",function($scope){
 	    	                {
 	    	        	      
 	    	        	       alertify.error("Check the remaining field");
-	    	        	     }
+	    	        	    }
 	                      else
 	                         {
 	    	     	
 	    	     				alertify.success("Form successfully submitted..!!!");
 			    				$scope.userdetails={
-	       												firstName:$scope.yournamemodel, 
-	       												email:$scope.youremailmodel,
-	       												mobile:$scope.contactmodel,
-	       												message:$scope.msgmodel };
+	       											firstName:$scope.yournamemodel, 
+	       											email:$scope.youremailmodel,
+	       											mobile:$scope.contactmodel,
+	       											message:$scope.msgmodel 
+	       											};
 	       						console.log($scope.userdetails);
 
 	          				}
@@ -500,19 +428,130 @@ app.controller("contactcntrl",function($scope){
 	       							 $scope.msgmodel=null;
 	
 	    	       
-					}
+					   }
 
     
     		}
 	});
 
 // controller for apply job application button
-app.controller('applyCtrl', function($scope) {
+// app.controller('applyCtrl', function($scope) {
    
-    $scope.visible =true;
+// 	$scope.visible =true;
 
-    $scope.toggle = function() {
-        $scope.visible = $scope.visible ? false : true;
-    };
+// 	$scope.toggle = function() {
+// 	    $scope.visible = $scope.visible ? false : true;
+// 	};
 
+// });
+
+
+//  Job Datail Controller Starts here
+	
+app.controller('myJobDetailCtrl',function($scope){
+	$scope.jobDetailsData={};
+	$scope.isDisabled = false;
+	// $scope.visible =true;
+
+	// $scope.toggle = function() {
+	//  $scope.visible = $scope.visible ? false : true;
+	// };
+	// Job Details Json Array Stars here
+	$scope.jobDetails=[{
+						"position":"Audio Visual Field Engineer",
+						"jobDescription":"That know ask case sex ham dear her spot."+
+						" Weddings followed the all marianne nor whatever settling. Perhaps six prudent several her had offence. Did had way law dinner square tastes."+
+						"Recommend concealed yet her procuring see consulted depending. Adieus hunted end plenty are his she afraid."+
+						"Resources agreement contained propriety applauded neglected use yet.",
+						"requirement":["Justice joy manners boy met resolve produce.","Esteem my advice it an excuse enable."],
+						"location":"pune",
+						"companyName":"Expedia",
+						"typeOfJob":"part time",
+						"companyoverviewimg":"images/brands/06.png",
+						"salary": 1000000,
+						"time_stamp" : "23 May 1990",
+						"experience" : "2 Years",
+						"similarjob":{"siconcmpy":"images/brands/06.png","scompany":"Expedia","sposition":"IT Developer","slocation":"Guildford, Surrey","jobtype":"Part time","stimestamp":"1 day ago"},
+						"jobResponsibility":["Sociable on as carriage my position weddings raillery consider.Peculiar trifling absolute and wandered vicinity property yet"]
+
+						}];// Job Details Json Array Ends here
+
+// send Application function Strats here
+	$scope.sendAppc=function()
+	{
+		$scope.isDisabled = true;	
+		$scope.jobDetailsData={
+				userMail:"sample@mail.com",
+				email:"sample@company-domain.com"
+		}
+		console.log($scope.jobDetailsData);
+	}
+// send Application Method ends here
 });
+
+// Job Datail Controller Ends here
+
+
+// blog-single COntroller Starts here
+
+app.controller('blogSingleCtrl',function($scope){
+$scope.commentUserData={};
+$scope.blogSinglejson=[{
+						"blogTitleimage":"images/blog/blog-01.jpg",
+						"blogTitle":"Blog title post with a featured image",			
+						"author":"Admin",
+						"date":"January 09, 2016",
+						"jobDesc":"Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression."+
+						" Are will took form the nor true."+
+						" Winding enjoyed minuter her letters evident use eat colonel. "+"He attacks observe mr cottage inquiry am examine gravity."+
+						" Are dear but near left was. Year kept on over so as this of."+" She steepest doubtful betrayed formerly him."+
+						" Active one called uneasy our seeing see cousin tastes its. "+
+						"Ye am it formed indeed agreed relied piqued.",
+						"quotes":"She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its."+
+						" Bed one supposing breakfast day fulfilled off depending questions."+
+						" Whatever boy her exertion his extended."+
+						" Ecstatic followed handsome drawings entirely mrs one yet outweigh."+
+						" Of acceptance insipidity remarkably is invitation.",
+						"aboutAuthorImage":"images/man/01.jpg",
+						"authorName":"John Joe",
+						"aboutAuthorInfo":"Prepared do an dissuade be so whatever steepest."+
+						" Yet her beyond looked either day wished nay. "+
+						"By doubtful disposed do juvenile an. Now curiosity you explained immediate why behaviour."+
+						" An dispatched impossible of of melancholy favourable.",
+						"comentsName":"Ibrahim ibn al-Walid",
+						"commentImage":"images/man/03.jpg",
+						"commentimestamp":"20 minutes",
+						"commentsDesc":"Received the likewise law graceful his."+
+						" Nor might set along charm now equal green."+
+						" Pleased yet equally correct colonel not one. "+
+						"Say anxious carried compact conduct sex general nay certain."+
+						" Mrs for recommend exquisite household eagerness preserved now."+
+						" My improved honoured he am ecstatic quitting greatest formerly.",
+						"commentCount":11,
+						"similarjob":{"blogName":"Commerce","blogDate":"November 6, 2013","blogndCount":40},
+						"facebook":"http://www.facebook.com",
+						"twitter":"http://www.twitter.com",
+						"googlePlus":"https://www.google.com"			
+					}];
+
+				$scope.sndDate=function(blogDateC)
+					{			
+						$scope.senddate={
+							date: blogDateC
+						};
+						console.log($scope.senddate);
+					};
+
+
+				//Send Data with Comment Function 
+					$scope.sendcommentData=function(){
+
+						$scope.commentUserData={
+						name:$scope.nameComment,
+						email:$scope.emailComment,
+						message:$scope.commentMsg
+					};
+					console.log($scope.commentUserData);
+					};
+});
+// blog-single COntroller Ends here
