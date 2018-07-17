@@ -1,4 +1,4 @@
-<div class="not-transparent-header">
+<div class="not-transparent-header" ng-controller="blogcntrl">
 
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
@@ -19,8 +19,66 @@
 				</div>
 				
 			</div>
-			<!-- end hero-header -->
-		
+			<!-- end hero-header --><br>
+			<div class="container">
+		 	<div class="sorting-content">
+
+							<div class="row">
+
+								<div class="col-sm-12 col-md-7 ">
+
+									<div class="row gap-10">
+
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>Sort by:</label>
+											
+												 <select  class="selectpicker form-control" ng-model="typemodel">
+                                                  <option value="">Type</option>
+                                                  <option ng-repeat="o1 in typeArray" value="{{o1.typename}}">{{o1.typename}}</option>
+                                                 </select>
+												
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>Stream</label>
+
+												<select class="selectpicker form-control" ng-model="qualimodel">
+                                                    <option value="">By qualification</option>
+                                                    <option ng-repeat="o2 in qualiarray | filter:qualimodel" value="{{o2.qualiname}}">{{o2.qualiname}}</option>
+
+                                                     </select>
+											</div>
+										</div>
+                                        
+
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>GK</label>
+								
+												 <select class="selectpicker form-control" ng-model="gkmodel">
+                                                  <option  value="">Type</option>
+                                                  <option ng-repeat="o3 in gkArray | filter:gkmodel" value="{{o3.typegk}}">{{o3.typegk}}</option>
+       
+                                                    </select>
+											
+											</div>
+										</div>
+										
+									</div>
+
+								</div>
+
+								
+
+							</div>
+
+							
+
+						</div>
+					</div>
 			<div class="section sm">
 			
 				<div class="container">
@@ -31,12 +89,12 @@
 						
 							<div class="blog-wrapper">
 
-								<div class="blog-item">
+								<div class="blog-item" ng-repeat="blog in blogArray | filter:{inbook:typemodel,typeofquali:qualimodel,other:gkmodel}">
 								
 									<div class="blog-media">
 										<div class="overlay-box">
 											<a class="blog-image" href="blog-single">
-												<img src="images/blog/blog-01.jpg" alt="" />
+												<img ng-src="images/blog/{{blog.imgsrc}}" alt="" />
 												<div class="image-overlay">
 													<div class="overlay-content">
 														<div class="overlay-icon"><i class="pe-7s-link"></i></div>
@@ -47,22 +105,22 @@
 									</div>
 											
 									<div class="blog-content">
-										<h3><a href="blog-single" class="inverse">Blog title post with a featured image</a></h3>
+										<h3><a href="blog-single" class="inverse">{{blog.title}}</a></h3>
 										<ul class="blog-meta">
-											<li>by <a href="#">Admin</a></li>
-											<li>by January 09, 2016</li>
-											<li>in <a href="#">Adventure</a>, <a href="#">Backpack</a></li>
-											<li>32 comments</li>
+											<li>by <a href="#">{{blog.bysend}}</a></li>
+											<li>by {{blog.bydate}}</li>
+											<li>in <a href="#">{{blog.inbook}}</a>, <a href="#">{{blog.typeofquali}}</a></li>
+											<li>{{blog.other}}</li>
 										</ul>
-										<div class="blog-entry">  
-											Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued. 
+										<div class="blog-entry">{{blog.details}}  
+											<!-- Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.  -->
 										</div>
-										<a href="blog-single" class="btn-blog">Read More <i class="fa fa-long-arrow-right"></i></a>
+										<a href="blog-single" ng-click="senddata(blog.bydate)">Read More<i class="fa fa-long-arrow-right"></i> </a>
 									</div>
 								
 								</div>
 								
-								<div class="blog-item">
+								<!-- <div class="blog-item">
 								
 									<div class="blog-media">
 										<div class="overlay-box">
@@ -91,7 +149,7 @@
 										<a href="blog-single" class="btn-blog">Read More <i class="fa fa-long-arrow-right"></i></a>
 									</div>
 								
-								</div>
+								</div> -->
 								
 								<div class="blog-item">
 								
@@ -102,34 +160,34 @@
 											<div class="carousel-inner" role="listbox">
 											
 												<!-- First slide -->
-												<div class="item active">
+												<!-- <div class="item active">
 													<div class="image">
 														<img src="images/blog/blog-03.jpg" alt="Image" />
 													</div>
 													<div class="carousel-caption">
 														<p>This is the caption for slide 1</p>
 													</div>
-												</div> <!-- /.item -->
+												</div> --> <!-- /.item -->
 												
 												<!-- Second slide -->
-												<div class="item">
+												<!-- <div class="item">
 													<div class="image">
 														<img src="images/blog/blog-02.jpg" alt="Image" />
 													</div>
 													<div class="carousel-caption">
 														<p>This is the caption for slide 2</p>
 													</div>
-												</div><!-- /.item -->
+												</div> --><!-- /.item -->
 												
 												<!-- Third slide -->
-												<div class="item">
+												<!-- <div class="item">
 													<div class="image">
 														<img src="images/blog/blog-01.jpg" alt="Image" />
 													</div>
 													<div class="carousel-caption">
 														<p>This is the caption for slide 3</p>
 													</div>
-												</div><!-- /.item -->
+												</div> --><!-- /.item -->
 											
 											</div><!-- /.carousel-inner -->
 
@@ -146,7 +204,7 @@
 
 									</div>
 											
-									<div class="blog-content">
+									<!-- <div class="blog-content">
 										<h3><a href="blog-single" class="inverse">Blog Title Post With a Slider</a></h3>
 										<ul class="blog-meta">
 											<li>by <a href="#">Admin</a></li>
@@ -158,11 +216,11 @@
 											Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued. 
 										</div>
 										<a href="blog-single" class="btn-blog">Read More <i class="fa fa-long-arrow-right"></i></a>
-									</div>
+									</div> -->
 								
 								</div>
 								
-								<div class="blog-item">
+								<!-- <div class="blog-item">
 					
 									<div class="blog-content">
 										<h3><a href="blog-single" class="inverse">Blog Title Post Without any Image</a></h3>
@@ -178,9 +236,9 @@
 										<a href="blog-single" class="btn-blog">Read More <i class="fa fa-long-arrow-right"></i></a>
 									</div>
 								
-								</div>
+								</div> -->
 								
-								<div class="blog-item">
+								<!-- <div class="blog-item">
 					
 									<div class="blog-media">
 										<div class="flex-video vimeo"> 
@@ -202,9 +260,9 @@
 										<a href="blog-single" class="btn-blog">Read More <i class="fa fa-long-arrow-right"></i></a>
 									</div>
 								
-								</div>
+								</div> -->
 								
-								<div class="blog-item">
+								<!-- <div class="blog-item">
 					
 									<div class="blog-media">
 										<div class="flex-video youtube"> 
@@ -226,7 +284,7 @@
 										<a href="blog-single" class="btn-blog">Read More <i class="fa fa-long-arrow-right"></i></a>
 									</div>
 								
-								</div>
+								</div> -->
 								
 								<div class="pager-wrapper mmt">
 								
@@ -271,7 +329,7 @@
 												<div class="input-group">
 													<input type="text" class="form-control" placeholder="Search for...">
 													<span class="input-group-btn">
-														<button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+														<button class="btn btn-primary" type="button" ng-click="countdisplay()"><i class="fa fa-search"></i></button>
 													</span>
 												</div>
 											</div>
@@ -282,17 +340,18 @@
 
 									<div class="sidebar-module">
 										<h4 class="sidebar-title">Categories</h4>
+
 										<div class="sidebar-module-inner">
 											<ul class="sidebar-category">
-												<li><a href="#">Business<span>(25)</span></a></li>
-												<li class="active"><a href="#">Commerce<span>(2)</span></a></li>
-												<li><a href="#">Coporate<span>(14)</span></a></li>
-												<li><a href="#">Creative<span>(157)</span></a></li>
-												<li><a href="#">Entertainment<span>(87)</span></a></li>
-												<li><a href="#">Nonprofit<span>(47)</span></a></li>
-												<li><a href="#">Personal<span>(8)</span></a></li>
-												<li><a href="#">Technology<span>(32)</span></a></li>
-												<li><a href="#">Miscellaneous<span>(26)</span></a></li>
+												<li  ng-repeat="c in data"><a href="#">{{c.name}}<span>( {{c.count}} )</span></a></li>
+												<!-- <li class="active"><a href="#">Aptitude<span>({{c.count}})</span></a></li>
+												<li><a href="#">Engineering<span>({{c.count}})</span></a></li>
+												<li><a href="#">Master in Engineering<span>({{c.count}})</span></a></li>
+												<li><a href="#">MCA<span>({{c.count}})</span></a></li>
+												<li><a href="#">Gk1<span>({{c.count}})</span></a></li>
+												<li><a href="#">Gk2<span>({{c.count}})</span></a></li>
+												<li><a href="#">Gk3<span>({{c.count}})</span></a></li>
+												 !-- <li><a href="#">Miscellaneous<span>(26)</span></a></li> -->
 											</ul>
 										</div>
 									</div>

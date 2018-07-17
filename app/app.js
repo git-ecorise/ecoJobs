@@ -116,10 +116,12 @@ app.controller('loginCtrl',function($scope, $http){
 			}
 			else
 			{		
-				$http.get("http://192.168.2.11/mySlim/public/")
-				    .then(function(response) {
-				        console.log(response);
-				    });
+
+				// $http.get("http://192.168.2.12/mySlim/public/")
+				//     .then(function(response) {
+				//     	// alert("Hey")
+				//         console.log(response);
+				//     });
 
 					// console.log('after http Service');
 					// 	$http.get('http://192.168.2.11/mySlim/public/').then(function(res){
@@ -131,6 +133,12 @@ app.controller('loginCtrl',function($scope, $http){
                     		password: $scope.passwordlogin,
         				};
         console.log($scope.loginData);
+        $http.post('http://192.168.2.12/mySlim/public/user_add',$scope.loginData).then(function(res){
+							console.log(res);
+							if (res.data == "true") {
+								alert("Working");
+							}
+						})
 			}
 		 					$scope.usernamelogin=null;
                     		$scope.passwordlogin=null;
@@ -177,22 +185,12 @@ app.controller('registerCtrl',function($scope,$http){
         				console.log($scope.regData);
         					// HTTP Service
 
-      //   				var config = {
-						//         method: "POST",
-						//         url: 'http://192.168.2.3/g/mySlim/public/user_add',
-						//         data: $scope.regData,
-						//         headers: {
-						//             'Content-Type': 'application/json; charset=utf-8'
-						//         }
-						//     };
-						// $http(config);
-						// $http.post('http://192.168.2.3/g/app_api/admin/newWorker.php', $scope.regData).then(function(data){
-						// 	console.log(data);
-						//     });
-
-						console.log('after http Service');
-						$http.get('http://192.168.2.11/mySlim/public/').then(function(res){
+      
+						$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.regData).then(function(res){
 							console.log(res);
+							if (res.data == "true") {
+								alert("Working");
+							}
 						})
 
 
@@ -245,7 +243,7 @@ app.controller('registerCtrl',function($scope,$http){
 
 
 // Forgot Password Controller Started
-app.controller('forgotPasswordCtrl',function($scope){
+app.controller('forgotPasswordCtrl',function($scope,$http){
 	$scope.forgotPasswordData={};
 	$scope.forgotPasswordJsonArray=[];
 	// $scope.generateNewPassword=false;
@@ -272,6 +270,12 @@ app.controller('forgotPasswordCtrl',function($scope){
                					};
 
         					console.log($scope.forgotPasswordData);
+        					$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.forgotPasswordData).then(function(res){
+							console.log(res);
+							if (res.data == "true") {
+								alert("Working");
+							}
+						})
     }
     		$scope.forgotpasswordemail=null;
     		$scope.generateNewPassword=null;
@@ -281,7 +285,7 @@ app.controller('forgotPasswordCtrl',function($scope){
 // Forgot Password Controller Ended
 
 // Admin Change Password ControllerStarted
-app.controller('adminchngpass',function($scope)
+app.controller('adminchngpass',function($scope,$http)
 {		
 		$scope.admincngpwData={};
 
@@ -294,6 +298,10 @@ app.controller('adminchngpass',function($scope)
 					console.log($scope.admincnfpas);
 					$scope.errormsg = "Use 6 or more characters with a mix of capital, small letters & numbers";
 
+				}
+				else
+				{
+					$scope.errormsg = "";
 				}
 		
 }
@@ -321,6 +329,12 @@ app.controller('adminchngpass',function($scope)
 						confirmPassword:$scope.admincnfpas
 				}
         		console.log($scope.admincngpwData);
+        		$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.admincngpwData).then(function(res){
+							console.log(res);
+							if (res.data == "true") {
+								alert("Working");
+							}
+						})
 			}
 
 							$scope.currpass=null;
@@ -331,8 +345,8 @@ app.controller('adminchngpass',function($scope)
 
 		}
 });
-//admin-profile
-app.controller("profilecntrl",function($scope){
+//admin-profile controller
+app.controller("profilecntrl",function($scope, $http){
 	
 	$scope.profilelist={};
     $scope.dob=[];
@@ -393,7 +407,7 @@ $scope.stream=[{'strname':"Computer engineering"},
                  {'strname':"Civil engineering"},
                  {'strname':"Mechanical engineering"},
                  {'strname':"Electical engineering"}];
-   // $scope.pmodelstate=[{'name':"MH"},{'name':"Goa"}];
+   
 
   $scope.submitprofile=function(){
   	
@@ -413,7 +427,7 @@ $scope.stream=[{'strname':"Computer engineering"},
 	                      else
 	                         { 
 
-	                         	$scope.dob=$scope.pmodeldate+"- "+$scope.pmodelmonth+" -"+$scope.pmodelyear;
+	                         	$scope.dob=$scope.pmodeldate+"-"+$scope.pmodelmonth+"-"+$scope.pmodelyear;
 	    	     	
 	    	     				alertify.success("Form successfully submitted..!!!");
 			    				 // $scope.dob.push({date:$scope.pmodeldate, month:$scope.pmodelmonth, year:$scope.pmodelyear})
@@ -434,6 +448,13 @@ $scope.stream=[{'strname':"Computer engineering"},
 											  		
 										           };
   											console.log($scope.profilelist);
+
+  											$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.profilelist).then(function(res){
+							console.log(res);
+							if (res.data == "true") {
+								alert("Working");
+							}
+						})
 
 	          				}
 	          										$scope.modelstream=null;
@@ -463,8 +484,8 @@ $scope.stream=[{'strname':"Computer engineering"},
   }
  
 });
-
-app.controller("contactcntrl",function($scope){
+//contact page controller starts 
+app.controller("contactcntrl",function($scope, $http){
     	
 	    $scope.submitd= function() {
 	        $scope.userdetails={};
@@ -492,6 +513,15 @@ app.controller("contactcntrl",function($scope){
 	       												message:$scope.msgmodel };
 	       						console.log($scope.userdetails);
 
+
+	       					$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.userdetails).then(function(res){
+							console.log(res);
+							if (res.data == "true") {
+								alert("Working");
+							}
+						})
+
+
 	          				}
 
 	           						 $scope.yournamemodel= null; 
@@ -506,6 +536,203 @@ app.controller("contactcntrl",function($scope){
     		}
 	});
 
+//controller for job-result page 
+app.controller('job-resultcntrl',function($scope){
+
+$scope.locationarray=[{'locationname':"Pune"},
+                      {'locationname':"Mumbai"},
+         {'locationname':"Nashik"}
+                      ];
+$scope.salaryArray=[{'sal':45000},{'sal':75000},{'sal':80000}];
+$scope.positionArray=[{'positionname':"Packaging Engineer"},{'positionname':"Solution Architect"},{'positionname':"Mechanical Engineer"}];
+
+$scope.jobresultArray=[
+
+     {
+			'position':"Packaging Engineer",
+			'compname':"Expedia ",
+			'typeofposition':"Part-Time ",
+			'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
+			'location':"Pune",
+			'salary':"80000",
+			'experience':"5 years",
+			'time':"20",
+			'imgsrc':"06.png"
+     },
+
+    {
+			'position':"Solution Architect",
+			'compname':"Ebay",
+			'typeofposition':"Full-Time",
+			'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
+			'location':" Pune",
+			'salary':"76000",
+			'experience':"10 years",
+			'time':"50",
+			'imgsrc':"07.png"
+    },
+     {
+            'position':"Solution Architect",
+            'compname':"Ebay",
+            'typeofposition':"Full-Time",
+            'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
+            'location':" Mumbai",
+            'salary':"80000",
+            'experience':"10 years",
+            'time':"50",
+            'imgsrc':"07.png"
+    },
+
+   {
+			'position':"Solution Architect",
+			'compname':"Wottif ",
+			'typeofposition':"Full-Time",
+			'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
+			'location':"Pune",
+			'salary':"45000",
+			'experience':"5 years",
+			'time':"40",
+			'imgsrc':"05.png"
+    },
+      {
+			'position':"Mechanical Engineer",
+			'compname':"Wottif ",
+			'typeofposition':"Full-Time",
+			'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
+			'location':"Nashik",
+			'salary':"45000",
+			'experience':"5 years",
+			'time':"40",
+			'imgsrc':"05.png"
+    }      
+
+	];
+
+})
+
+//controller for blog
+app.controller('blogcntrl',function($scope,$http){
+
+	  $http.get('json/category.json').then(function(res){
+	  	$scope.data=res.data.key;
+	  
+	  console.log($scope.data.key);
+	  alert($scope.data.key);
+	  });
+
+
+	$scope.qualiarray=[{'qualiname':"Engineering"},
+                      {'qualiname':"Master in Engineering"},
+         {'qualiname':"MCA"}
+                      ];
+$scope.gkArray=[{'typegk':"GK1"},{'typegk':"GK2"},{'typegk':"GK3"}];
+$scope.typeArray=[{'typename':"Technical"},{'typename':"Aptitude"}];
+// $scope.category=[
+//   {'name':"Technical",'count':7},
+//   {'name':"Aptitude",'count':5},
+//   {'name':"Engineer",'count':4},
+//   {'name':"Master in Engineering",'count':23},
+//   {'name':"MCA",'count':12},
+//   {'name':"GK1",'count':9},
+//   {'name':"GK2",'count':10},
+//   {'name':"GK3",'count':15}
+
+//   ];
+
+
+$scope.blogArray=[
+
+     {
+			'imgsrc':"blog-01.jpg",
+			'title':"Blog1",
+			'bysend':"Admin",
+			'bydate':"12 March 2018 2:00 PM",
+			'details':"Up branch to easily missed by do. Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
+			'inbook':"Technical",
+			'typeofquali':"Engineering",
+			'other':"GK1"
+			
+     },
+     {
+			'imgsrc':"blog-02.jpg",
+			'title':"Blog2",
+			'bysend':"Admin",
+			'bydate':"09 Jan 2018",
+			'details':"Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.",
+			'inbook':"Aptitude",
+			'typeofquali':"Engineering",
+			'other':"GK2"
+			
+     },
+     
+      {
+			'imgsrc':"blog-03.jpg",
+			'title':"Blog3",
+			'bysend':"Admin",
+			'bydate':"17 May 2018",
+			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
+			'inbook':"Technical",
+			'typeofquali':"Engineering",
+			'other':"GK3"
+			
+     },
+      {
+			'imgsrc':"blog-03.jpg",
+			'title':"Blog2",
+			'bysend':"Admin",
+			'bydate':"17 May 2018",
+			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
+			'inbook':"Technical",
+			'typeofquali':"MCA",
+			'other':"GK3"
+			
+     },
+     {
+			'imgsrc':"blog-03.jpg",
+			'title':"Blog1",
+			'bysend':"Admin",
+			'bydate':"17 May 2018",
+			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
+			'inbook':"Technical",
+			'typeofquali':"MCA",
+			'other':"GK3"
+			
+     }
+
+   
+	];
+
+
+
+
+
+
+
+  // $scope.countdisplay=function(){
+
+
+
+// }
+
+
+$scope.senddata=function(date){
+
+      // $scope.date1={$scope.bydate};
+      $scope.jsonBlogTimeStamp = {
+      	blogUploadDate : date
+      }
+      $http.post('http://192.168.2.12/mySlim/public/user_add',$scope.dd).then(function(res){
+							console.log(res);
+							if (res.data == "true") {
+								alert("Working");
+							}
+            })
+      console.log($scope.jsonBlogTimeStamp);
+  
+	}
+
+
+});
 // controller for apply job application button
 app.controller('applyCtrl', function($scope) {
    
