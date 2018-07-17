@@ -10,7 +10,6 @@ app.config(function($routeProvider, $locationProvider){
 	})
 	.when('/account-forgot-password-page', {
 		templateUrl:"templates/account-forgot-password-page.html"
-
 	})
 	.when('/post-job', {
 		templateUrl:"Admin/employer-post-job.html"
@@ -18,12 +17,9 @@ app.config(function($routeProvider, $locationProvider){
 	
 	.when('/account-login-page', {
 		templateUrl:"templates/account-login-page.html",
-			
-
 	})
 	.when('/account-register-page', {
 		templateUrl:"templates/account-register-page.html"
-
 	})
 	.when('/admin-change-pass', {
 		templateUrl:"templates/admin-change-pass.html"
