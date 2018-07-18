@@ -1,4 +1,4 @@
-<div class="not-transparent-header">
+<div class="not-transparent-header" ng-controller="job-resultcntrl">
 
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
@@ -19,7 +19,7 @@
 								<div class="col-xss-12 col-xs-6 col-sm-6 col-md-5">
 									<div class="form-group form-lg">
 										<input type="text" class="form-control" placeholder="Job title. Ex: Engineering" />
-									</div>
+		 							</div>
 								</div>
 
 								<div class="col-xss-12 col-xs-6 col-sm-6 col-md-5">
@@ -42,7 +42,7 @@
 						<li><span>Quick Searches: </span></li>
 						<li><a href="#">Graduate jobs</a></li>
 						<li><a href="#">$50k+ jobs</a></li>
-						<li><a href="#">Work at home</a></li>
+				 		<li><a href="#">Work at home</a></li>
 						<li><a href="#">Immediate start</a></li>
 						<li><a href="#">IT &amp; Telecom</a></li>
 
@@ -81,50 +81,48 @@
 
 							<div class="row">
 
-								<div class="col-sm-12 col-md-7">
+	 							<div class="col-sm-12 col-md-7">
 
 									<div class="row gap-10">
 
 										<div class="col-sm-4">
 											<div class="form-group">
 												<label>Sort by:</label>
-												<select class="selectpicker form-control" data-show-subtext="true">
-													<option value="0">Relavent</option>
-													<option value="1" data-subtext="(newest to oldest)">Date Posted</option>
-													<option value="2" data-subtext="(oldest to newest)">Date Posted</option>
-												</select>
+											
+												 <select  class="selectpicker form-control" ng-model="positionmodel">
+                                                  <option value="">Position</option>
+                                                  <option ng-repeat="o1 in positionArray" value="{{o1.positionname}}">{{o1.positionname}}</option>
+                                                 </select>
+												
 											</div>
 										</div>
 
 										<div class="col-sm-4">
 											<div class="form-group">
-												<label>Date Added</label>
-												<select class="selectpicker form-control" data-show-subtext="true">
-													<option value="0">Anytime</option>
-													<option value="1">Last 24 hours</option>
-													<option value="2">Last 7 days</option>
-													<option value="3">Last 14 days</option>
-													<option value="4">Last 30 days</option>
-													<option value="5">Since Last Visit</option>
-												</select>
+												<label>Location</label>
+
+												<select class="selectpicker form-control" ng-model="locationmodel">
+                                                    <option value="">City</option>
+                                                    <option ng-repeat="o2 in locationarray | filter:locationmodel" value="{{o2.locationname}}">{{o2.locationname}}</option>
+
+                                                     </select>
 											</div>
 										</div>
+                                        
 
 										<div class="col-sm-4">
 											<div class="form-group">
-												<label>Job Title</label>
-												<select class="selectpicker show-tick form-control" data-selected-text-format="count > 3" data-done-button="true" data-done-button-text="OK" multiple>
-													<option value="0" selected>All</option>
-													<option value="1">.Net Developer</option>
-													<option value="2">Java Developer</option>
-													<option value="3">Part Time Merchandiser</option>
-													<option value="4">Senior Software Engineer</option>
-													<option value="6">Software Development Engineer</option>
-													<option value="7">Software Engineer</option>
-												</select>
+												<label>Salary</label>
+								
+												 <select class="selectpicker form-control" ng-model="salarymodel">
+                                                  <option  value="">Expected</option>
+                                                  <option ng-repeat="o3 in salaryArray | filter:salarymodel" value="{{o3.sal}}">{{o3.sal}}</option>
+       
+                                                    </select>
+											
 											</div>
 										</div>
-
+										
 									</div>
 
 								</div>
@@ -137,20 +135,21 @@
 
 									<div class="job-type-checkbox-wrapper clearfix">
 
-										<div class="checkbox-block job-type-checkbox freelance-checkbox">
-											<input id="job_type_checkbox-3" name="job_type_checkbox" type="checkbox" class="checkbox" value="First Choice" checked />
-											<label class="" for="job_type_checkbox-3">Freelance</label>
-										</div>
-
 										<div class="checkbox-block job-type-checkbox part-time-checkbox">
 											<input id="job_type_checkbox-2" name="job_type_checkbox" type="checkbox" class="checkbox" value="First Choice" checked />
 											<label class="" for="job_type_checkbox-2">Part-time</label>
 										</div>
-
-										<div class="checkbox-block job-type-checkbox full-time-checkbox">
-											<input id="job_type_checkbox-1" name="job_type_checkbox" type="checkbox" class="checkbox" value="First Choice" checked />
-											<label class="" for="job_type_checkbox-1">Full-time</label>
+                                        
+                                        <div class="checkbox-block job-type-checkbox freelance-checkbox">
+											<input id="job_type_checkbox-3" name="job_type_checkbox" type="checkbox" class="checkbox" value="First Choice" checked />
+											<label class="" for="job_type_checkbox-3">Full-time</label>
 										</div>
+                                        <!-- class="btn btn-primary -->
+										<div   class="btn btn-primary" ng-click="searchresult()">
+											Search</label>
+										</div>
+
+
 
 									</div>
 
@@ -300,20 +299,24 @@
 
 					</div>
 
-					<div class="result-wrapper">
+					<div class="result-wrapper" >
 
-						<div class="row">
+						<div class="row" >
 
 							<div class="col-sm-8 col-md-9 mt-25">
 
-								<div class="result-list-wrapper">
+								<div class="result-list-wrapper" >
 
-									<div class="job-item-list featured">
+									<!-- <div class="job-item-list featured"  ng-repeat="job in jobresultArray | filter :{position:'Solution Architect' ,location:'Pune', salary:'76000'} "> -->
+										<!-- <div class="job-item-list featured"  ng-repeat="job in jobresultArray | filter:locationmodel"> -->
+											<!-- <div class="job-item-list featured"  ng-repeat="job in jobresultArray|filter:customFilter"> -->
+                                     	<div class="job-item-list featured"  ng-repeat="job in jobresultArray |filter:{position:positionmodel,location:locationmodel,salary:salarymodel}">
 
-										<div class="featured-label"><span>featured</span></div>
+
+			 							<div class="featured-label"><span>featured</span></div>
 
 										<div class="image">
-											<img src="images/brands/06.png" alt="image" />
+											<img ng-src="images/brands/{{job.imgsrc}}" alt="image" />
 										</div>
 
 										<div class="content">
@@ -324,32 +327,33 @@
 
 													<div class="col-sm-7 col-md-8">
 
-														<h4 class="heading">Packaging Engineer</h4>
+														<!-- <h4 class="heading">Packaging Engineer</h4> -->
+														<h4 class="heading">{{job.position}}</h4>
 														<div class="meta-div clearfix mb-25">
-															<span>at <a href="#">Expedia</a></span>
-															<span class="job-label label label-success">Freelance</span>
+															<span>at <a href="#">{{job.compname}}</a></span>
+															<span class="job-label label label-success">{{job.typeofposition}}</span>
 														</div>
 
-														<p class="texing">It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...</p>
+														<p class="texing">{{job.compinfo}}</p>
 													</div>
 
 													<div class="col-sm-5 col-md-4">
 														<ul class="meta-list">
 															<li>
 																<span>Location:</span>
-																Paris, France
+																{{job.location}}
 															</li>
 															<li>
 																<span>Rate/Salary:</span>
-																Negotiable
+																{{job.salary}}
 															</li>
 															<li>
-																<span>Experience</span>
-																Expert
+																<span>Experience:</span>
+																{{job.experience}}
 															</li>
 															<li>
 																<span>Posted: </span>
-																32 minutes ago
+																{{job.time}} minutes ago
 															</li>
 														</ul>
 													</div>
@@ -363,12 +367,7 @@
 												<div class="row">
 
 													<div class="col-sm-7 col-md-8">
-														<div class="sub-category">
-															<a href="#">Engineer</a>
-															<a href="#">Packaging</a>
-															<a href="#">Package</a>
-															<a href="#">Manufacturing</a>
-														</div>
+
 													</div>
 
 													<div class="col-sm-5 col-md-4">
@@ -384,7 +383,7 @@
 
 									</div>
 
-									<div class="job-item-list">
+									<!-- <div class="job-item-list">
 
 										<div class="image">
 											<img src="images/brands/02.png" alt="image" />
@@ -1040,7 +1039,7 @@
 										</div>
 
 									</div>
-
+ -->
 								</div>
 
 								<div class="pager-wrapper">
