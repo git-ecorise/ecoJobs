@@ -430,48 +430,17 @@ app.controller("contactcntrl",function($scope){
     		}
 	});
 
-// controller for apply job application button
-// app.controller('applyCtrl', function($scope) {
-   
-// 	$scope.visible =true;
-
-// 	$scope.toggle = function() {
-// 	    $scope.visible = $scope.visible ? false : true;
-// 	};
-
-// });
-
 
 //  Job Datail Controller Starts here
 	
-app.controller('myJobDetailCtrl',function($scope){
+app.controller('myJobDetailCtrl',function($scope,$http){
+	$http.get('json/jobDetails.json').then(function(res){
+		$scope.jobDetails=res.data.key;
+		console.log($scope.jobDetails);
+	});
 	$scope.jobDetailsData={};
 	$scope.isDisabled = false;
-	// $scope.visible =true;
-
-	// $scope.toggle = function() {
-	//  $scope.visible = $scope.visible ? false : true;
-	// };
-	// Job Details Json Array Stars here
-	$scope.jobDetails=[{
-						"position":"Audio Visual Field Engineer",
-						"jobDescription":"That know ask case sex ham dear her spot."+
-						" Weddings followed the all marianne nor whatever settling. Perhaps six prudent several her had offence. Did had way law dinner square tastes."+
-						"Recommend concealed yet her procuring see consulted depending. Adieus hunted end plenty are his she afraid."+
-						"Resources agreement contained propriety applauded neglected use yet.",
-						"requirement":["Justice joy manners boy met resolve produce.","Esteem my advice it an excuse enable."],
-						"location":"pune",
-						"companyName":"Expedia",
-						"typeOfJob":"part time",
-						"companyoverviewimg":"images/brands/06.png",
-						"salary": 1000000,
-						"time_stamp" : "23 May 1990",
-						"experience" : "2 Years",
-						"similarjob":{"siconcmpy":"images/brands/06.png","scompany":"Expedia","sposition":"IT Developer","slocation":"Guildford, Surrey","jobtype":"Part time","stimestamp":"1 day ago"},
-						"jobResponsibility":["Sociable on as carriage my position weddings raillery consider.Peculiar trifling absolute and wandered vicinity property yet"]
-
-						}];// Job Details Json Array Ends here
-
+				
 // send Application function Strats here
 	$scope.sendAppc=function()
 	{
@@ -487,49 +456,14 @@ app.controller('myJobDetailCtrl',function($scope){
 
 // Job Datail Controller Ends here
 
-
 // blog-single COntroller Starts here
 
-app.controller('blogSingleCtrl',function($scope){
+app.controller('blogSingleCtrl',function($scope,$http){
 $scope.commentUserData={};
-$scope.blogSinglejson=[{
-						"blogTitleimage":"images/blog/blog-01.jpg",
-						"blogTitle":"Blog title post with a featured image",			
-						"author":"Admin",
-						"date":"January 09, 2016",
-						"jobDesc":"Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression."+
-						" Are will took form the nor true."+
-						" Winding enjoyed minuter her letters evident use eat colonel. "+"He attacks observe mr cottage inquiry am examine gravity."+
-						" Are dear but near left was. Year kept on over so as this of."+" She steepest doubtful betrayed formerly him."+
-						" Active one called uneasy our seeing see cousin tastes its. "+
-						"Ye am it formed indeed agreed relied piqued.",
-						"quotes":"She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its."+
-						" Bed one supposing breakfast day fulfilled off depending questions."+
-						" Whatever boy her exertion his extended."+
-						" Ecstatic followed handsome drawings entirely mrs one yet outweigh."+
-						" Of acceptance insipidity remarkably is invitation.",
-						"aboutAuthorImage":"images/man/01.jpg",
-						"authorName":"John Joe",
-						"aboutAuthorInfo":"Prepared do an dissuade be so whatever steepest."+
-						" Yet her beyond looked either day wished nay. "+
-						"By doubtful disposed do juvenile an. Now curiosity you explained immediate why behaviour."+
-						" An dispatched impossible of of melancholy favourable.",
-						"comentsName":"Ibrahim ibn al-Walid",
-						"commentImage":"images/man/03.jpg",
-						"commentimestamp":"20 minutes",
-						"commentsDesc":"Received the likewise law graceful his."+
-						" Nor might set along charm now equal green."+
-						" Pleased yet equally correct colonel not one. "+
-						"Say anxious carried compact conduct sex general nay certain."+
-						" Mrs for recommend exquisite household eagerness preserved now."+
-						" My improved honoured he am ecstatic quitting greatest formerly.",
-						"commentCount":11,
-						"similarjob":{"blogName":"Commerce","blogDate":"November 6, 2013","blogndCount":40},
-						"facebook":"http://www.facebook.com",
-						"twitter":"http://www.twitter.com",
-						"googlePlus":"https://www.google.com"			
-					}];
-
+$http.get('json/blogSinglejson.json').then(function(res){
+		$scope.blogSinglejson=res.data.key;
+		console.log($scope.blogSinglejson);
+	});
 				$scope.sndDate=function(blogDateC)
 					{			
 						$scope.senddate={

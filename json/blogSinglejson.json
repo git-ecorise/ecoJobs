@@ -1,0 +1,22 @@
+{
+	"key":[{
+						"blogTitleimage":"images/blog/blog-01.jpg",
+						"blogTitle":"Blog title post with a featured image",			
+						"author":"Admin",
+						"date":"January 09, 2016",
+						"jobDesc":"Up branch to easily missed by do.",
+						"quotes":"She steepest doubtful betrayed formerly him.",
+						"aboutAuthorImage":"images/man/01.jpg",
+						"authorName":"John Joe",
+						"aboutAuthorInfo":"Prepared do an dissuade be so whatever steepest.",
+						"comentsName":"Ibrahim ibn al-Walid",
+						"commentImage":"images/man/03.jpg",
+						"commentimestamp":"20 minutes",
+						"commentsDesc":"Received the likewise law graceful his.",
+						"commentCount":11,
+						"similarjob":{"blogName":"Commerce","blogDate":"November 6, 2013","blogndCount":40},
+						"facebook":"http://www.facebook.com",
+						"twitter":"http://www.twitter.com",
+						"googlePlus":"https://www.google.com"			
+			}]
+}

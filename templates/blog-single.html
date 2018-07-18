@@ -27,7 +27,6 @@
 				<div class="container" ng-controller="blogSingleCtrl">
 					
 					<div class="row" ng-repeat="x in blogSinglejson">
-					
 						<div class="col-sm-8 col-md-9">
 						
 							<div class="blog-wrapper">
@@ -155,8 +154,8 @@
 									<div class="sidebar-module">
 										<h4 class="sidebar-title">Similar Blogs</h4>
 										<div class="sidebar-module-inner">
-											<ul class="sidebar-category" ng-repeat="y in blogSinglejson | filter:blogSearcBbox">
-												<li><a ng-click="sndDate(y.similarjob.blogDate)">{{y.similarjob.blogName}}<span>({{y.similarjob.blogndCount}})</span></a></li>
+											<ul class="sidebar-category" >
+												<li ng-repeat="y in blogSinglejson | filter:blogSearcBbox"><a ng-click="sndDate(y.similarjob.blogDate)" >{{y.similarjob.blogName}}<span>({{y.similarjob.blogndCount}})</span></a></li>
 											</ul>
 										</div>
 									</div>
