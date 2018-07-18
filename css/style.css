@@ -46,9 +46,15 @@ Last change:    23/05/2015
 * 34. Faq
 * 35. Static Page
 * 36. Login and Register
+
 -------------------------------------------------------------------*/
 
 
+/*Applied Jobs Table*/
+.thead-dark{
+  background-color:#33B6CB !important;
+  color: #fff;
+}
 /**
  * Header
  */

@@ -27,7 +27,7 @@
 				<div class="container" ng-controller="myJobDetailCtrl" >
 				
 					<div class="row" ng-repeat="x in jobDetails">
-						
+					
 							<div class="col-sm-5 col-md-4">
 							
 								<div class="job-detail-sidebar">
@@ -59,7 +59,7 @@
 
 										</div>
 										
-										<p><span class="font600">Expedia</span> is repulsive questions contented him few extensive supported. Of remarkably thoroughly he appearance in. Supposing tolerably applauded or of be. Suffering unfeeling so objection agreeable allowance me of. Ask within entire season sex common far who family <a href="#"> read more about this company <i class="fa fa-long-arrow-right"></i></a></p>
+										<p><span class="font600">Expedia</span> {{x.companyBrief}} <a href="#"> read more about this company <i class="fa fa-long-arrow-right"></i></a></p>
 										
 									</div>
 									
@@ -90,14 +90,14 @@
 										
 										<h3>Job Responsibilies</h3>
 										
-										<ul ng-repeat=" rsp in x.jobResponsibility">
-										<li>{{rsp}}</li>
+										<ul>
+										<li ng-repeat="rsp in x.jobResponsibility">{{rsp}}</li>
 											
 										</ul>
 										
 										<h3>Requirements:</h3>
-										<ul ng-repeat="r in x.requirement">
-											<li>{{r}}</li>
+										<ul>
+											<li ng-repeat="r in x.requirement">{{r}}</li>
 										</ul>
 									
 									</div>
