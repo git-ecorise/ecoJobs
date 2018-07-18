@@ -89,7 +89,7 @@
 						
 							<div class="blog-wrapper">
 
-								<div class="blog-item" ng-repeat="blog in blogArray | filter:{inbook:typemodel,typeofquali:qualimodel,other:gkmodel}">
+								<div class="blog-item" ng-repeat="blog in data | filter:{inbook:typemodel,typeofquali:qualimodel,other:gkmodel}">
 								
 									<div class="blog-media">
 										<div class="overlay-box">
@@ -290,7 +290,7 @@
 								
 									<nav class="pager-right">
 										<ul class="pagination">
-											<li>
+											<li>job
 												<a href="#" aria-label="Previous">
 													<span aria-hidden="true">&laquo;</span>
 												</a>
@@ -327,9 +327,9 @@
 										<div class="sidebar-module-inner">
 											<div class="sidebar-mini-search">
 												<div class="input-group">
-													<input type="text" class="form-control" placeholder="Search for...">
+													<!-- <input type="text" class="form-control" placeholder="Search for...">
 													<span class="input-group-btn">
-														<button class="btn btn-primary" type="button" ng-click="countdisplay()"><i class="fa fa-search"></i></button>
+														<button class="btn btn-primary" type="button" ng-click="countdisplay()"><i class="fa fa-search"></i></button> -->
 													</span>
 												</div>
 											</div>
@@ -343,7 +343,7 @@
 
 										<div class="sidebar-module-inner">
 											<ul class="sidebar-category">
-												<li  ng-repeat="c in data"><a href="#">{{c.name}}<span>( {{c.count}} )</span></a></li>
+												<li  ng-repeat="c in data"><a href="#" ng-click="getlidata(c.name,c.count)">{{c.name}}<span>( {{c.count}} )</span></a></li>
 												<!-- <li class="active"><a href="#">Aptitude<span>({{c.count}})</span></a></li>
 												<li><a href="#">Engineering<span>({{c.count}})</span></a></li>
 												<li><a href="#">Master in Engineering<span>({{c.count}})</span></a></li>

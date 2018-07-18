@@ -362,6 +362,17 @@ app.controller("profilecntrl",function($scope, $http){
     	
 
     ];
+//***********************profileState.json*****************************
+    // $http.get('ecoJobs/profileState.json').then(function(res){
+
+    // 	$scope.data=res.data.key;
+    // 	console.log($scope.data.key);
+    // })
+ 
+
+
+
+
    var range = [];
 for(var i=1;i<=30;i++) {
   range.push(i);
@@ -396,19 +407,40 @@ $scope.month=[{'monthname':"Jan"},
                 {'monthname':'Nov'},
                 {'monthname':'Dec'}
                ];
+//**************************monthProfile********************
+
+// $http.get('ecoJobs/month.json').then(function(res){
+
+// 	$scope.data=data.res.key;
+// 	console.log($scope.data.key);
+// })
+
 $scope.education=[
                   {'name':"Diploma"},
                   {'name':'Bacholor'},
                   {'name':"Masters"},
                   {'name':'Doctorate'}];
 
+//**************************educationProfile********************
+
+// $http.get('ecoJobs/education.json').then(function(res){
+
+// 	$scope.data=data.res.key;
+// 	console.log($scope.data.key);
+// })
 $scope.stream=[{'strname':"Computer engineering"},
                  {'strname':"Information Technology"},
                  {'strname':"Civil engineering"},
                  {'strname':"Mechanical engineering"},
                  {'strname':"Electical engineering"}];
    
+//**************************streamProfile********************
 
+// $http.get('ecoJobs/stream.json').then(function(res){
+
+// 	$scope.data=data.res.key;
+// 	console.log($scope.data.key);
+// })
   $scope.submitprofile=function(){
   	
    if($scope.modelstream==null && $scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
@@ -537,7 +569,7 @@ app.controller("contactcntrl",function($scope, $http){
 	});
 
 //controller for job-result page 
-app.controller('job-resultcntrl',function($scope){
+app.controller('job-resultcntrl',function($scope,$http){
 
 $scope.locationarray=[{'locationname':"Pune"},
                       {'locationname':"Mumbai"},
@@ -545,6 +577,41 @@ $scope.locationarray=[{'locationname':"Pune"},
                       ];
 $scope.salaryArray=[{'sal':45000},{'sal':75000},{'sal':80000}];
 $scope.positionArray=[{'positionname':"Packaging Engineer"},{'positionname':"Solution Architect"},{'positionname':"Mechanical Engineer"}];
+
+
+
+//**************************locationArray.json************************
+// $http.get('ecojobs/locationArray.json').then(function(res){
+
+// 	$scope.data=res.data.key;
+// 	console.log($scope.data.key);
+// 	alert('hi');
+// })
+
+
+//**************************salaryArray.json************************
+// $http.get('ecojobs/salaryArray.json').then(function(res){
+
+// 	$scope.data=res.data.key;
+// 	console.log($scope.data.key);
+// 	alert('hi');
+// })
+
+
+//**************************positionArray.json************************
+// $http.get('ecojobs/positionArray.json').then(function(res){
+
+// 	$scope.data=res.data.key;
+// 	console.log($scope.data.key);
+// 	alert('hi');
+// })
+//*************************jobresultArray.json******************
+//$http.get('ecojobs/jobresultArray.json').then(function(res){
+
+// 	$scope.data=res.data.key;
+// 	console.log($scope.data.key);
+// 	alert('hi');
+// })
 
 $scope.jobresultArray=[
 
@@ -617,7 +684,7 @@ app.controller('blogcntrl',function($scope,$http){
 	  	$scope.data=res.data.key;
 	  
 	  console.log($scope.data.key);
-	  alert($scope.data.key);
+	  alert('category.json');
 	  });
 
 
@@ -627,113 +694,130 @@ app.controller('blogcntrl',function($scope,$http){
                       ];
 $scope.gkArray=[{'typegk':"GK1"},{'typegk':"GK2"},{'typegk':"GK3"}];
 $scope.typeArray=[{'typename':"Technical"},{'typename':"Aptitude"}];
-// $scope.category=[
-//   {'name':"Technical",'count':7},
-//   {'name':"Aptitude",'count':5},
-//   {'name':"Engineer",'count':4},
-//   {'name':"Master in Engineering",'count':23},
-//   {'name':"MCA",'count':12},
-//   {'name':"GK1",'count':9},
-//   {'name':"GK2",'count':10},
-//   {'name':"GK3",'count':15}
+//*****************qualiArray JSON************************
+// $http.get('ecojobs/qualiArray.json').then(function(res){
+// 	$scope.data=res.data.key;
+// 	console.log($scope.data.key);
+// 	alert("heollo");
+// })
+//**********************END********************************
+//*****************gkArray JSON************************
+// $http.get('ecojobs/gkArray.json').then(function(res){
+// 	$scope.data=res.data.key;
+// 	console.log($scope.data.key);
+// 	alert("heollo");
+// })
+//**********************END********************************
+//*****************typeArray JSON************************
+// $http.get('json/typeArray.json').then(function(res){
+// 	$scope.data=res.data.key;
+// 	console.log($scope.data.key);
+// 	alert("heollo");
+// })
+//**********************END********************************
 
-//   ];
 
 
-$scope.blogArray=[
+//*****************blogArray JSON************************
+$http.get('json/blogArray.json').then(function(res){
+	$scope.data=res.data.key;
+	console.log($scope.data.key);
+	alert('blogArray.json');
+})
+//**********************END********************************
 
-     {
-			'imgsrc':"blog-01.jpg",
-			'title':"Blog1",
-			'bysend':"Admin",
-			'bydate':"12 March 2018 2:00 PM",
-			'details':"Up branch to easily missed by do. Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
-			'inbook':"Technical",
-			'typeofquali':"Engineering",
-			'other':"GK1"
+ 
+// $scope.blogArray=[
+
+//      {
+// 			'imgsrc':"blog-01.jpg",
+// 			'title':"Blog1",
+// 			'bysend':"Admin",
+// 			'bydate':"12 March 2018 2:00 PM",
+// 			'details':"Up branch to easily missed by do. Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
+// 			'inbook':"Technical",
+// 			'typeofquali':"Engineering",
+// 			'other':"GK1"
 			
-     },
-     {
-			'imgsrc':"blog-02.jpg",
-			'title':"Blog2",
-			'bysend':"Admin",
-			'bydate':"09 Jan 2018",
-			'details':"Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.",
-			'inbook':"Aptitude",
-			'typeofquali':"Engineering",
-			'other':"GK2"
+//      },
+//      {
+// 			'imgsrc':"blog-02.jpg",
+// 			'title':"Blog2",
+// 			'bysend':"Admin",
+// 			'bydate':"09 Jan 2018",
+// 			'details':"Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.",
+// 			'inbook':"Aptitude",
+// 			'typeofquali':"Engineering",
+// 			'other':"GK2"
 			
-     },
+//      },
      
-      {
-			'imgsrc':"blog-03.jpg",
-			'title':"Blog3",
-			'bysend':"Admin",
-			'bydate':"17 May 2018",
-			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
-			'inbook':"Technical",
-			'typeofquali':"Engineering",
-			'other':"GK3"
+//       {
+// 			'imgsrc':"blog-03.jpg",
+// 			'title':"Blog3",
+// 			'bysend':"Admin",
+// 			'bydate':"17 May 2018",
+// 			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
+// 			'inbook':"Technical",
+// 			'typeofquali':"Engineering",
+// 			'other':"GK3"
 			
-     },
-      {
-			'imgsrc':"blog-03.jpg",
-			'title':"Blog2",
-			'bysend':"Admin",
-			'bydate':"17 May 2018",
-			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
-			'inbook':"Technical",
-			'typeofquali':"MCA",
-			'other':"GK3"
+//      },
+//       {
+// 			'imgsrc':"blog-03.jpg",
+// 			'title':"Blog2",
+// 			'bysend':"Admin",
+// 			'bydate':"17 May 2018",
+// 			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
+// 			'inbook':"Technical",
+// 			'typeofquali':"MCA",
+// 			'other':"GK3"
 			
-     },
-     {
-			'imgsrc':"blog-03.jpg",
-			'title':"Blog1",
-			'bysend':"Admin",
-			'bydate':"17 May 2018",
-			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
-			'inbook':"Technical",
-			'typeofquali':"MCA",
-			'other':"GK3"
+//      },
+//      {
+// 			'imgsrc':"blog-03.jpg",
+// 			'title':"Blog1",
+// 			'bysend':"Admin",
+// 			'bydate':"17 May 2018",
+// 			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
+// 			'inbook':"Technical",
+// 			'typeofquali':"MCA",
+// 			'other':"GK3"
 			
-     }
+//      }
 
    
-	];
+// 	];
 
+$scope.getlidata=function(name,count){
+									
+					$scope.jsonLidata={
+											blogUploadCategory:name,
+											count:count
+									  };
 
-
-
-
-
-
-  // $scope.countdisplay=function(){
-
-
-
-// }
-
+					console.log($scope.jsonLidata);
+}
 
 $scope.senddata=function(date){
-
-      // $scope.date1={$scope.bydate};
-      $scope.jsonBlogTimeStamp = {
-      	blogUploadDate : date
-      }
+                                 $scope.jsonBlogTimeStamp = {
+      								blogUploadDate : date
+      							 }
+//******************************POST DATE********************************************
       $http.post('http://192.168.2.12/mySlim/public/user_add',$scope.dd).then(function(res){
 							console.log(res);
 							if (res.data == "true") {
 								alert("Working");
 							}
-            })
-      console.log($scope.jsonBlogTimeStamp);
-  
-	}
+                })
+                 console.log($scope.jsonBlogTimeStamp);
+  				}
+//*******************************END****************************************************
 
 
 });
-// controller for apply job application button
+
+//****************************** controller for apply job application button***************
 app.controller('applyCtrl', function($scope) {
    
     $scope.visible =true;
