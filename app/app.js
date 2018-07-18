@@ -110,14 +110,13 @@ app.controller('loginCtrl',function($scope, $http){
 				alertify.error("Check the Remaining Fields");
 			}
 			else
-			{		
-        		$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.loginData).then(function(res){
-							console.log(res);
-							if (res.data == "true") {
-								alert("Working");
-								alertify.success("Login Successfully!!");
-							}
-						})
+			{		alertify.success("Login Successfully!!");		
+				$scope.loginData= {
+                    		email:$scope.usernamelogin,
+                    		password:$scope.passwordlogin
+                    		};
+        				console.log($scope.loginData);
+ 
 			}
 		 					$scope.usernamelogin=null;
                     		$scope.passwordlogin=null;
@@ -147,6 +146,7 @@ app.controller('registerCtrl',function($scope,$http){
 			}
 			else
 			{
+				alertify.success("Registered Successfully!!");		
 				$scope.regData = {
                     		firstName: $scope.regUser,
                     		lastName:$scope.regUserLast,
@@ -201,8 +201,9 @@ app.controller('forgotPasswordCtrl',function($scope,$http){
 			{
 				alertify.success("Check your Mail box");
 					$scope.forgotPasswordData= {
-                    		email:$scope.forgotpasswordemail
+                    email:$scope.forgotpasswordemail
                					};
+               			console.log($scope.forgotPasswordData);
 		    }
     		$scope.forgotpasswordemail=null;
     		$scope.generateNewPassword=null;
@@ -422,7 +423,12 @@ app.controller("contactcntrl",function($scope, $http){
 	});
 
 
+//controller for job-result page 
 app.controller('job-resultcntrl',function($scope,$http){
+
+
+
+
 
 
 //**************************locationArray.json************************
