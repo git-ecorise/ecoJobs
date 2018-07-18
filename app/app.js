@@ -11,6 +11,9 @@ app.config(function($routeProvider, $locationProvider){
 	.when('/account-forgot-password-page', {
 		templateUrl:"templates/account-forgot-password-page.html"
 	})
+		.when('/post-blog', {
+		templateUrl:"templates/post-blog.html"
+	})
 	.when('/post-job', {
 		templateUrl:"Admin/employer-post-job.html"
 	})
@@ -26,6 +29,9 @@ app.config(function($routeProvider, $locationProvider){
 	})
 	.when('/admin-empty', {
 		templateUrl:"templates/admin-empty.html"
+	})
+	.when('/applied-jobs', {
+		templateUrl:"templates/applied-jobs.html"
 	})
 	.when('/admin-profile', {
 		templateUrl:"templates/admin-profile.html"
