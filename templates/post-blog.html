@@ -4,8 +4,6 @@
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
 
-		
-
 		<!-- start Main Wrapper -->
 		<div class="main-wrapper">
 		
@@ -15,9 +13,9 @@
 				<div class="container">
 				
 					<ol class="breadcrumb-list booking-step">
-						<li><a href="#">Home</a></li>
+						<li><a href="home">Home</a></li>
 						<li><a href="#">Your Admin</a></li>
-						<li><span>Post a Job</span></li>
+						<li><span>Post a Blog</span></li>
 					</ol>
 					
 				</div>
@@ -30,8 +28,7 @@
 				<div class="container">
 				
 					<div class="row">
-						
-						
+							
 							<div class="col-sm-12 col-md-12">
 							
 								<div class="company-detail-wrapper">
@@ -39,95 +36,58 @@
 									<div class="company-detail-company-overview  mt-0 clearfix">
 										
 										<div class="section-title-02">
-											<h3 class="text-left">Post a Job</h3>
+											<h3 class="text-left">Post a Blog</h3>
 											<p>Oh to talking improve produce in limited offices fifteen an. Wicket branch to answer do we. Place are decay men hours tiled. If or of ye throwing friendly required. Marianne interest in exertion as. Offering my branched confined oh dashwood.</p>
 										</div>
 
 										<form class="post-form-wrapper">
 								
 											<div class="row gap-20">
-												<div class="col-sm-7 col-md-7">
-												
-													<div class="form-group" >
-														<label>Company</label>
-														
-													<input list="Company" name="Company" class="form-control">
-														 <datalist id="Select company">
+												<div class="form-group" >
+													<div class="col-sm-6 col-md-6">
+														<label>Company</label>	
+														<input list="Company" name="Company" class="form-control">
+														 <datalist id="Company">
 														   <option value="Accenture">
 														    <option value="Capegemini">
 														    <option value="Tcs">
 														    <option value="Infosys">
 														    <option value="Microsoft">
 														  </datalist>
-
-														 <!--  <input type="submit"> -->
-														  
+														 
 													</div>
-													
-												</div>
-										
-												<div class="col-sm-7 col-md-7">
+													<div class="col-sm-6 col-md-6">
 												
-													<div class="form-group">
+													
 														<label>Job Title</label>
 														<input type="text" class="form-control">
 													</div>
-													
 												</div>
-												
+													
 												<div class="clear"></div>
-												
-												<div class="col-sm-7 col-md-7">
-												
-													<div class="form-group">
+												<br>
+											<div class="form-group">
+													<div class="col-sm-6 col-md-6">
 														<label>Location</label>
 														<input type="text" class="form-control">
 													</div>
-													
-												</div>
-												
-												<div class="clear"></div>
-												
-												<div class="col-sm-8 col-md-8">
-												
-													<div class="form-group">
+
+													<div class="col-sm-6 col-md-6">
 														<label>Rate/Salary</label>
 														
-														<div class="row gap-20">
-															<div class="col-sm-6">
+															
 																<div class="input-group">
 																	<input type="text" class="form-control">
 																	<span class="input-group-addon">$</span>
 																</div>
-															</div>
-															<div class="col-sm-6">
-															
-																<div class="clearfix" style="margin-top: 2px;">
-																
-																	<div class="pull-left">
-																		<div class="text-primary font600" style="margin-right: 15px; margin-top: 2px;">or</div>
-																	</div>
-																		<div class="pull-left">
-																		<div class="radio-block" style="margin-top: 2px;">
-																			<input id="radio_salary-1" name="radio_salary" type="radio" class="radio" />
-																			<label for="radio_salary-1">Negotiable</label>
-																		</div>
-																	</div>
-																
-																</div>
-																
-															</div>
 														</div>
-														
 													</div>
-													
-												</div>
 												
 												<div class="clear"></div>
-												
-												<div class="col-xss-12 col-xs-6 col-sm-6 col-md-4">
-												
-													<div class="form-group mb-20">
+												<br>
+
+										<div class="form-group">
+												<div class="col-sm-6 col-md-6">
 														<label>Job Type:</label>
 														<select class="selectpicker show-tick form-control" data-live-search="false" data-selected-text-format="count > 3" data-done-button="true" data-done-button-text="OK" data-none-selected-text="All">
 															<option value="0" selected>Select</option>
@@ -135,13 +95,9 @@
 															<option value="2" data-content="<span class='label label-danger'>Part-time</span>">Part-time</option>
 															<option value="3" data-content="<span class='label label-success'>Freelance</span>">Freelance</option>
 														</select>
-													</div>
-													
 												</div>
-												
-												<div class="col-xss-12 col-xs-6 col-sm-6 col-md-4">
-												
-													<div class="form-group mb-20">
+													
+													<div class="col-sm-6 col-md-6">
 														<label>Experience:</label>
 														<select class="selectpicker show-tick form-control" data-live-search="false" data-selected-text-format="count > 3" data-done-button="true" data-done-button-text="OK" data-none-selected-text="All">
 															<option value="0" selected >Select</option>
@@ -152,17 +108,20 @@
 															<option value="5">5 Years</option>
 														</select>
 													</div>
-													
-													
 												</div>
-
+												
 												<div class="clear"></div>
+						
+												<br>
 												
 												<div class="col-sm-12 col-md-12">
 												
 													<div class="form-group bootstrap3-wysihtml5-wrapper">
 														<label>Job Description</label>
-														<textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea>
+														<!-- <textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea> -->
+														<textarea id="ckeExample">
+														  This is not
+														</textarea>
 													</div>
 													
 												</div>
@@ -173,7 +132,10 @@
 												
 													<div class="form-group bootstrap3-wysihtml5-wrapper">
 														<label>Job Responsibilies</label>
-														<textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea>
+														<!-- <textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea> -->
+														<textarea id="ckeExample2">
+														  This is not
+														</textarea>
 													</div>
 													
 												</div>
@@ -184,7 +146,10 @@
 												
 													<div class="form-group bootstrap3-wysihtml5-wrapper">
 														<label>Requirements</label>
-														<textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea>
+														<!-- <textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea> -->
+														<textarea id="ckeExample3">
+														  This is not
+														</textarea>
 													</div>
 													
 												</div>
@@ -206,7 +171,7 @@
 												
 												<div class="clear mb-15"></div>
 
-												<div class="col-sm-6 bootstrap-fileinput-style-01 no-remove-at-beginning">
+												<div class="col-sm-6  bootstrap-fileinput-style-01 no-remove-at-beginning">
 													<div class="form-group">
 														<label for="form-photos">Photos</label>
 														<input type="file" name="form-photos" multiple id="form-photos">
@@ -274,3 +239,80 @@
 
 
 
+ <script type="text/javascript">
+  	var ckEditorID , ckEditorID2 ,ckEditorID3;
+
+  	ckEditorID = 'ckeExample';
+  	ckEditorID2 = 'ckeExample2';
+  	ckEditorID3 ='ckeExample3'
+
+  	function fnConsolePrint()
+  	{
+  	  //console.log($('#' + ckEditorID).val());
+  	  console.log(CKEDITOR.instances[ckEditorID].getData());
+  	}
+  	CKEDITOR.config.forcePasteAsPlainText = true;
+  	CKEDITOR.replace( ckEditorID, 
+  	    {
+  	        toolbar :
+  	        [
+  	          {
+  	            items : [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ]
+  	          },
+  	          {
+  	            items : [ 'Format']
+  	          },
+  	          {
+  	            items : [ 'Link','Unlink' ]
+  	          },
+  	          {
+  	            items : [ 'Indent','Outdent','-','BulletedList','NumberedList']
+  	          },
+  	          {
+  	            items : [ 'Undo','Redo']
+  	          }
+  	        ]
+  	    })
+  	CKEDITOR.replace( ckEditorID2, 
+  	    {
+  	        toolbar :
+  	        [
+  	          {
+  	            items : [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ]
+  	          },
+  	          {
+  	            items : [ 'Format']
+  	          },
+  	          {
+  	            items : [ 'Link','Unlink' ]
+  	          },
+  	          {
+  	            items : [ 'Indent','Outdent','-','BulletedList','NumberedList']
+  	          },
+  	          {
+  	            items : [ 'Undo','Redo']
+  	          }
+  	        ]
+  	    });
+  	CKEDITOR.replace( ckEditorID3, 
+  	    {
+  	        toolbar :
+  	        [
+  	          {
+  	            items : [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ]
+  	          },
+  	          {
+  	            items : [ 'Format']
+  	          },
+  	          {
+  	            items : [ 'Link','Unlink' ]
+  	          },
+  	          {
+  	            items : [ 'Indent','Outdent','-','BulletedList','NumberedList']
+  	          },
+  	          {
+  	            items : [ 'Undo','Redo']
+  	          }
+  	        ]
+  	    });
+  </script>
