@@ -5788,7 +5788,18 @@ ul.static-page-menu li.active a {
     }
 }
 
-@media (max-width: 479px) {}
+@media (max-width: 479px) {
+    .registerform {
+    padding-top: 20%;
+    }
+    .login-box-wrapper .modal-body,
+    .login-box-wrapper .modal-header,
+    .login-box-wrapper .modal-footer {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }    
+}
 
 
 /**
@@ -5802,6 +5813,7 @@ ul.static-page-menu li.active a {
 
 .login-box-wrapper .modal-body {
     padding: 25px 25px 20px;
+    background: #fff;
 }
 
 .login-box-wrapper .modal-title {
@@ -5831,7 +5843,7 @@ ul.static-page-menu li.active a {
     border-radius: 50%;
     line-height: 38px;
     font-size: 10px;
-    letter-spacing: 1px;
+    letter-spacing: 0.2px;
     position: absolute;
     top: 0;
     left: 50%;
@@ -5885,7 +5897,18 @@ ul.static-page-menu li.active a {
     margin-left: -300px !important;
 }
 
-@media only screen and (max-width: 1199px) {}
+@media only screen and (max-width: 1199px) {
+    .registerform {
+    padding-top: 20%;
+    }
+    .login-box-wrapper .modal-body,
+    .login-box-wrapper .modal-header,
+    .login-box-wrapper .modal-footer {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }   
+}
 
 @media only screen and (max-width: 991px) {
     .login-modal-or {

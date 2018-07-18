@@ -1857,8 +1857,8 @@ section.sm,
 .gap-20 .col-md-10,
 .gap-20 .col-md-11,
 .gap-20 .col-md-12 {
-    padding-right: 10px !important;
-    padding-left: 10px !important;
+    padding-right: 0px !important;
+    padding-left: 4px !important;
 }
 
 .row.gap-15 {

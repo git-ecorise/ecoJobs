@@ -1,4 +1,5 @@
-<div  class="not-transparent-header">
+
+<div class="not-transparent-header">
 
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
@@ -13,7 +14,7 @@
 				
 					<ol class="breadcrumb-list">
 						<li><a href="home">Home</a></li>
-						<li><span>Login</span></li>
+						<li><span>Register</span></li>
 					</ol>
 					
 				</div>
@@ -27,93 +28,193 @@
 				
 					<div class="row">
 					
-						<div class="col-md-10 col-md-offset-1">
+						<div class="col-md-5 col-sm-12 col-md-offset-0">
 						
 							<div class="row">
 
-								<div class="col-sm-6 col-sm-offset-3">
-								
-									<div class="login-box-wrapper">
-							
-										<div class="modal-header">
-											<h4 class="modal-title text-center">Sign-in into your account</h4>
-										</div>
-										
-										<div class="modal-body">
-											<div class="row gap-20">
-											
-												<div class="col-md-12 mb-5">
-													<button class="btn btn-facebook btn-block">Log-in with Facebook</button>
-												</div>
-												<div class="col-md-12">
-													<button class="btn btn-google-plus btn-block">Log-in with Google+</button>
-												</div>
-												
-												<div class="col-md-12">
-													<div class="login-modal-or">
-														<div><span>or</span></div>
-													</div>
-												</div>
-												
-												<div class="col-sm-12 col-md-12">
-										
-													<div class="form-group"> 
-														<label>Username</label>
-														<input class="form-control" placeholder="Min 4 and Max 10 characters" type="text" > 
-													</div>
-												
-												</div>
-												
-												<div class="col-sm-12 col-md-12">
-												
-													<div class="form-group"> 
-														<label>Password</label>
-														<input class="form-control" placeholder="Min 4 and Max 10 characters" type="text" > 
-													</div>
-												
-												</div>
-												
-												<div class="col-sm-6 col-md-6">
-													<div class="checkbox-block"> 
-														<input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-														<label class="" for="remember_me_checkbox">Remember me</label>
-													</div>
-												</div>
-												
-												<div class="col-sm-6 col-md-6">
-													<div class="login-box-link-action">
-														<a href="account-forgot-password-page">Forgot password?</a> 
-													</div>
-												</div>
-												
-												<div class="col-sm-12 col-md-12">
-													<div class="login-box-box-action">
-														No account? <a href="account-register-page">Register</a>
-													</div>
-												</div>
-												
-											</div>
-										</div>
-										
-										<div class="modal-footer text-center">
-											<button type="button" class="btn btn-primary" >Log-in</button>
-										</div>
-										
-									</div>
+								<form name="loginfrmnm">
 
-									
-								</div>
-							
-							</div>
-							
-						</div>
+									<div id="loginModal" class="login-box-wrapper"ng-controller="loginCtrl">
+								      
+								      <div class="modal-header">
+								        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+								        <h4 class="modal-title text-center">Sign-in into your account</h4>
+								      </div>
+
+								      <div class="modal-body">
+								        <div class="row gap-20">
+								          <div class="col-sm-6 col-md-6">
+								            <button class="btn btn-facebook btn-block mb-5-xs">Log-in with Facebook</button>
+								          </div>
+								          <div class="col-sm-6 col-md-6">
+								            <button class="btn btn-google-plus btn-block">Log-in with Google+</button>
+								      	  </div>
+								          <div class="col-md-12">
+								            <div class="login-modal-or">
+								              <div><span>or</span></div>
+								            </div>
+								          </div>
+								      
+								          <div class="col-sm-12 col-md-12">
+								            <div class="form-group">
+								              <label>Email </label>
+								              <input class="form-control" placeholder="Enter Your Email" type="email" ng-model="usernamelogin" name="lgnname" data-error="Your name is required" autocomplete="off" ng-required="true" ng-pattern="lgnpattern">
+								              <span class="red-text" ng-if="loginfrmnm.lgnname.$error.required loginfrmnm.lgnname.$dirty">Email Required</span>
+							            	  <span class="red-text" ng-show=" loginfrmnm.lgnname.$error.pattern">Enter valid Email</span>
+								              <div class="help-block with-errors"></div>
+								            </div>
+								          </div>
+
+								          <div class="col-sm-12 col-md-12">
+								            <div class="form-group">
+								              <label>Password</label>
+								              <input class="form-control" placeholder="Enter password" type="password" ng-model="passwordlogin">
+								            </div>
+								          </div>
+
+								          <div class="col-sm-6 col-md-6">
+								            <div class="checkbox-block">
+								              <input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" type="checkbox" ng-model="rememberme">
+								              <label class="" for="remember_me_checkbox">Remember me</label>
+								            </div>
+								          </div>
+								          <div class="col-sm-6 col-md-6">
+								            <div class="login-box-link-action">
+								              <a data-toggle="modal" href="#forgotPasswordModal">Forgot password?</a>
+								            </div>
+								          </div>
+								          <!-- <div class="col-sm-12 col-md-12">
+								            <div class="login-box-box-action">
+								              No account? <a data-toggle="modal" href="account-login-page">Register</a>
+								            </div>
+								          </div> -->
+								        </div>
+								      </div>
+								      <div class="modal-footer text-center">
+								        <button type="button" class="btn btn-primary" ng-click="userLogin()">Log-in</button>
+								        <!-- <button type="button" data-dismiss="modal" class="btn btn-primary btn-inverse">Close</button> -->
+								      </div>
+
+								    </div>  
+
+
+								</form>
 						
-					</div>
-					
+							</div>
+
+						</div>
+
+						<div class="col-md-6 col-sm-12 col-md-offset-1">
+						
+							<div class="row registerform">
+
+	    						<form name="registerForm">
+
+									<div id="registerModal" class="login-box-wrapper"ng-controller="registerCtrl">
+								      
+								      <div class="modal-header">
+								        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+								        <h4 class="modal-title text-center">Create your account for free</h4>
+								      </div>
+
+								      <div class="modal-body">
+								        <div class="row gap-20">
+								          <div class="col-sm-6 col-md-6">
+								            <button class="btn btn-facebook btn-block mb-5-xs">Register with Facebook</button>
+								          </div>
+								          <div class="col-sm-6 col-md-6">
+								            <button class="btn btn-google-plus btn-block">Register with Google+</button>
+								          </div>
+								          <div class="col-md-12">
+								            <div class="login-modal-or">
+								              <div><span>or</span></div>
+								            </div>
+								          </div>
+								      
+								          <div class="col-sm-6 col-md-6">
+								            <div class="form-group">
+								              <label>First Name</label>
+								              <input class="form-control" placeholder="Enter First Name" type="text" ng-model="regUser" data-error="Your name is required" required>
+								              <div class="help-block with-errors"></div>
+								            </div>
+								          </div>
+								          <div class="col-sm-6 col-md-6">
+								            <div class="form-group">
+								              <label>Last Name</label>
+								              <input class="form-control" placeholder="Enter Last Name" type="text" ng-model="regUserLast" data-error="Your name is required" required>
+								              <div class="help-block with-errors"></div>
+								            </div>
+								           </div> 
+
+								          <div class="col-sm-12 col-md-12">
+								            <div class="form-group">
+								              <label>Contact Number</label>
+								              <input class="form-control" placeholder="Enter Contact" type="number" name="cnt" ng-model="regContact" data-maxlength="10" ng-pattern="/^[7-9][0-9]{9}$/" data-error="Enter 10 Digit" required="true">
+								               <span class="red-text" ng-if="registerForm.cnt.$error.required registerForm.cnt.$dirty">mob no required field</span>
+								               <span class="red-text" ng-show=" registerForm.cnt.$error.pattern">Invalid contact</span>
+								            </div>
+								          </div>
+
+								          <div class="col-sm-12 col-md-12">
+								            <div class="form-group">
+								              <label>Email </label>
+								              <input class="form-control" placeholder="Enter your email address" name="regemail" ng-pattern="emlvalid" type="email" autocomplete="off" ng-model="regEmail" ng-required="true"> 
+								              <span class="red-text" ng-if="registerForm.regemail.$error.required registerForm.regemail.$dirty">Email Required</span>
+							            
+							            	  <span class="red-text" ng-show=" registerForm.regemail.$error.pattern">Enter valid Email</span>
+
+								            </div>
+								          </div>
+								          <div class="col-sm-12 col-md-12">
+								          
+								            <div class="form-group">
+								              <label>Password</label>
+								              <input class="form-control" placeholder="Enter Password" type="password" name="regpass" ng-model="regPassword" data-minlength="6" data-maxlength="16" ng-change="passwordChanged()" ng-pattern="/^.*(?=.{7,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/" data-error="Invalid password" required="true">
+								              <span class="red-text" ng-if="registerForm.regpass.$error.required registerForm.regpass.$dirty">Password required field</span>
+								               <span class="red-text" ng-show=" registerForm.regpass.$error.pattern">Use 6 or more characters with a mix of capital, small letters & numbers</span>
+								            </div>
+								            </div>
+
+								          <div class="col-sm-12 col-md-12">
+								            <div class="form-group">
+								              <label>Confirm Password </label>
+								              <input class="form-control" placeholder="Re-type password again" type="password" name="regpassconf" ng-model="regConfirmpass" ng-keyup="checkpass()">
+								              <p style="color: red; font-size: 12px;">{{errormsg}}</p>
+								            </div>
+								          </div>
+									
+								          <div class="col-sm-12 col-md-12">
+								            <div class="checkbox-block">
+								              <input id="register_accept_checkbox" name="register_accept_checkbox" class="checkbox" type="checkbox" ng-model="Regacceptcheckbox" >
+								              <label class="" for="register_accept_checkbox">By register, I read &amp; accept <a href="#">the terms</a></label>
+								            </div>
+								          </div>
+								         <!--  <div class="col-sm-12 col-md-12">
+								            <div class="login-box-box-action">
+								              Already have account? <a data-toggle="modal" href="account-login-page">Log-in</a>
+								            </div>
+								          </div> -->
+								        </div>
+								      </div>
+
+								      <div class="modal-footer text-center">
+								        <button type="button" class="btn btn-primary" ng-click="userReg()">Register</button>
+								        <!-- <button type="button" data-dismiss="modal" class="btn btn-primary btn-inverse">Close</button> -->
+								      </div>
+
+								    </div>  
+
+								</form>							
+						
+							</div>
+
+						</div>
+
+					</div>	
+
 				</div>
 			
-			</div>
-
+			</div>		
 			
 		</div>
 		<!-- end Main Wrapper -->
@@ -121,10 +222,4 @@
 	</div> <!-- / .wrapper -->
 	<!-- end Container Wrapper -->
  
- 
-
-
 </div>
-
-
-
