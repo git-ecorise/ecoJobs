@@ -267,14 +267,16 @@ app.controller("profilecntrl",function($scope, $http){
    
 
    var range = [];
-for(var i=1;i<=30;i++) {
-  range.push(i);
-}
+   for(var i=1;i<=30;i++) 
+   {
+          range.push(i);
+   }
 $scope.ddata = range;
 
 
  var range = [];
-for(var i=1980;i<=2015;i++) {
+for(var i=1980;i<=2015;i++) 
+{
   range.push(i);
 }
 $scope.ddata1 = range;
@@ -282,7 +284,8 @@ $scope.ddata1 = range;
 
 
 var range=[];
-for(var i=1;i<=12;i++) {
+for(var i=1;i<=12;i++) 
+{
   range.push(i);
 }
 $scope.ddata2 = range;
@@ -426,11 +429,6 @@ app.controller("contactcntrl",function($scope, $http){
 //controller for job-result page 
 app.controller('job-resultcntrl',function($scope,$http){
 
-
-
-
-
-
 //**************************locationArray.json************************
 $http.get('json/filterArray.json').then(function(res){
 
@@ -491,9 +489,7 @@ $http.get('json/blogArray.json').then(function(res){
 	console.log($scope.data.key);
 
 })
-//**********************END********************************
-
- 
+//**********************END******************************** 
 
 $scope.getlidata=function(name,count){
 									
@@ -519,14 +515,11 @@ $scope.senddata=function(date){
                  console.log($scope.jsonBlogTimeStamp);
   				}
 //*******************************END****************************************************
-
-
 });
 
 //****************************** controller for apply job application button***************
 app.controller('applyCtrl', function($scope) {
 });
-
 
 //  Job Datail Controller Starts here
 	
