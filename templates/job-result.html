@@ -88,11 +88,16 @@
 										<div class="col-sm-4">
 											<div class="form-group">
 												<label>Sort by:</label>
-											
-												 <select  class="selectpicker form-control" ng-model="positionmodel">
+											    <!-- <select class="selectpicker form-control" ng-model="positionmodel">
+											    	<option value="">Position</option>
+											    	<option ng-repeat="p in positions" value="{{p}}">{{p}}</option>
+											    </select> -->
+	 											 <select  class="selectpicker form-control" ng-model="positionmodel">
                                                   <option value="">Position</option>
-                                                  <option ng-repeat="o1 in positionArray" value="{{o1.positionname}}">{{o1.positionname}}</option>
+                                                  <option ng-repeat="pos in positions" value="{{pos}}">{{pos}}</option>
+
                                                  </select>
+
 												
 											</div>
 										</div>
@@ -103,10 +108,10 @@
 
 												<select class="selectpicker form-control" ng-model="locationmodel">
                                                     <option value="">City</option>
-                                                    <option ng-repeat="o2 in locationarray | filter:locationmodel" value="{{o2.locationname}}">{{o2.locationname}}</option>
+                                                    <option ng-repeat="loc in locations | filter:locationmodel" value="{{loc}}">{{loc}}</option>
 
                                                      </select>
-											</div>
+		 									</div>
 										</div>
                                         
 
@@ -116,7 +121,7 @@
 								
 												 <select class="selectpicker form-control" ng-model="salarymodel">
                                                   <option  value="">Expected</option>
-                                                  <option ng-repeat="o3 in salaryArray | filter:salarymodel" value="{{o3.sal}}">{{o3.sal}}</option>
+                                                  <option ng-repeat="sal in salarys | filter:salarymodel" value="{{sal}}">{{sal}}</option>
        
                                                     </select>
 											
@@ -307,10 +312,8 @@
 
 								<div class="result-list-wrapper" >
 
-									<!-- <div class="job-item-list featured"  ng-repeat="job in jobresultArray | filter :{position:'Solution Architect' ,location:'Pune', salary:'76000'} "> -->
-										<!-- <div class="job-item-list featured"  ng-repeat="job in jobresultArray | filter:locationmodel"> -->
-											<!-- <div class="job-item-list featured"  ng-repeat="job in jobresultArray|filter:customFilter"> -->
-                                     	<div class="job-item-list featured"  ng-repeat="job in jobresultArray |filter:{position:positionmodel,location:locationmodel,salary:salarymodel}">
+									
+                                     	<div class="job-item-list featured"  ng-repeat="job in data |filter:{position:positionmodel,location:locationmodel,salary:salarymodel}">
 
 
 			 							<div class="featured-label"><span>featured</span></div>

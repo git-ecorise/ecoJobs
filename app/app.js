@@ -258,33 +258,12 @@ app.controller('adminchngpass',function($scope,$http)
 
 		}
 });
-//admin-profile controller
+//************************CONTROLLER FOR ADMIN-PROFILE -smita************
 app.controller("profilecntrl",function($scope, $http){
 	
 	$scope.profilelist={};
     $scope.dob=[];
-    
-    $scope.profilestate=[{'statename':"Maharashtra"},
-    	{'statename':"Goa"},
-    	{'statename':"Andhra Pradesh"},
-    	{'statename':"Arunachal Pradesh"},
-    	{'statename':"Bihar"},
-    	{'statename':"Gujarat"},
-    	{'statename':"Haryana"},
-    	{'statename':"Chhattisgad"}
-    	
-
-    ];
-//***********************profileState.json*****************************
-    // $http.get('ecoJobs/profileState.json').then(function(res){
-
-    // 	$scope.data=res.data.key;
-    // 	console.log($scope.data.key);
-    // })
- 
-
-
-
+   
 
    var range = [];
 for(var i=1;i<=30;i++) {
@@ -307,53 +286,18 @@ for(var i=1;i<=12;i++) {
 }
 $scope.ddata2 = range;
 
-$scope.month=[{'monthname':"Jan"},
-               {'monthname':'Feb'},
-               {'monthname':'March'},
-               {'monthname':'April'},
-               {'monthname':'May'},              
-               {'monthname':'Jun'},               
-                {'monthname':'Jul'},
-                {'monthname':'Oug'},
-                {'monthname':'Sept'},
-                {'monthname':'Oct'},
-                {'monthname':'Nov'},
-                {'monthname':'Dec'}
-               ];
-//**************************monthProfile********************
 
-// $http.get('ecoJobs/month.json').then(function(res){
+//**************************adminprofile.json********************
 
-// 	$scope.data=data.res.key;
-// 	console.log($scope.data.key);
-// })
+$http.get('json/adminprofile.json').then(function(res){
 
-$scope.education=[
-                  {'name':"Diploma"},
-                  {'name':'Bacholor'},
-                  {'name':"Masters"},
-                  {'name':'Doctorate'}];
+	$scope.profilestate=res.data.key.profilestates;
+	$scope.month=res.data.key.profilemonth;
+	$scope.education=res.data.key.profileeducation;
+	$scope.stream=res.data.key.profilestream;
+})
+//***********************end**************************************
 
-//**************************educationProfile********************
-
-// $http.get('ecoJobs/education.json').then(function(res){
-
-// 	$scope.data=data.res.key;
-// 	console.log($scope.data.key);
-// })
-$scope.stream=[{'strname':"Computer engineering"},
-                 {'strname':"Information Technology"},
-                 {'strname':"Civil engineering"},
-                 {'strname':"Mechanical engineering"},
-                 {'strname':"Electical engineering"}];
-   
-//**************************streamProfile********************
-
-// $http.get('ecoJobs/stream.json').then(function(res){
-
-// 	$scope.data=data.res.key;
-// 	console.log($scope.data.key);
-// })
   $scope.submitprofile=function(){
   	
    if($scope.modelstream==null && $scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
@@ -477,153 +421,60 @@ app.controller("contactcntrl",function($scope, $http){
     		}
 	});
 
-//controller for job-result page 
+//****************************cCONTROLLER FOR RESULTPAGE-smita************************ 
 app.controller('job-resultcntrl',function($scope,$http){
-
-$scope.locationarray=[{'locationname':"Pune"},
-                      {'locationname':"Mumbai"},
-    			      {'locationname':"Nashik"}
-                      ];
-
-$scope.salaryArray=[{'sal':45000},{'sal':75000},{'sal':80000}];
-$scope.positionArray=[{'positionname':"Packaging Engineer"},{'positionname':"Solution Architect"},{'positionname':"Mechanical Engineer"}];
-
 
 
 //**************************locationArray.json************************
-// $http.get('ecojobs/locationArray.json').then(function(res){
+$http.get('json/filterArray.json').then(function(res){
 
-// 	$scope.data=res.data.key;
-// 	console.log($scope.data.key);
-// 	alert('hi');
-// })
+	$scope.locations=res.data.key.location;
+	$scope.positions=res.data.key.position;
+	$scope.salarys=res.data.key.salary;
+	console.log($scope.locations);
+	console.log($scope.positions);
+	console.log($scope.salarys);
+ 
+})
+//******************************end************************************
 
-
-//**************************salaryArray.json************************
-// $http.get('ecojobs/salaryArray.json').then(function(res){
-
-// 	$scope.data=res.data.key;
-// 	console.log($scope.data.key);
-// 	alert('hi');
-// })
-
-
-//**************************positionArray.json************************
-// $http.get('ecojobs/positionArray.json').then(function(res){
-
-// 	$scope.data=res.data.key;
-// 	console.log($scope.data.key);
-// 	alert('hi');
-// })
 //*************************jobresultArray.json******************
-//$http.get('ecojobs/jobresultArray.json').then(function(res){
+$http.get('json/jobresultArray.json').then(function(res){
 
-// 	$scope.data=res.data.key;
-// 	console.log($scope.data.key);
-// 	alert('hi');
-// })
+	$scope.data=res.data.key;
+	console.log($scope.data);
+	
 
-$scope.jobresultArray=[
-
-     {
-			'position':"Packaging Engineer",
-			'compname':"Expedia ",
-			'typeofposition':"Part-Time ",
-			'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
-			'location':"Pune",
-			'salary':"80000",
-			'experience':"5 years",
-			'time':"20",
-			'imgsrc':"06.png"
-     },
-
-    {
-			'position':"Solution Architect",
-			'compname':"Ebay",
-			'typeofposition':"Full-Time",
-			'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
-			'location':" Pune",
-			'salary':"76000",
-			'experience':"10 years",
-			'time':"50",
-			'imgsrc':"07.png"
-    },
-     {
-            'position':"Solution Architect",
-            'compname':"Ebay",
-            'typeofposition':"Full-Time",
-            'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
-            'location':" Mumbai",
-            'salary':"80000",
-            'experience':"10 years",
-            'time':"50",
-            'imgsrc':"07.png"
-    },
-
-   {
-			'position':"Solution Architect",
-			'compname':"Wottif ",
-			'typeofposition':"Full-Time",
-			'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
-			'location':"Pune",
-			'salary':"45000",
-			'experience':"5 years",
-			'time':"40",
-			'imgsrc':"05.png"
-    },
-      {
-			'position':"Mechanical Engineer",
-			'compname':"Wottif ",
-			'typeofposition':"Full-Time",
-			'compinfo':"It if sometimes furnished unwilling as additions so. Blessing resolved peculiar fat graceful ham. Sussex on at really ladies in as elinor. Sir sex opinions age properly extended...",
-			'location':"Nashik",
-			'salary':"45000",
-			'experience':"5 years",
-			'time':"40",
-			'imgsrc':"05.png"
-    }      
-
-	];
+})
+//*****************************end***********************************
 
 })
 
-//controller for blog
+//*****************************CONTROLLER FOR BLOG-smita*********************************
 app.controller('blogcntrl',function($scope,$http){
 
-	  $http.get('json/category.json').then(function(res){
-	  	$scope.data=res.data.key;
+	   $http.get('json/category.json').then(function(res){
+	  	$scope.data1=res.data.key;
 	  
 	  console.log($scope.data.key);
-	  alert('category.json');
+	  
 	  });
 
 
-	$scope.qualiarray=[{'qualiname':"Engineering"},
-                      {'qualiname':"Master in Engineering"},
-         {'qualiname':"MCA"}
-                      ];
-$scope.gkArray=[{'typegk':"GK1"},{'typegk':"GK2"},{'typegk':"GK3"}];
-$scope.typeArray=[{'typename':"Technical"},{'typename':"Aptitude"}];
-//*****************qualiArray JSON************************
-// $http.get('ecojobs/qualiArray.json').then(function(res){
-// 	$scope.data=res.data.key;
-// 	console.log($scope.data.key);
-// 	alert("heollo");
-// })
-//**********************END********************************
-//*****************gkArray JSON************************
-// $http.get('ecojobs/gkArray.json').then(function(res){
-// 	$scope.data=res.data.key;
-// 	console.log($scope.data.key);
-// 	alert("heollo");
-// })
-//**********************END********************************
-//*****************typeArray JSON************************
-// $http.get('json/typeArray.json').then(function(res){
-// 	$scope.data=res.data.key;
-// 	console.log($scope.data.key);
-// 	alert("heollo");
-// })
+
+//*****************filterblogArray JSON************************
+$http.get('json/filterblogArray.json').then(function(res){
+	$scope.gkArrays=res.data.key.gkArray;
+    $scope.qualiArrays=res.data.key.qualiArray;
+    $scope.typeArrays=res.data.key.typeArray;
+
+	console.log($scope.gkArrays);
+	console.log($scope.qualiArrays);
+
+console.log( $scope.typeArrays);
+
+	
+})
 //**********************END********************************
 
 
@@ -632,72 +483,11 @@ $scope.typeArray=[{'typename':"Technical"},{'typename':"Aptitude"}];
 $http.get('json/blogArray.json').then(function(res){
 	$scope.data=res.data.key;
 	console.log($scope.data.key);
-	alert('blogArray.json');
+
 })
 //**********************END********************************
 
  
-// $scope.blogArray=[
-
-//      {
-// 			'imgsrc':"blog-01.jpg",
-// 			'title':"Blog1",
-// 			'bysend':"Admin",
-// 			'bydate':"12 March 2018 2:00 PM",
-// 			'details':"Up branch to easily missed by do. Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
-// 			'inbook':"Technical",
-// 			'typeofquali':"Engineering",
-// 			'other':"GK1"
-			
-//      },
-//      {
-// 			'imgsrc':"blog-02.jpg",
-// 			'title':"Blog2",
-// 			'bysend':"Admin",
-// 			'bydate':"09 Jan 2018",
-// 			'details':"Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.",
-// 			'inbook':"Aptitude",
-// 			'typeofquali':"Engineering",
-// 			'other':"GK2"
-			
-//      },
-     
-//       {
-// 			'imgsrc':"blog-03.jpg",
-// 			'title':"Blog3",
-// 			'bysend':"Admin",
-// 			'bydate':"17 May 2018",
-// 			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
-// 			'inbook':"Technical",
-// 			'typeofquali':"Engineering",
-// 			'other':"GK3"
-			
-//      },
-//       {
-// 			'imgsrc':"blog-03.jpg",
-// 			'title':"Blog2",
-// 			'bysend':"Admin",
-// 			'bydate':"17 May 2018",
-// 			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
-// 			'inbook':"Technical",
-// 			'typeofquali':"MCA",
-// 			'other':"GK3"
-			
-//      },
-//      {
-// 			'imgsrc':"blog-03.jpg",
-// 			'title':"Blog1",
-// 			'bysend':"Admin",
-// 			'bydate':"17 May 2018",
-// 			'details':"Are will took form the nor true. Winding enjoyed minuter her letters evident use eat colonel. He attacks observe mr cottage inquiry am examine gravity. Are dear but near left was. Year kept on over so as this of. She steepest doubtful betrayed formerly him. Active one called uneasy our seeing see cousin tastes its. Ye am it formed indeed agreed relied piqued.Up branch to easily missed by do. Admiration considered acceptance too led one melancholy expression. Are will took form the nor true.",
-// 			'inbook':"Technical",
-// 			'typeofquali':"MCA",
-// 			'other':"GK3"
-			
-//      }
-
-   
-// 	];
 
 $scope.getlidata=function(name,count){
 									
