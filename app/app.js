@@ -587,3 +587,31 @@ $http.get('json/blogSinglejson.json').then(function(res){
 					};
 });
 // blog-single COntroller Ends here
+
+//****************************** controller post blog application button***************
+app.controller('postblogCtrl', function($scope) {
+// var image=$base64.encode($scope.image);
+$scope.today = new Date();
+	$scope.blogpost={};
+	
+
+	$scope.submit = function(){
+	
+		var briefDescription = CKEDITOR.instances.ckeExample.getData();
+		var detailDescription = CKEDITOR.instances.ckeExample2.getData();
+		// alert(data);
+
+	$scope.blogpost={
+			image:$scope.image,
+			title:$scope.blogtitle,
+			date:$scope.today,
+			blogCategory:$scope.blogCategory,
+			briefDescription:briefDescription,
+			detailDescription:detailDescription
+		};
+		// alert("Hey");	
+		console.log($scope.blogpost);
+	}
+    
+
+});

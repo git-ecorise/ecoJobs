@@ -558,7 +558,16 @@ ul.nav-mini li a {
 .hero.alt-pb {
     padding-bottom: 170px;
 }
+/*post-blog*/
 
+ input[type="date"]
+{
+        width: 100%;
+}
+ input[type="text"]
+     {
+        width: 100%;
+     }
 @media only screen and (max-width: 1199px) {
     .hero {
         background-size: auto;
