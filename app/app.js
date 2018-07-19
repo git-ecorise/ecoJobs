@@ -19,13 +19,15 @@ app.config(function($routeProvider, $locationProvider){
 	})
 	
 	.when('/account-login-page', {
-		templateUrl:"templates/account-login-page.html",
+		templateUrl:"templates/account-login-page.html"
 	})
 	.when('/account-register-page', {
 		templateUrl:"templates/account-register-page.html"
 	})
 	.when('/admin-change-pass', {
-		templateUrl:"templates/admin-change-pass.html"
+		templateUrl:"templates/admin-change-pass.html",
+		controller:"adminchngpass"
+
 	})
 	.when('/admin-empty', {
 		templateUrl:"templates/admin-empty.html"
@@ -34,25 +36,30 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl:"templates/applied-jobs.html"
 	})
 	.when('/admin-profile', {
-		templateUrl:"templates/admin-profile.html"
+		templateUrl:"templates/admin-profile.html",
+        controller:"profilecntrl"
+
 	})
 	.when('/admin-saved-job', {
 		templateUrl:"templates/admin-saved-job.html"
 	})
 	.when('/admin', {
 		templateUrl:"templates/admin.html"
+
 	})
 	.when('/blog-single', {
-		templateUrl:"templates/blog-single.html"
+		templateUrl:"templates/blog-single.html",
+		controller:"blogSingleCtrl"
 	})
 	.when('/blog', {
-		templateUrl:"templates/blog.html"
+		templateUrl:"templates/blog.html",
+		controller:"blogcntrl"
 	})
 	.when('/contact', {
 		templateUrl:"templates/contact.html",
 		controller:"contactcntrl"
 	})
-	.when('/employee-create-resume', {
+	.when('/employee-create-resume', { 
 		templateUrl:"templates/employee-create-resume.html"
 	})
 	.when('/employee-detail', {
@@ -83,7 +90,8 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl:"templates/job-category.html"
 	})
 	.when('/job-detail', {
-		templateUrl:"templates/job-detail.html"
+		templateUrl:"templates/job-detail.html",
+		controller:"myJobDetailCtrl"
 	})
 	.when('/job-location', {
 		templateUrl:"templates/job-location.html"
@@ -123,10 +131,26 @@ app.controller('loginCtrl',function($scope, $http){
                     		};
         				console.log($scope.loginData);
  
-			}
+			
+        				 var config = {
+				                headers : {
+				                    'Content-Type': 'application/json'
+				                }
+				            }
+						// $http.post('http://192.168.2.19:3000/api/signup',$scope.regData).then(function(res){
+						// 	console.log(res);
+						// })
+
+						$http.post('http://192.168.2.19:3000/api/signin', $scope.loginData, config)
+				            .then(function(res){
+				            	console.log(res);
+				            });
+
+
 		 					$scope.usernamelogin=null;
                     		$scope.passwordlogin=null;
                     		$scope.rememberme=null;
+            }
 		}
 		
 	}
@@ -152,18 +176,40 @@ app.controller('registerCtrl',function($scope,$http){
 			}
 			else
 			{
+				// $http.post('http://192.168.2.19:3000/api/signup',)
+				// var mobno = $scope.regContact.toString();
+				// console.log(mobno);
 				alertify.success("Registered Successfully!!");		
 				$scope.regData = {
                     		firstName: $scope.regUser,
                     		lastName:$scope.regUserLast,
-                    		contact:$scope.regContact,
+                    		contactNo:$scope.regContact,
                     		email: $scope.regEmail,
-                    		password:$scope.regPassword
+                    		password:$scope.regPassword,
+                    		flag : "0"
         				};
         				console.log($scope.regData);
-						$http.get('http://192.168.2.11/mySlim/public/').then(function(res){
-							console.log(res);
-						})			
+        				 var config = {
+				                headers : {
+				                    'Content-Type': 'application/json'
+				                }
+				            }
+						// $http.post('http://192.168.2.19:3000/api/signup',$scope.regData).then(function(res){
+						// 	console.log(res);
+						// })
+
+						$http.post('http://192.168.2.19:3000/api/signup', {
+                    		firstName: $scope.regUser,
+                    		lastName:$scope.regUserLast,
+                    		contactNo:$scope.regContact,
+                    		email: $scope.regEmail,
+                    		password:$scope.regPassword,
+                    		flag : "0"
+        				}, config)
+				            .then(function(res){
+				            	console.log(res);
+				            });
+
 			}
 		}
 	}
@@ -266,7 +312,9 @@ app.controller('adminchngpass',function($scope,$http)
 		}
 });
 //************************CONTROLLER FOR ADMIN-PROFILE -smita************
+
 app.controller("profilecntrl",function($scope, $http){
+
 	
 	$scope.profilelist={};
     $scope.dob=[];
@@ -297,7 +345,7 @@ for(var i=1;i<=12;i++)
 $scope.ddata2 = range;
 
 
-//**************************adminprofile.json********************
+//adminprofile.json
 
 $http.get('json/adminprofile.json').then(function(res){
 
@@ -306,7 +354,7 @@ $http.get('json/adminprofile.json').then(function(res){
 	$scope.education=res.data.key.profileeducation;
 	$scope.stream=res.data.key.profilestream;
 })
-//***********************end**************************************
+
 
   $scope.submitprofile=function(){
   	
@@ -342,20 +390,27 @@ $http.get('json/adminprofile.json').then(function(res){
 											  		education:$scope.pmodeledu,
 											  		stream:$scope.modelstream,
 											  		pincode:$scope.pmodelpin,
-											  		mobile:$scope.pmodelcontact,
+	 										  		mobile:$scope.pmodelcontact,
 											  		about:$scope.pmodelabout
 											  		
 										           };
   											console.log($scope.profilelist);
 
-  											$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.profilelist).then(function(res){
-							console.log(res);
-							if (res.data == "true") {
-								alert("Working");
-							}
-						})
 
-	          				}
+        				 var config = {
+				                headers : {
+				                    'Content-Type': 'application/json'
+				                          }
+				                      }
+						
+                       var stringurl="http://192.168.2.19:3000/api/updateprofile/"+$scope.pmodelemail;
+                       console.log(stringurl);
+						$http.put(stringurl, $scope.profilelist, config)
+				            .then(function(res){
+				            	console.log(res);
+				            });
+
+	          				
 	          										$scope.modelstream=null;
 													$scope.pmodelname=null;
 											  		$scope.pmodellast=null;
@@ -373,7 +428,7 @@ $http.get('json/adminprofile.json').then(function(res){
 													$scope.pmodeldate=null;
 													$scope.pmodelmonth=null;
 													$scope.pmodelyear=null;
-	    	       
+	    	             }
 					}
   	
   }
@@ -401,29 +456,33 @@ app.controller("contactcntrl",function($scope, $http){
 	    	     	
 	    	     				alertify.success("Form successfully submitted..!!!");
 			    				$scope.userdetails={
-	       											firstName:$scope.yournamemodel, 
+	       											name:$scope.yournamemodel, 
 	       											email:$scope.youremailmodel,
 	       											mobile:$scope.contactmodel,
 	       											message:$scope.msgmodel 
 	       											};
 	       						console.log($scope.userdetails);
 
+	       					var config = {
+				                headers : {
+				                    'Content-Type': 'application/json'
+				                }
+				            }
+						
 
-	       					$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.userdetails).then(function(res){
-							console.log(res);
-							if (res.data == "true") {
-								alert("Working");
-							}
-						})
+						$http.post('http://192.168.2.19:3000/api/contact', $scope.userdetails, config)
+				            .then(function(res){
+				            	console.log(res);
+				            });
 
 
-	          				}
+	          				
 
 	           						 $scope.yournamemodel= null; 
 	       							 $scope.youremailmodel =null;
 	       							 $scope.contactmodel=null;
 	       							 $scope.msgmodel=null;
-	
+	                        }
 	    	       
 					   }
 
@@ -435,7 +494,7 @@ app.controller("contactcntrl",function($scope, $http){
 //controller for job-result page 
 app.controller('job-resultcntrl',function($scope,$http){
 
-//**************************locationArray.json************************
+//filterArray.json
 $http.get('json/filterArray.json').then(function(res){
 
 	$scope.locations=res.data.key.location;

@@ -1,4 +1,4 @@
-<div class="not-transparent-header" ng-controller="profilecntrl">
+<div class="not-transparent-header">
 
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
@@ -18,7 +18,7 @@
 					
 				</div>
 				
-			</div>
+	 		</div>
 			<!-- end breadcrumb -->
 			
 			<div class="admin-container-wrapper">
@@ -126,19 +126,20 @@
 														<label>Born<span class="font10 text-danger">(required)</span></label>
 														<div class="row gap-5">
 															<div class="col-xs-3 col-sm-3">
-                                                             <select class="selectpicker form-control"  ng-model="pmodeldate">
+                                                            <!--  <select class="selectpicker form-control"  ng-model="pmodeldate"> -->
+                                                             	<select class="selectpicker form-control" ng-model="pmodeldate">
 																	<option disabled selected value>Select</option>
 																	 <option ng-repeat="g in ddata" value="{{g}}">{{g}}</option>
 																</select>
 															</div>
 															<div class="col-xs-5 col-sm-5">
-																<select class="selectpicker form-control" data-live-search="false" ng-model="pmodelmonth">
+																<select class="selectpicker form-control"  ng-model="pmodelmonth">
 																	<option disabled selected value>Select</option>
 																	<option ng-repeat="g in month" value="{{g}}">{{g}}</option>
 																</select>
 															</div>
 															<div class="col-xs-4 col-sm-4">
-																<select class="selectpicker form-control" data-live-search="false" ng-model="pmodelyear">
+																<select class="selectpicker form-control"  ng-model="pmodelyear">
 																	<option disabled selected value>Select</option>
 																	 <option ng-repeat="g in ddata1" value="{{g}}">{{g}}</option>
 																
