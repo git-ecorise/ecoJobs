@@ -115,10 +115,6 @@
 		$scope.password = null;
 	 	$scope.passwordConfirmation = null;
 		// Email Validation
-
-		// $scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;	
-
-		
 		// Login Function Stars here
 		$scope.userLogin=function(){
 			if($scope.usernamelogin==null && $scope.passwordlogin==null && $scope.rememberme==null)
@@ -148,7 +144,6 @@
 			
 		}
 		//Login Function Ends here
-
 
 		//Registration Function starts here
 
@@ -620,13 +615,7 @@ app.controller("contactcntrl",function($scope, $http){
 							email:$scope.emailComment,
 							message:$scope.commentMsg
 						};
-// <<<<<<< HEAD
 
-// 						console.log($scope.senddate);
-// 					};
-
-				
-// =======
 
 					console.log($scope.commentUserData);
 					};
