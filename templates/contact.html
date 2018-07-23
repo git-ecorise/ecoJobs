@@ -65,7 +65,7 @@
 											<label for="inputEmail">Your Email <span class="font10 text-danger">(required)</span></label>
 											<input id="inputEmail" name="emaill" type="email" class="form-control" data-error="Your email is required and must be a valid email address"  ng-model="youremailmodel" ng-pattern= "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
 											<small class="text-danger" ng-show="myform.emaill.$error.pattern"  style="color:red">Type correct email id </small>
-											
+
 										</div>
 										
 									</div>
@@ -73,7 +73,7 @@
 									<div class="col-sm-12">
 									
 										<div class="form-group">
-									
+
 											<label>Contact No <span class="font10 text-danger">(required)</span></label>
 											<input  type="number" ng-maxlength="10" class="form-control"   data-error="Enter 10 dogit mob no" name="contactmodel"  ng-model="contactmodel" ng-pattern="/^[7-9][0-9]{9}$/" required>
 

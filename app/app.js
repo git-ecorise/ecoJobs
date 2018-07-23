@@ -1,3 +1,4 @@
+
 	var app=angular.module('ecojobs', ['ngRoute']);
 
 	app.config(function($routeProvider, $locationProvider){
@@ -25,6 +26,7 @@
 		})
 		.when('/account-register-page', {
 			templateUrl:"templates/account-register-page.html"
+
 		})
 		.when('/admin-change-pass', {
 			templateUrl:"templates/admin-change-pass.html",
@@ -37,7 +39,8 @@
 			templateUrl:"templates/applied-jobs.html"
 		})
 		.when('/admin-profile', {
-			templateUrl:"templates/admin-profile.html"
+			templateUrl:"templates/admin-profile.html",
+			controller:"profilecntrl"
 		})
 		.when('/admin-saved-job', {
 			templateUrl:"templates/admin-saved-job.html"
@@ -50,7 +53,8 @@
 			controller:"blogSingleCtrl"
 		})
 		.when('/blog', {
-			templateUrl:"templates/blog.html"
+			templateUrl:"templates/blog.html",
+			controller:"blogcntrl"
 		})
 		.when('/contact', {
 			templateUrl:"templates/contact.html",
@@ -74,9 +78,7 @@
 		.when('/employer-detail', {
 			templateUrl:"templates/employer-detail.html"
 		})
-		.when('/account-forgot-password-page', {
-			templateUrl:"templates/account-forgot-password-page.html"
-		})
+		
 		.when('/faq', {
 			templateUrl:"templates/faq.html"
 		})
@@ -94,7 +96,8 @@
 			templateUrl:"templates/job-location.html"
 		})
 		.when('/job-result', {
-			templateUrl:"templates/job-result.html"
+			templateUrl:"templates/job-result.html",
+			controller:"job-resultcntrl"
 		})
 		.otherwise({
 			templateUrl:"templates/404-error-page.html"
@@ -112,7 +115,9 @@
 		$scope.password = null;
 	 	$scope.passwordConfirmation = null;
 		// Email Validation
+
 		// $scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;	
+
 		
 		// Login Function Stars here
 		$scope.userLogin=function(){
@@ -121,13 +126,14 @@
 				alertify.log("Fill Details before Login");
 			}
 			else
-			{
-				if($scope.usernamelogin==null || $scope.passwordlogin==null || $scope.rememberme==null)
-				{
-					alertify.error("Check the Remaining Fields");
+		      {
+		      	if($scope.usernamelogin==null || $scope.passwordlogin==null || $scope.rememberme==null)
+				{	
+                       alertify.error("Check the remaining Fields ");
 				}
 				else
-				{		alertify.success("Login Successfully!!");		
+				{
+					alertify.success("Login Successfully!!");		
 					$scope.loginData= {
 	                    		email:$scope.usernamelogin,
 	                    		password:$scope.passwordlogin
@@ -164,9 +170,30 @@
 	                    		lastName:$scope.regUserLast,
 	                    		contact:$scope.regContact,
 	                    		email: $scope.regEmail,
-	                    		password:$scope.regPassword
+	                    		password:$scope.regPassword,
+	                    		flag : "0"
 	        				};
 	        				console.log($scope.regData);
+
+        				 var config = {
+				                headers : {
+				                    'Content-Type': 'application/json'
+				                }
+				            }
+
+                        $http.post('http://192.168.2.19:3000/api/signup', {
+                    		firstName: $scope.regUser,
+                    		lastName:$scope.regUserLast,
+                    		contactNo:$scope.regContact,
+                    		email: $scope.regEmail,
+                    		password:$scope.regPassword,
+                    		flag : "0"
+        				}, config)
+				            .then(function(res){
+				            	console.log(res);
+				            });
+
+
 	        					$scope.regUser=null;
 	                    		$scope.regUserLast=null;
 	                    		$scope.regContact=null;
@@ -278,191 +305,209 @@
 
 			}
 	});
-	//************************CONTROLLER FOR ADMIN-PROFILE -smita************
-	app.controller("profilecntrl",function($scope, $http){
+	
 		
-		$scope.profilelist={};
-	    $scope.dob=[];
-	   
+//************************CONTROLLER FOR ADMIN-PROFILE -smita************
 
-	   var range = [];
-	   for(var i=1;i<=30;i++) 
-	   {
-	          range.push(i);
-	   }
-	$scope.ddata = range;
+app.controller("profilecntrl",function($scope, $http){
 
+	
+	$scope.profilelist={};
+    $scope.dob=[];
+   
 
-	 var range = [];
-	for(var i=1980;i<=2015;i++) 
-	{
-	  range.push(i);
-	}
-	$scope.ddata1 = range;
+   var range = [];
+   for(var i=1;i<=30;i++) 
+   {
+          range.push(i);
+   }
+$scope.ddata = range;
 
 
-
-	var range=[];
-	for(var i=1;i<=12;i++) 
-	{
-	  range.push(i);
-	}
-	$scope.ddata2 = range;
-
-
-	//**************************adminprofile.json********************
-
-	$http.get('json/adminprofile.json').then(function(res){
-
-		$scope.profilestate=res.data.key.profilestates;
-		$scope.month=res.data.key.profilemonth;
-		$scope.education=res.data.key.profileeducation;
-		$scope.stream=res.data.key.profilestream;
-	})
-	//***********************end**************************************
-
-	  $scope.submitprofile=function(){
-	  	
-	   if($scope.modelstream==null && $scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
-		    	            {
-		    	        	 
-		    	        	  alertify.log("Fill details before submitting the form. ");
-		    	        	}
-		    	        else
-		    	        	{
-		                   if($scope.modelstream==null || $scope.pmodeldate== null || $scope.pmodellast== null || $scope.pmodelemail== null || $scope.pmodeldate==null || $scope.pmodelmonth== null || $scope.pmodelyear== null || $scope.pmodelcity==null || $scope.pmodelstate==null || $scope.pmodelstreet==null || $scope.pmodeledu==null || $scope.pmodelpin==null || $scope.pmodelcontact==null || $scope.pmodelabout==null)
-		
-		    	                {
-		    	        	      
-		    	        	       alertify.error("Check the remaining field");
-		    	        	     }
-		                      else
-		                         { 
-
-		                         	$scope.dob=$scope.pmodeldate+"-"+$scope.pmodelmonth+"-"+$scope.pmodelyear;
-		    	     	
-		    	     				alertify.success("Form successfully submitted..!!!");
-				    				 // $scope.dob.push({date:$scope.pmodeldate, month:$scope.pmodelmonth, year:$scope.pmodelyear})
-									$scope.profilelist={
-												  		firstName:$scope.pmodelname,
-												  		lastName:$scope.pmodellast,
-												  		email:$scope.pmodelemail,
-												  		dob:$scope.dob,
-												  		address:$scope.pmodeladdress,
-												  		city:$scope.pmodelcity,
-												  		state:$scope.pmodelstate,
-												  		streetName:$scope.pmodelstreet,
-												  		education:$scope.pmodeledu,
-												  		stream:$scope.modelstream,
-												  		pincode:$scope.pmodelpin,
-												  		mobile:$scope.pmodelcontact,
-												  		about:$scope.pmodelabout
-												  		
-											           };
-	  											console.log($scope.profilelist);
-
-	  											$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.profilelist).then(function(res){
-								console.log(res);
-								if (res.data == "true") {
-									alert("Working");
-								}
-							})
-
-		          				}
-		          										$scope.modelstream=null;
-														$scope.pmodelname=null;
-												  		$scope.pmodellast=null;
-												  		$scope.pmodelemail=null;
-												  		$scope.dob=null;
-												  		$scope.pmodeladdress=null;
-												  		$scope.pmodelcity=null;
-												  		$scope.pmodelstate=null;
-												  		$scope.pmodelstreet=null;
-												  		$scope.pmodeledu=null;
-												  		$scope.pmodelpin=null;
-												  		$scope.pmodelcontact=null;
-												  		$scope.pmodelabout=null;
-												  		$scope.pmodelcountry=null;
-														$scope.pmodeldate=null;
-														$scope.pmodelmonth=null;
-														$scope.pmodelyear=null;
-		    	       
-						}
-	  	
-	  }
-	 
-	});
-	//contact page controller starts 
-	app.controller("contactcntrl",function($scope, $http){
-	    	
-		    $scope.submitd= function() {
-		        $scope.userdetails={};
-		           
-		    	      	if($scope.yournamemodel== null && $scope.youremailmodel== null && $scope.contactmodel== null && $scope.msgmodel==null)
-		    	            {
-		    	        	  alertify.log("Fill details before submitting the form. ");
-		    	        	}
-		    	        else
-		    	        	{
-		                 	  if($scope.yournamemodel== null || $scope.youremailmodel== null || $scope.contactmodel== null || $scope.msgmodel==null)
-		    	                {
-		    	        	      
-		    	        	       alertify.error("Check the remaining field");
-		    	        	    }
-		                      else
-		                         {
-		    	     	
-		    	     				alertify.success("Form successfully submitted..!!!");
-				    				$scope.userdetails={
-		       											firstName:$scope.yournamemodel, 
-		       											email:$scope.youremailmodel,
-		       											mobile:$scope.contactmodel,
-		       											message:$scope.msgmodel 
-		       											};
-		       						console.log($scope.userdetails);
+ var range = [];
+for(var i=1980;i<=2015;i++) 
+{
+  range.push(i);
+}
+$scope.ddata1 = range;
 
 
-		       					$http.post('http://192.168.2.12/mySlim/public/user_add',$scope.userdetails).then(function(res){
-								console.log(res);
-								if (res.data == "true") {
-									alert("Working");
-								}
-							})
-		          				}
 
-		           						 $scope.yournamemodel= null; 
-		       							 $scope.youremailmodel =null;
-		       							 $scope.contactmodel=null;
-		       							 $scope.msgmodel=null;      
-						   }
-	    		}
-		});
-	//controller for job-result page 
+
+var range=[];
+for(var i=1;i<=12;i++) 
+{
+  range.push(i);
+}
+$scope.ddata2 = range;
+
+
+//adminprofile.json
+
+$http.get('json/adminprofile.json').then(function(res){
+
+	$scope.profilestate=res.data.key.profilestates;
+	$scope.month=res.data.key.profilemonth;
+	$scope.education=res.data.key.profileeducation;
+	$scope.stream=res.data.key.profilestream;
+})
+
+
+  $scope.submitprofile=function(){
+  	
+   if($scope.modelstream==null && $scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
+	    	            {
+	    	        	 
+	    	        	  alertify.log("Fill details before submitting the form. ");
+	    	        	}
+	    	        else
+	    	        	{
+	                   if($scope.modelstream==null || $scope.pmodeldate== null || $scope.pmodellast== null || $scope.pmodelemail== null || $scope.pmodeldate==null || $scope.pmodelmonth== null || $scope.pmodelyear== null || $scope.pmodelcity==null || $scope.pmodelstate==null || $scope.pmodelstreet==null || $scope.pmodeledu==null || $scope.pmodelpin==null || $scope.pmodelcontact==null || $scope.pmodelabout==null)
+	
+	    	                {
+	    	        	      
+	    	        	       alertify.error("Check the remaining field");
+	    	        	     }
+	                      else
+	                         { 
+
+	                         	$scope.dob=$scope.pmodeldate+"-"+$scope.pmodelmonth+"-"+$scope.pmodelyear;
+	    	     	
+	    	     				alertify.success("Form successfully submitted..!!!");
+			    				 // $scope.dob.push({date:$scope.pmodeldate, month:$scope.pmodelmonth, year:$scope.pmodelyear})
+								$scope.profilelist={
+											  		firstName:$scope.pmodelname,
+											  		lastName:$scope.pmodellast,
+											  		email:$scope.pmodelemail,
+											  		dob:$scope.dob,
+											  		address:$scope.pmodeladdress,
+											  		city:$scope.pmodelcity,
+											  		state:$scope.pmodelstate,
+											  		streetName:$scope.pmodelstreet,
+											  		education:$scope.pmodeledu,
+											  		stream:$scope.modelstream,
+											  		pincode:$scope.pmodelpin,
+	 										  		mobile:$scope.pmodelcontact,
+											  		about:$scope.pmodelabout
+											  		
+										           };
+  											console.log($scope.profilelist);
+
+
+        				 var config = {
+				                headers : {
+				                    'Content-Type': 'application/json'
+				                          }
+				                      }
+						
+                       var stringurl="http://192.168.2.19:3000/api/updateprofile/"+$scope.pmodelemail;
+                       console.log(stringurl);
+						$http.put(stringurl, $scope.profilelist, config)
+				            .then(function(res){
+				            	console.log(res);
+				            });
+
+	          				
+	          										$scope.modelstream=null;
+													$scope.pmodelname=null;
+											  		$scope.pmodellast=null;
+											  		$scope.pmodelemail=null;
+											  		$scope.dob=null;
+											  		$scope.pmodeladdress=null;
+											  		$scope.pmodelcity=null;
+											  		$scope.pmodelstate=null;
+											  		$scope.pmodelstreet=null;
+											  		$scope.pmodeledu=null;
+											  		$scope.pmodelpin=null;
+											  		$scope.pmodelcontact=null;
+											  		$scope.pmodelabout=null;
+											  		$scope.pmodelcountry=null;
+													$scope.pmodeldate=null;
+													$scope.pmodelmonth=null;
+													$scope.pmodelyear=null;
+	    	             }
+					}
+  	
+  }
+ 
+});
+//**************************contact page controller starts ****************************
+app.controller("contactcntrl",function($scope, $http){
+    	
+	    $scope.submitd= function() {
+	        $scope.userdetails={};
+	           
+	    	      	if($scope.yournamemodel== null && $scope.youremailmodel== null && $scope.contactmodel== null && $scope.msgmodel==null)
+	    	            {
+	    	        	  alertify.log("Fill details before submitting the form. ");
+	    	        	}
+	    	        else
+	    	        	{
+	                 	  if($scope.yournamemodel== null || $scope.youremailmodel== null || $scope.contactmodel== null || $scope.msgmodel==null)
+	    	                {
+	    	        	      
+	    	        	       alertify.error("Check the remaining field");
+	    	        	    }
+	                      else
+	                         {
+	    	     	
+	    	     				alertify.success("Form successfully submitted..!!!");
+			    				$scope.userdetails={
+	       											name:$scope.yournamemodel, 
+	       											email:$scope.youremailmodel,
+	       											mobile:$scope.contactmodel,
+	       											message:$scope.msgmodel 
+	       											};
+	       						console.log($scope.userdetails);
+
+	       					var config = {
+				                headers : {
+				                    'Content-Type': 'application/json'
+				                }
+				            }
+						
+
+						$http.post('http://192.168.2.19:3000/api/contact', $scope.userdetails, config)
+				            .then(function(res){
+				            	console.log(res);
+				            });
+
+
+	          				
+
+	           						 $scope.yournamemodel= null; 
+	       							 $scope.youremailmodel =null;
+	       							 $scope.contactmodel=null;
+	       							 $scope.msgmodel=null;
+	                        }
+	    	       
+					   }
+
+	            }
+	  });
+
+//*****************************controller for job-result page ***************
+
 	app.controller('job-resultcntrl',function($scope,$http){
 
-	//**************************locationArray.json************************
-	$http.get('json/filterArray.json').then(function(res){
+
+	//filterArrayjoblocation.json
+	$http.get('json/filterArrayjobresult.json').then(function(res){
 
 		$scope.locations=res.data.key.location;
 		$scope.positions=res.data.key.position;
-		$scope.salarys=res.data.key.salary;
-		console.log($scope.locations);
-		console.log($scope.positions);
-		console.log($scope.salarys);
-	 
+		$scope.salarys=res.data.key.salary; 
 	})
-	//******************************end************************************
+	
 
-	//*************************jobresultArray.json******************
+	//jobresultArray.json
 	$http.get('json/jobresultArray.json').then(function(res){
-
+ 
 		$scope.data=res.data.key;
 		console.log($scope.data);
-		
-
 	})
-	//*****************************end***********************************
 
+	
 	})
 
 	//*****************************CONTROLLER FOR BLOG-smita*********************************
@@ -475,7 +520,9 @@
 		  
 		  });
 
-	//*****************filterblogArray JSON************************
+
+
+	//filterblogArray JSON
 	$http.get('json/filterblogArray.json').then(function(res){
 		$scope.gkArrays=res.data.key.gkArray;
 	    $scope.qualiArrays=res.data.key.qualiArray;
@@ -486,15 +533,15 @@
 
 	console.log( $scope.typeArrays);		
 	})
-	//**********************END********************************
 
-//*****************blogArray JSON************************
+
+	//blogArray JSON
 	$http.get('json/blogArray.json').then(function(res){
 		$scope.data=res.data.key;
 		console.log($scope.data.key);
 
 	})
-	//**********************END******************************** 
+	
 
 	$scope.getlidata=function(name,count){
 										
@@ -510,7 +557,7 @@
 	                                 $scope.jsonBlogTimeStamp = {
 	      								blogUploadDate : date
 	      							 }
-	//******************************POST DATE********************************************
+	
 	      $http.post('http://192.168.2.12/mySlim/public/user_add',$scope.dd).then(function(res){
 								console.log(res);
 								if (res.data == "true") {
@@ -519,7 +566,7 @@
 	                })
 	                 console.log($scope.jsonBlogTimeStamp);
 	  				}
-	//*******************************END****************************************************
+	
 	});
 
 	//****************************** controller for apply job application button***************
@@ -573,11 +620,17 @@
 							email:$scope.emailComment,
 							message:$scope.commentMsg
 						};
+// <<<<<<< HEAD
 
-						console.log($scope.senddate);
-					};
+// 						console.log($scope.senddate);
+// 					};
 
 				
+// =======
+
+					console.log($scope.commentUserData);
+					};
+
 });
 // blog-single COntroller Ends here
 
