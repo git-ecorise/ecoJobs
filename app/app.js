@@ -9,7 +9,8 @@
 			templateUrl:"templates/about-us.html"
 		})
 		.when('/account-forgot-password-page', {
-			templateUrl:"templates/account-forgot-password-page.html"
+			templateUrl:"templates/account-forgot-password-page.html",
+			controller:"forgotPasswordCtrl"
 		})
 			.when('/post-blog', {
 			templateUrl:"templates/post-blog.html"
@@ -26,7 +27,8 @@
 			templateUrl:"templates/account-register-page.html"
 		})
 		.when('/admin-change-pass', {
-			templateUrl:"templates/admin-change-pass.html"
+			templateUrl:"templates/admin-change-pass.html",
+			controller:"adminchngpass"
 		})
 		.when('/admin-empty', {
 			templateUrl:"templates/admin-empty.html"
@@ -44,7 +46,8 @@
 			templateUrl:"templates/admin.html"
 		})
 		.when('/blog-single', {
-			templateUrl:"templates/blog-single.html"
+			templateUrl:"templates/blog-single.html",
+			controller:"blogSingleCtrl"
 		})
 		.when('/blog', {
 			templateUrl:"templates/blog.html"
@@ -84,7 +87,8 @@
 			templateUrl:"templates/job-category.html"
 		})
 		.when('/job-detail', {
-			templateUrl:"templates/job-detail.html"
+			templateUrl:"templates/job-detail.html",
+			controller:"myJobDetailCtrl"
 		})
 		.when('/job-location', {
 			templateUrl:"templates/job-location.html"
@@ -108,7 +112,7 @@
 		$scope.password = null;
 	 	$scope.passwordConfirmation = null;
 		// Email Validation
-		$scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;	
+		// $scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;	
 		
 		// Login Function Stars here
 		$scope.userLogin=function(){
@@ -424,23 +428,15 @@
 									alert("Working");
 								}
 							})
-
-
 		          				}
 
 		           						 $scope.yournamemodel= null; 
 		       							 $scope.youremailmodel =null;
 		       							 $scope.contactmodel=null;
-		       							 $scope.msgmodel=null;
-		
-		    	       
+		       							 $scope.msgmodel=null;      
 						   }
-
-	    
 	    		}
 		});
-
-
 	//controller for job-result page 
 	app.controller('job-resultcntrl',function($scope,$http){
 
@@ -479,8 +475,6 @@
 		  
 		  });
 
-
-
 	//*****************filterblogArray JSON************************
 	$http.get('json/filterblogArray.json').then(function(res){
 		$scope.gkArrays=res.data.key.gkArray;
@@ -490,15 +484,11 @@
 		console.log($scope.gkArrays);
 		console.log($scope.qualiArrays);
 
-	console.log( $scope.typeArrays);
-
-		
+	console.log( $scope.typeArrays);		
 	})
 	//**********************END********************************
 
-
-
-	//*****************blogArray JSON************************
+//*****************blogArray JSON************************
 	$http.get('json/blogArray.json').then(function(res){
 		$scope.data=res.data.key;
 		console.log($scope.data.key);
@@ -575,8 +565,6 @@
 							};
 							console.log($scope.senddate);
 						};
-
-
 					//Send Data with Comment Function 
 						$scope.sendcommentData=function(){
 
@@ -585,21 +573,11 @@
 							email:$scope.emailComment,
 							message:$scope.commentMsg
 						};
-<<<<<<< HEAD
+
 						console.log($scope.senddate);
 					};
 
-
-				//Send Data with Comment Function 
-					$scope.sendcommentData=function(){
-
-						$scope.commentUserData={
-						name:$scope.nameComment,
-						email:$scope.emailComment,
-						message:$scope.commentMsg
-					};
-					console.log($scope.commentUserData);
-					};
+				
 });
 // blog-single COntroller Ends here
 
@@ -627,7 +605,5 @@ $scope.today = new Date();
 		// alert("Hey");	
 		console.log($scope.blogpost);
 	}
-    
-
 });
 
