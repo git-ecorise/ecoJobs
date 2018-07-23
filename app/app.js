@@ -125,58 +125,7 @@
 				alertify.log("Fill Details before Login");
 			}
 			else
-			{
-//<<<<<<< HEAD
-				//* $http.post('http://192.168.2.19:3000/api/signup',)
-				// *var mobno = $scope.regContact.toString();
-				// c*onsole.log(mobno);
-// 				alertify.success("Registered Successfully!!");		
-// 				$scope.regData = {
-//                     		firstName: $scope.regUser,
-//                     		lastName:$scope.regUserLast,
-//                     		contactNo:$scope.regContact,
-//                     		email: $scope.regEmail,
-//                     		password:$scope.regPassword,
-//                     		flag : "0"
-//         				};
-//         				console.log($scope.regData);
-//         				 var config = {
-// 				                headers : {
-// 				                    'Content-Type': 'application/json'
-// 				                }
-// 				            }
-						
-
-// 						$http.post('http://192.168.2.19:3000/api/signup', {
-//                     		firstName: $scope.regUser,
-//                     		lastName:$scope.regUserLast,
-//                     		contactNo:$scope.regContact,
-//                     		email: $scope.regEmail,
-//                     		password:$scope.regPassword,
-//                     		flag : "0"
-//         				}, config)
-// 				            .then(function(res){
-// 				            	console.log(res);
-// 				            });
-
-// 			}
-// 		}
-// 	}
-// // reggistration password confirmation starts
-//   $scope.checkpass = function(){
-// 				// console.log($scope.cpass);
-// 				$scope.verifycpass = $scope.regConfirmpass
-// 				console.log($scope.verifycpass);
-// 				if ($scope.regPassword != $scope.verifycpass) {
-// 					console.log($scope.regConfirmpass);
-// 					$scope.errormsg = "Invalid Password";
-// =======
-// 				if($scope.usernamelogin==null || $scope.passwordlogin==null || $scope.rememberme==null)
-// 				{
-// 					alertify.error("Check the Remaining Fields");
-// >>>>>>> cf2674f063bda34604a1885b75d039c27d9d4715
-// 				}
-// 				else
+		
 				{		alertify.success("Login Successfully!!");		
 					$scope.loginData= {
 	                    		email:$scope.usernamelogin,
@@ -670,19 +619,7 @@ app.controller("contactcntrl",function($scope, $http){
 							email:$scope.emailComment,
 							message:$scope.commentMsg
 						};
-// <<<<<<< HEAD
-// 						console.log($scope.senddate);
-// 					};
 
-
-		
-// 					$scope.sendcommentData=function(){
-
-// 						$scope.commentUserData={
-// 						name:$scope.nameComment,
-// 						email:$scope.emailComment,
-// 						message:$scope.commentMsg
-// 					};
 					console.log($scope.commentUserData);
 					};
 });
