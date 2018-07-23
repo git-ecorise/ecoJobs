@@ -15,6 +15,7 @@
 		})
 			.when('/post-blog', {
 			templateUrl:"templates/post-blog.html"
+
 		})
 		.when('/post-job', {
 			templateUrl:"Admin/employer-post-job.html"
@@ -24,10 +25,7 @@
 			templateUrl:"templates/account-login-page.html",
 			controller:'homeCtrl'
 		})
-		.when('/account-register-page', {
-			templateUrl:"templates/account-register-page.html"
-
-		})
+		
 		.when('/admin-change-pass', {
 			templateUrl:"templates/admin-change-pass.html",
 			controller:"adminchngpass"
@@ -125,15 +123,36 @@
 				alertify.log("Fill Details before Login");
 			}
 			else
-		
+			{
+				if($scope.usernamelogin==null || $scope.passwordlogin===null ||$scope.rememberme==null)
+				{
+					alertify.error("Check the Remaining Fields ");
+				}
+			
+		      else
 				{		alertify.success("Login Successfully!!");		
 					$scope.loginData= {
 	                    		email:$scope.usernamelogin,
 	                    		password:$scope.passwordlogin
 	                    		};
 	        				console.log($scope.loginData);
+
+	        				 var config = {
+				                headers : {
+				                    'Content-Type': 'application/json'
+				                }
+				            }
+
+                        $http.post('http://192.168.2.19:3000/api/signin', {
+                    		email: $scope.usernamelogin,
+                    		password:$scope.passwordlogin
+        				}, config)
+				            .then(function(res){
+				            	console.log(res);
+				            });
 	 
 				}
+
 			 					$scope.usernamelogin=null;
 	                    		$scope.passwordlogin=null;
 	                    		$scope.rememberme=null;
@@ -144,7 +163,6 @@
 
 
 		//Registration Function starts here
-
 		$scope.userReg=function(){
 			if ($scope.regUser==null && $scope.regEmail==null && $scope.regPassword==null && $scope.regContact==null && $scope.regConfirmpass==null && $scope.Regacceptcheckbox==null && $scope.regUserLast==null) {
 				alertify.log("Fill Details before Registration");
@@ -196,9 +214,7 @@
 	                    		$scope.regPassword=null;
 	                    		$scope.regConfirmpass=null;
 	                    		$scope.Regacceptcheckbox=null;
-							$http.get('http://192.168.2.11/mySlim/public/').then(function(res){
-
-							})			
+									
 				}
 			}
 		}
