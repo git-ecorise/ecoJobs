@@ -113,7 +113,8 @@
 		$scope.password = null;
 	 	$scope.passwordConfirmation = null;
 		// Email Validation
-		$scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;	
+
+		// $scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;	
 
 		
 		// Login Function Stars here
@@ -123,14 +124,16 @@
 				alertify.log("Fill Details before Login");
 			}
 			else
-			{
-				if($scope.usernamelogin==null || $scope.passwordlogin===null ||$scope.rememberme==null)
-				{
-					alertify.error("Check the Remaining Fields ");
+
+		      {
+		      	if($scope.usernamelogin==null || $scope.passwordlogin==null || $scope.rememberme==null)
+				{	
+                       alertify.error("Check the remaining Fields ");
 				}
-			
-		      else
-				{		alertify.success("Login Successfully!!");		
+				else
+				{
+					alertify.success("Login Successfully!!");		
+
 					$scope.loginData= {
 	                    		email:$scope.usernamelogin,
 	                    		password:$scope.passwordlogin
@@ -186,8 +189,6 @@
 	        				};
 	        				console.log($scope.regData);
 
-
-	        				console.log($scope.regData);
         				 var config = {
 				                headers : {
 				                    'Content-Type': 'application/json'
@@ -344,6 +345,7 @@ $scope.ddata1 = range;
 
 
 
+
 var range=[];
 for(var i=1;i<=12;i++) 
 {
@@ -497,6 +499,7 @@ app.controller("contactcntrl",function($scope, $http){
 	  });
 
 //*****************************controller for job-result page ***************
+
 	app.controller('job-resultcntrl',function($scope,$http){
 
 
@@ -540,12 +543,8 @@ app.controller("contactcntrl",function($scope, $http){
 		console.log($scope.gkArrays);
 		console.log($scope.qualiArrays);
 
-	console.log( $scope.typeArrays);
-
-		
+	console.log( $scope.typeArrays);		
 	})
-
-
 
 
 	//blogArray JSON
@@ -625,8 +624,6 @@ app.controller("contactcntrl",function($scope, $http){
 							};
 							console.log($scope.senddate);
 						};
-
-
 					//Send Data with Comment Function 
 						$scope.sendcommentData=function(){
 
@@ -638,6 +635,7 @@ app.controller("contactcntrl",function($scope, $http){
 
 					console.log($scope.commentUserData);
 					};
+
 });
 // blog-single COntroller Ends here
 
@@ -665,7 +663,5 @@ $scope.today = new Date();
 		// alert("Hey");	
 		console.log($scope.blogpost);
 	}
-    
-
 });
 
