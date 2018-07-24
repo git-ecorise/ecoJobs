@@ -59,8 +59,9 @@
 			templateUrl:"templates/contact.html",
 			controller:"contactcntrl"
 		})
-		.when('/employee-create-resume', {
-			templateUrl:"templates/employee-create-resume.html"
+		.when('/create-resume', {
+			templateUrl:"templates/create-resume.html",
+			controller:"createResumeCtrl"
 		})
 		.when('/employee-detail', {
 			templateUrl:"templates/employee-detail.html"
@@ -903,3 +904,145 @@ app.controller('postjobcntrl',function($scope){
 
 });
 
+//*********************************createResumeCtrl*******************************
+
+app.controller('createResumeCtrl',function($scope){
+$scope.results1=[];
+$scope.results2=[];
+ $scope.refArray=[];
+ $scope.workArray=[];
+
+ $scope.ishidden=false;
+ $scope.hobby={};
+
+
+
+
+
+
+
+$scope.addRow1=function(){
+
+$scope.tomodel=$scope.tomodel1+"  "+$scope.tomodel2;
+$scope.frommodel=$scope.frommodel1+"  "+$scope.frommodel2;
+$scope.results1.push({'university':$scope.universitymodel,'from':$scope.frommodel,'to':$scope.tomodel,'level':$scope.levelmodel,'title':$scope.titlemodel,'info':$scope.infomodel});
+    
+      	$scope.universitymodel="";
+      	$scope.frommodel1="";
+      	$scope.frommodel2="";
+      	$scope.tomodel1="";
+      	$scope.tomodel2="";
+      	$scope.levelmodel="";
+      	$scope.titlemodel="";
+      	$scope.infomodel="";
+
+      }
+
+$scope.removeRow1=function(){
+$scope.results1.pop({'university':$scope.universitymodel,'from':$scope.frommodel1,'to':$scope.tomodel1,'level':$scope.levelmodel,'title':$scope.titlemodel,'info':$scope.infomodel});
+      	$scope.universitymodel="";
+      	$scope.frommodel1="";
+      	$scope.tomodel1="";
+      	$scope.levelmodel="";
+      	$scope.titlemodel="";
+      	$scope.infomodel="";
+
+      }
+
+$scope.addRow2=function(){
+
+$scope.results2.push({'type':$scope.typemodel,'level':$scope.levelmodel,'details':$scope.detailsmodel});
+    
+      	$scope.typemodel="";
+      	$scope.levelmodel="";
+      	$scope.detailsmodel="";
+      	}
+      
+$scope.removeRow2=function(){
+$scope.results2.pop({'type':$scope.typemodel,'level':$scope.levelmodel,'details':$scope.detailsmodel});
+      	$scope.typemodel="";
+      	$scope.levelmodel="";
+      	$scope.detailsmodel="";
+      	
+      
+}
+
+$scope.addRefRow=function(){
+
+$scope.refArray.push({'refType':$scope.refmodel,'name':$scope.namemodel,'info':$scope.infomodel});
+
+    
+      	$scope.refmodel="";
+      	$scope.namemodel="";
+      	$scope.infomodel="";
+      	}
+      
+$scope.removeRefRow=function(){
+$scope.refArray.pop({'refType':$scope.refmodel,'name':$scope.namemodel,'info':$scope.infomodel});
+
+    
+      	$scope.refmodel="";
+      	$scope.namemodel="";
+      	$scope.infomodel="";
+      	}
+      
+$scope.addWorkRow=function(){
+
+$scope.toworkmodel=$scope.toworkmodel1+"  "+$scope.toworkmodel2;
+$scope.fromworkmodel=$scope.fromworkmodel1+"  "+$scope.fromworkmodel2;
+$scope.workArray.push({'jobPosition':$scope.positionmodel,'from':$scope.fromworkmodel,'to':$scope.toworkmodel,'companyname':$scope.companynamemodel,'info':$scope.infomodel});
+
+    
+      	$scope.positionmodel="";
+      	$scope.fromworkmodel1="";
+      	$scope.fromworkmodel2="";
+      	$scope.toworkmodel1="";
+      	$scope.toworkmodel2="";
+      	$scope.companynamemodel="";
+
+      	$scope.infomodel="";
+
+      	}
+      
+$scope.removeWorkRow=function(){
+$scope.workArray.pop({'jobPosition':$scope.positionmodel,'from':$scope.fromworkmodel,'to':$scope.toworkmodel,'companyname':$scope.companynamemodel,'info':$scope.infomodel});
+
+    
+      	$scope.positionmodel="";
+      	$scope.fromworkmodel="";
+      	$scope.toworkmodel="";
+      	$scope.companynamemodel="";
+      	$scope.infomodel="";
+
+}
+
+$scope.submitResume=function(){
+
+       $scope.hobby={
+         hobbiesinfo:$scope.informationmodel
+       }
+       console.log($scope.hobby);
+		console.log($scope.refArray);
+	 console.log($scope.results1);
+	  console.log($scope.results2);
+
+}
+
+
+$scope.showhide=function(){
+
+		if($scope.hasclicked){
+			$scope.ishidden=true;
+		}
+		else
+		{
+			$scope.ishidden=false;
+		}
+	}
+
+	 $scope.hide=function(){
+	 	if($scope.hasclicked){
+	 		$scope.ishidden=false;
+	 	}
+	 }
+})
