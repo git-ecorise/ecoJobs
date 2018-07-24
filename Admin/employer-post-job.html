@@ -46,7 +46,7 @@
 												<div class="form-group" >
 													<div class="col-sm-6 col-md-6">
 														<label>Company</label>	
-														<input list="Company" name="Company" class="form-control">
+														<input list="Company" name="Company" class="form-control" ng-model="companyName">
 														 <datalist id="Company">
 														   <option value="Accenture">
 														    <option value="Capegemini">
@@ -60,7 +60,7 @@
 												
 													
 														<label>Job Title</label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" ng-model="jobTitle">
 													</div>
 												</div>
 													
@@ -69,7 +69,7 @@
 											<div class="form-group">
 													<div class="col-sm-6 col-md-6">
 														<label>Location</label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" ng-model="location">
 													</div>
 
 													<div class="col-sm-6 col-md-6">
@@ -77,7 +77,7 @@
 														
 															
 																<div class="input-group">
-																	<input type="text" class="form-control">
+																	<input type="text" class="form-control" ng-model="salary">
 																	<span class="input-group-addon">$</span>
 																</div>
 														</div>
@@ -89,7 +89,7 @@
 										<div class="form-group">
 												<div class="col-sm-6 col-md-6">
 														<label>Job Type:</label>
-														<select class="selectpicker show-tick form-control" data-live-search="false" data-selected-text-format="count > 3" data-done-button="true" data-done-button-text="OK" data-none-selected-text="All">
+														<select class="selectpicker show-tick form-control" data-live-search="false" data-selected-text-format="count > 3" data-done-button="true" data-done-button-text="OK" data-none-selected-text="All" ng-model="jobType">
 															<option value="0" selected>Select</option>
 															<option value="1" data-content="<span class='label label-warning'>Full-time</span>">Full-time</option>
 															<option value="2" data-content="<span class='label label-danger'>Part-time</span>">Part-time</option>
@@ -99,7 +99,7 @@
 													
 													<div class="col-sm-6 col-md-6">
 														<label>Experience:</label>
-														<select class="selectpicker show-tick form-control" data-live-search="false" data-selected-text-format="count > 3" data-done-button="true" data-done-button-text="OK" data-none-selected-text="All">
+														<select class="selectpicker show-tick form-control" data-live-search="false" data-selected-text-format="count > 3" data-done-button="true" data-done-button-text="OK" data-none-selected-text="All" ng-model="experience">
 															<option value="0" selected >Select</option>
 															<option value="1">Expert</option>
 															<option value="2">2 Years</option>
@@ -119,8 +119,8 @@
 													<div class="form-group bootstrap3-wysihtml5-wrapper">
 														<label>Job Description</label>
 														<!-- <textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea> -->
-														<textarea id="ckeExample">
-														  This is not
+														<textarea id="ckeExample" ng-model="jobDescription">
+														  
 														</textarea>
 													</div>
 													
@@ -134,7 +134,7 @@
 														<label>Job Responsibilies</label>
 														<!-- <textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea> -->
 														<textarea id="ckeExample2">
-														  This is not
+														  
 														</textarea>
 													</div>
 													
@@ -148,7 +148,7 @@
 														<label>Requirements</label>
 														<!-- <textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea> -->
 														<textarea id="ckeExample3">
-														  This is not
+														
 														</textarea>
 													</div>
 													
@@ -160,7 +160,7 @@
 												
 													<div class="form-group bootstrap3-wysihtml5-wrapper">
 														<label>Tags</label>
-														<input type="text" class="form-control" id="autocompleteTagging" value="red,green,blue" placeholder="tag to add?" />
+														<input type="text" class="form-control" id="autocompleteTagging" value="red,green,blue" placeholder="tag to add?" / ng-model="tags">
 													</div>
 													
 												</div>
@@ -182,7 +182,7 @@
 												<div class="clear"></div>
 												
 												<div class="col-sm-6 mt-30">
-													<a href="#" class="btn btn-primary btn-lg">Post Your Job</a>
+													<button class="btn btn-primary btn-lg" ng-click="postjob()">Post Your Job</button>
 												</div>
 
 											</div>

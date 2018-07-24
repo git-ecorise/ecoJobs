@@ -18,7 +18,8 @@
 
 		})
 		.when('/post-job', {
-			templateUrl:"Admin/employer-post-job.html"
+			templateUrl:"Admin/employer-post-job.html",
+			controller:"postjobcntrl"
 		})
 		
 		.when('/account-login-page', {
@@ -385,8 +386,7 @@ $http.get('json/adminprofile.json').then(function(res){
 
 	                         	$scope.dob=$scope.pmodeldate+"-"+$scope.pmodelmonth+"-"+$scope.pmodelyear;
 	    	     	
-	    	     				alertify.success("Form successfully submitted..!!!");
-			    				 // $scope.dob.push({date:$scope.pmodeldate, month:$scope.pmodelmonth, year:$scope.pmodelyear})
+	    	     				
 								$scope.profilelist={
 											  		firstName:$scope.pmodelname,
 											  		lastName:$scope.pmodellast,
@@ -404,6 +404,7 @@ $http.get('json/adminprofile.json').then(function(res){
 											  		
 										           };
   											console.log($scope.profilelist);
+  											alertify.success("Form successfully submitted..!!!");
 
 
         				 var config = {
@@ -463,7 +464,7 @@ app.controller("contactcntrl",function($scope, $http){
 	                      else
 	                         {
 	    	     	
-	    	     				alertify.success("Form successfully submitted..!!!");
+	    	     				
 			    				$scope.userdetails={
 	       											name:$scope.yournamemodel, 
 	       											email:$scope.youremailmodel,
@@ -471,6 +472,7 @@ app.controller("contactcntrl",function($scope, $http){
 	       											message:$scope.msgmodel 
 	       											};
 	       						console.log($scope.userdetails);
+	       						alertify.success("Form successfully submitted..!!!");
 
 	       					var config = {
 				                headers : {
@@ -483,9 +485,6 @@ app.controller("contactcntrl",function($scope, $http){
 				            .then(function(res){
 				            	console.log(res);
 				            });
-
-
-	          				
 
 	           						 $scope.yournamemodel= null; 
 	       							 $scope.youremailmodel =null;
@@ -641,16 +640,15 @@ app.controller("contactcntrl",function($scope, $http){
 
 //****************************** controller post blog application button***************
 app.controller('postblogCtrl', function($scope) {
-// var image=$base64.encode($scope.image);
+
 $scope.today = new Date();
-	$scope.blogpost={};
+$scope.blogpost={};
 	
 
 	$scope.submit = function(){
 	
 		var briefDescription = CKEDITOR.instances.ckeExample.getData();
 		var detailDescription = CKEDITOR.instances.ckeExample2.getData();
-		// alert(data);
 
 	$scope.blogpost={
 			image:$scope.image,
@@ -659,9 +657,67 @@ $scope.today = new Date();
 			blogCategory:$scope.blogCategory,
 			briefDescription:briefDescription,
 			detailDescription:detailDescription
-		};
-		// alert("Hey");	
+		};	
 		console.log($scope.blogpost);
 	}
 });
 
+//****************************post job controller******************************
+app.controller('postjobcntrl',function($scope){
+	
+  $scope.postjobData={};
+
+	$scope.postjob=function(){
+
+        var jobDescription = CKEDITOR.instances.ckeExample.getData();
+
+        var jobResponsibility = CKEDITOR.instances.ckeExample2.getData();
+
+        var  jobRequirement = CKEDITOR.instances.ckeExample3.getData();
+
+        var messageLength=CKEDITOR.instances['ckeExample','ckeExample2','ckeExample3'].getData().replace(/<[^>]*>/gi).length;
+        	if($scope.companyName== null && $scope.jobTitle== null && $scope.location== null && $scope.salary==null && $scope.jobType==null && $scope.experience==null && $scope.tags==null && !messageLength)
+	    	            {
+	    	        	  alertify.log("Fill details before submitting the form. ");
+	    	        	}
+	    	        else
+	    	        	{
+	                 	  if($scope.companyName== null || $scope.jobTitle== null || $scope.location== null || $scope.salary==null || $scope.jobType==null || $scope.experience==null || $scope.tags==null || !messageLength)
+	    	                {
+	    	        	      
+	    	        	       alertify.error("Check the remaining field");
+	    	        	    }
+	                      else
+	                         {
+	    	     	
+	    	     				$scope.postjobData={
+									 companyName:$scope.companyName,
+									 jobTitle:$scope.jobTitle,
+									 location:$scope.location,
+									 salary:$scope.salary,
+									 jobType:$scope.jobType,
+									 experience:$scope.experience,
+									 jobDescription:jobDescription,
+									 tags:$scope.tags,
+									 jobResponsibility:jobResponsibility,
+									 jobRequirement:jobRequirement
+									};
+									 console.log($scope.postjobData);
+									 alertify.success("Form successfully submitted..!!!");
+                        	
+	                                $scope.companyName=null;
+									$scope.jobTitle=null;
+									$scope.location=null;
+									$scope.salary=null;
+									$scope.jobType=null;
+									$scope.experience=null;
+									$scope.tags=null;
+									CKEDITOR.instances.ckeExample.setData('');
+									CKEDITOR.instances.ckeExample2.setData('');
+									CKEDITOR.instances.ckeExample3.setData('');
+							}
+									
+                        }
+                 }
+
+});
