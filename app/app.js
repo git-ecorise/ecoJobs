@@ -413,7 +413,7 @@ $http.get('json/adminprofile.json').then(function(res){
 				                      }
 						
                        var stringurl="http://192.168.2.19:3000/api/updateprofile/"+$scope.pmodelemail;
-                       console.log(stringurl);
+                      
 						$http.put(stringurl, $scope.profilelist, config)
 				            .then(function(res){
 				            	console.log(res);
@@ -536,19 +536,14 @@ app.controller("contactcntrl",function($scope, $http){
 	$http.get('json/filterblogArray.json').then(function(res){
 		$scope.gkArrays=res.data.key.gkArray;
 	    $scope.qualiArrays=res.data.key.qualiArray;
-	    $scope.typeArrays=res.data.key.typeArray;
-
-		console.log($scope.gkArrays);
-		console.log($scope.qualiArrays);
-
-	console.log( $scope.typeArrays);		
+	    $scope.typeArrays=res.data.key.typeArray;	
 	})
 
 
 	//blogArray JSON
 	$http.get('json/blogArray.json').then(function(res){
 		$scope.data=res.data.key;
-		console.log($scope.data.key);
+		
 
 	})
 	
@@ -559,8 +554,6 @@ app.controller("contactcntrl",function($scope, $http){
 												blogUploadCategory:name,
 												count:count
 										  };
-
-						console.log($scope.jsonLidata);
 	}
 
 	$scope.senddata=function(date){
@@ -588,7 +581,7 @@ app.controller("contactcntrl",function($scope, $http){
 	app.controller('myJobDetailCtrl',function($scope,$http){
 		$http.get('json/jobDetails.json').then(function(res){
 			$scope.jobDetails=res.data.key;
-			console.log($scope.jobDetails);
+		
 		});
 		$scope.jobDetailsData={};
 		$scope.isDisabled = false;
@@ -613,7 +606,7 @@ app.controller("contactcntrl",function($scope, $http){
 	$scope.commentUserData={};
 	$http.get('json/blogSinglejson.json').then(function(res){
 			$scope.blogSinglejson=res.data.key;
-			console.log($scope.blogSinglejson);
+			
 		});
 					$scope.sndDate=function(blogDateC)
 						{			
@@ -649,20 +642,8 @@ $scope.blogpost={};
 	
 		var briefDescription = CKEDITOR.instances.ckeExample.getData();
 		var detailDescription = CKEDITOR.instances.ckeExample2.getData();
-// <<<<<<< HEAD
-
-// 	$scope.blogpost={
-// 			image:$scope.image,
-// 			title:$scope.blogtitle,
-// 			date:$scope.today,
-// 			blogCategory:$scope.blogCategory,
-// 			briefDescription:briefDescription,
-// 			detailDescription:detailDescription
-// 		};	
-// 		console.log($scope.blogpost);
-// =======
 		var messageLength = CKEDITOR.instances['ckeExample','ckeExample2'].getData().replace(/<[^>]*>/gi).length;
-		// alert(data);
+		
 
 			if($scope.image==null && $scope.blogtitle==null && $scope.blogCategory== null && !messageLength)
 			{

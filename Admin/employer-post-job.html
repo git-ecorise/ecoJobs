@@ -118,7 +118,6 @@
 												
 													<div class="form-group bootstrap3-wysihtml5-wrapper">
 														<label>Job Description</label>
-														<!-- <textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea> -->
 														<textarea id="ckeExample" ng-model="jobDescription">
 														  
 														</textarea>
@@ -132,9 +131,7 @@
 												
 													<div class="form-group bootstrap3-wysihtml5-wrapper">
 														<label>Job Responsibilies</label>
-														<!-- <textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea> -->
 														<textarea id="ckeExample2">
-														  
 														</textarea>
 													</div>
 													
@@ -146,9 +143,7 @@
 												
 													<div class="form-group bootstrap3-wysihtml5-wrapper">
 														<label>Requirements</label>
-														<!-- <textarea class="bootstrap3-wysihtml5 form-control" placeholder="Enter text ..." style="height: 200px;"></textarea> -->
 														<textarea id="ckeExample3">
-														
 														</textarea>
 													</div>
 													
@@ -165,9 +160,7 @@
 													
 												</div>
 												
-												<div class="clear"></div>
-												
-												
+												<div class="clear"></div>		
 												
 												<div class="clear mb-15"></div>
 
@@ -248,7 +241,7 @@
 
   	function fnConsolePrint()
   	{
-  	  //console.log($('#' + ckEditorID).val());
+  	  
   	  console.log(CKEDITOR.instances[ckEditorID].getData());
   	}
   	CKEDITOR.config.forcePasteAsPlainText = true;
