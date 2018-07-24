@@ -114,12 +114,9 @@
 		$scope.password = null;
 	 	$scope.passwordConfirmation = null;
 		// Email Validation
-
-		// $scope.emlvalid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;	
-
-		
 		// Login Function Stars here
 		$scope.userLogin=function(){
+
 			if($scope.usernamelogin==null && $scope.passwordlogin==null && $scope.rememberme==null)
 			{
 				alertify.log("Fill Details before Login");
@@ -133,13 +130,14 @@
 				}
 				else
 				{
-					alertify.success("Login Successfully!!");		
 
 					$scope.loginData= {
 	                    		email:$scope.usernamelogin,
 	                    		password:$scope.passwordlogin
 	                    		};
 	        				console.log($scope.loginData);
+
+	        				alertify.success("Login Successfully!!");
 
 	        				 var config = {
 				                headers : {
@@ -154,17 +152,15 @@
 				            .then(function(res){
 				            	console.log(res);
 				            });
-	 
-				}
-
-			 					$scope.usernamelogin=null;
+	        				$scope.usernamelogin=null;
 	                    		$scope.passwordlogin=null;
-	                    		$scope.rememberme=null;
-			}
-			
-		}
+	                    		$scope.rememberme=null;		
+	 
+				   }
+			 							
+				}
+			}	
 		//Login Function Ends here
-
 
 		//Registration Function starts here
 		$scope.userReg=function(){
@@ -258,14 +254,16 @@
 					}
 				else
 				{
-					alertify.success("Check your Mail box");
+					
 						$scope.forgotPasswordData= {
 	                    email:$scope.forgotpasswordemail
 	               					};
 	               			console.log($scope.forgotPasswordData);
+	               			alertify.success("Check your Mail box");
+	               			$scope.forgotpasswordemail=null;
+	    					$scope.generateNewPassword=null;
 			    }
-	    		$scope.forgotpasswordemail=null;
-	    		$scope.generateNewPassword=null;
+	    		
 
 		}
 	});
@@ -303,13 +301,14 @@
 					}
 					else
 					{
-						alertify.success("Password Saved Successfull!!");		
+						
 						$scope.admincngpwData={
 							oldPassword:$scope.currpass,
 							newPassword:$scope.adminnwpass,
 							confirmPassword:$scope.admincnfpas
 												}
 				        		console.log($scope.admincngpwData);
+				        		alertify.success("Password Saved Successfull!!");		
 								$scope.currpass=null;
 	                    		$scope.adminnwpass=null;
 	                    		$scope.admincnfpas=null;
@@ -632,6 +631,7 @@ app.controller("contactcntrl",function($scope, $http){
 							message:$scope.commentMsg
 						};
 
+
 					console.log($scope.commentUserData);
 					};
 
@@ -649,16 +649,59 @@ $scope.blogpost={};
 	
 		var briefDescription = CKEDITOR.instances.ckeExample.getData();
 		var detailDescription = CKEDITOR.instances.ckeExample2.getData();
+// <<<<<<< HEAD
 
-	$scope.blogpost={
-			image:$scope.image,
-			title:$scope.blogtitle,
-			date:$scope.today,
-			blogCategory:$scope.blogCategory,
-			briefDescription:briefDescription,
-			detailDescription:detailDescription
-		};	
-		console.log($scope.blogpost);
+// 	$scope.blogpost={
+// 			image:$scope.image,
+// 			title:$scope.blogtitle,
+// 			date:$scope.today,
+// 			blogCategory:$scope.blogCategory,
+// 			briefDescription:briefDescription,
+// 			detailDescription:detailDescription
+// 		};	
+// 		console.log($scope.blogpost);
+// =======
+		var messageLength = CKEDITOR.instances['ckeExample','ckeExample2'].getData().replace(/<[^>]*>/gi).length;
+		// alert(data);
+
+			if($scope.image==null && $scope.blogtitle==null && $scope.blogCategory== null && !messageLength)
+			{
+				alertify.log("Fill Details before Submit");
+			}
+			else
+		      {
+		      	if($scope.image==null || $scope.blogtitle==null || $scope.blogCategory==null || !messageLength)
+				{	
+                       alertify.error("Check the remaining Fields ");
+                       
+				}
+				else
+				{
+
+					$scope.blogpost={
+					image:$scope.image,
+					title:$scope.blogtitle,
+					date:$scope.today,
+					blogCategory:$scope.blogCategory,
+					briefDescription:briefDescription,
+					detailDescription:detailDescription
+					};
+
+    				console.log($scope.blogpost);
+       				alertify.success("Submited Successfully!!");			 
+
+ 					$scope.image=null;
+            		$scope.blogtitle=null;
+            		$scope.today=null;
+            		$scope.blogCategory=null;
+            		CKEDITOR.instances.ckeExample.setData('');            		
+            		CKEDITOR.instances.ckeExample2.setData('');            		
+				}
+			 					
+
+			}
+		
+
 	}
 });
 
