@@ -63,10 +63,13 @@
 			templateUrl:"templates/employee.html"
 		})
 		.when('/add-company', {
-			templateUrl:"Admin/employer-create.html"
+			templateUrl:"Admin/employer-create.html",
+			controller:"addcompanyCtrl"
 		})
 		.when('/update-company', {
-			templateUrl:"Admin/employer-edit.html"
+			templateUrl:"Admin/employer-edit.html",
+			controller:"updatecompanyCtrl"
+
 		})
 		.when('/employer-detail', {
 			templateUrl:"templates/employer-detail.html"
@@ -154,7 +157,7 @@
 				}
 				else
 				{
-					alertify.success("Registered Successfully!!");		
+						
 					$scope.regData = {
 	                    		firstName: $scope.regUser,
 	                    		lastName:$scope.regUserLast,
@@ -163,6 +166,7 @@
 	                    		password:$scope.regPassword
 	        				};
 	        				console.log($scope.regData);
+	        				alertify.success("Registered Successfully!!");	
 	        					$scope.regUser=null;
 	                    		$scope.regUserLast=null;
 	                    		$scope.regContact=null;
@@ -178,7 +182,7 @@
 		}
 		//registration password confirmation starts
 	  	$scope.checkpass = function(){
-					// console.log($scope.cpass);
+					
 					$scope.verifycpass = $scope.regConfirmpass
 					
 					if ($scope.regPassword != $scope.verifycpass) {
@@ -585,7 +589,7 @@
 							email:$scope.emailComment,
 							message:$scope.commentMsg
 						};
-<<<<<<< HEAD
+
 						console.log($scope.senddate);
 					};
 
@@ -605,7 +609,6 @@
 
 //****************************** controller post blog application button***************
 app.controller('postblogCtrl', function($scope) {
-// var image=$base64.encode($scope.image);
 $scope.today = new Date();
 	$scope.blogpost={};
 	
@@ -617,7 +620,7 @@ $scope.today = new Date();
 		// alert(data);
 
 	$scope.blogpost={
-			image:$scope.image,
+			image:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1200px-Infosys_logo.svg.png",
 			title:$scope.blogtitle,
 			date:$scope.today,
 			blogCategory:$scope.blogCategory,
@@ -630,4 +633,158 @@ $scope.today = new Date();
     
 
 });
+//****************************** controller for add company & dynamic Id generartor***************
 
+app.controller('addcompanyCtrl', function($scope) {
+
+	$scope.addcompany={};
+	
+
+	$scope.submit = function(){
+	
+		var companyBackground = CKEDITOR.instances.ckeExample.getData();
+		var services = CKEDITOR.instances.ckeExample2.getData();
+		var expertise= CKEDITOR.instances.ckeExample3.getData();
+		var c_name	= $scope.companyName;
+		var c_city =$scope.city;
+		var c_id = c_name + c_city ;
+		var c_n =  Math.floor(100 + Math.random() * 900);
+		var company_ID = c_id + +c_n;
+		
+		var txtlength=CKEDITOR.instances['ckeExample','ckeExample2','ckeExample3'].getData().replace(/<[^>]*>/gi).length;
+	if ($scope.companyName==null && $scope.establishedIn==null && $scope.type==null && $scope.people==null && $scope.website==null && $scope.address==null && $scope.city==null && $scope.state==null && $scope.street==null && $scope.country==null && $scope.phoneNo==null  && $scope.zipCode==null && !txtlength )
+			 {
+				alertify.log("Fill Details before saving");
+			}
+			else
+			{
+				if($scope.companyName==null || $scope.establishedIn==null || $scope.type==null || $scope.people==null || $scope.website==null || $scope.address==null || $scope.city==null || $scope.state==null || $scope.street==null || $scope.country==null || $scope.phoneNo==null  || $scope.zipCode==null || !txtlength)
+				{
+					alertify.error("Check the Remaining Fields");
+				}
+				else
+				{
+					$scope.addcompany={
+	 		image:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1200px-Infosys_logo.svg.png",
+	 		companyName:$scope.companyName,
+	 		establishedIn:$scope.establishedIn,
+			type:$scope.type,
+			companyid:company_ID.toUpperCase(),
+			people:$scope.people,
+		 	website:$scope.website,
+		 	address:$scope.address,
+			city:$scope.city,
+		 	state:$scope.state,
+			street:$scope.street,
+			country:$scope.country,
+		 	phoneNo:$scope.phoneNo,
+			zipCode:$scope.zipCode,
+			companyBackground:companyBackground,
+			services:services,
+			expertise:expertise
+		};
+			console.log($scope.addcompany);
+			alertify.success("Saved Successfully!!");	
+			$scope.companyName=null,
+	 		$scope.establishedIn=null,
+			$scope.type=null,
+			$scope.companyid=null,
+			$scope.people=null,
+		 	$scope.website=null,
+		 	$scope.address=null,
+			$scope.city=null,
+		 	$scope.state=null,
+			$scope.street=null,
+			$scope.country=null,
+		 	$scope.phoneNo=null,
+			$scope.zipCode=null
+			CKEDITOR.instances.ckeExample.setData('');
+			CKEDITOR.instances.ckeExample2.setData('');
+			CKEDITOR.instances.ckeExample3.setData('');
+				}	
+
+			
+	}
+		
+	}
+	
+			
+
+
+});
+//****************************** controller for update company & dynamic Id generartor***************
+app.controller('updatecompanyCtrl', function($scope) {
+
+
+	$scope.updatecompany={};
+	
+   
+	$scope.submitform = function(){
+	   
+	   alert('hi');
+		var companyBackground = CKEDITOR.instances.ckeExample.getData();
+		var services = CKEDITOR.instances.ckeExample2.getData();
+		var expertise= CKEDITOR.instances.ckeExample3.getData();
+
+	var txtlength=CKEDITOR.instances['ckeExample','ckeExample2','ckeExample3'].getData().replace(/<[^>]*>/gi).length;
+	if ($scope.companyName==null && $scope.establishedIn==null && $scope.type==null && $scope.people==null && $scope.website==null && $scope.address==null && $scope.city==null && $scope.state==null && $scope.street==null && $scope.country==null && $scope.phoneNo==null  && $scope.zipCode==null && !txtlength )
+			 {
+				alertify.log("Fill Details before saving");
+			}
+			else
+			{
+				if($scope.companyName==null || $scope.establishedIn==null || $scope.type==null || $scope.people==null || $scope.website==null || $scope.address==null || $scope.city==null || $scope.state==null || $scope.street==null || $scope.country==null || $scope.phoneNo==null  || $scope.zipCode==null || !txtlength)
+				{
+					alertify.error("Check the Remaining Fields");
+				}
+				else
+				{
+			$scope.updatecompany={
+			companyName:$scope.companyName,
+	 		establishedIn:$scope.establishedIn,
+			type:$scope.type,	
+			people:$scope.people,
+		 	website:$scope.website,
+		 	address:$scope.address,
+			city:$scope.city,
+		 	state:$scope.state,
+			street:$scope.street,
+			country:$scope.country,
+		 	phoneNo:$scope.phoneNo,
+			zipCode:$scope.zipCode,
+			companyBackground:companyBackground,
+			services:services,
+			expertise:expertise
+		};
+			console.log($scope.updatecompany);
+			alertify.success("Saved Successfully!!");	
+			$scope.companyName=null,
+	 		$scope.establishedIn=null,
+			$scope.type=null,
+			$scope.people=null,
+		 	$scope.website=null,
+		 	$scope.address=null,
+			$scope.city=null,
+		 	$scope.state=null,
+			$scope.street=null,
+			$scope.country=null,
+		 	$scope.phoneNo=null,
+			$scope.zipCode=null
+			CKEDITOR.instances.ckeExample.setData('');
+			CKEDITOR.instances.ckeExample2.setData('');
+			CKEDITOR.instances.ckeExample3.setData('');
+				}	
+
+			
+	}
+
+		
+	}
+	
+			
+
+
+});
+
+
+		
