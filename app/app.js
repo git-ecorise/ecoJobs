@@ -129,26 +129,14 @@
 				}
 				else
 				{
-<<<<<<< HEAD
-					
-=======
-					alertify.success("Login Successfully!!");		
 
->>>>>>> 914365d09f9a134c41203cadf9199f9d231b4ae9
 					$scope.loginData= {
 	                    		email:$scope.usernamelogin,
 	                    		password:$scope.passwordlogin
 	                    		};
 	        				console.log($scope.loginData);
-<<<<<<< HEAD
+
 	        				alertify.success("Login Successfully!!");
-	        				$scope.usernamelogin=null;
-	                    		$scope.passwordlogin=null;
-	                    		$scope.rememberme=null;		
-	 
-				}
-			 					
-=======
 
 	        				 var config = {
 				                headers : {
@@ -163,16 +151,14 @@
 				            .then(function(res){
 				            	console.log(res);
 				            });
-	 
-				}
-
-			 					$scope.usernamelogin=null;
+	        				$scope.usernamelogin=null;
 	                    		$scope.passwordlogin=null;
-	                    		$scope.rememberme=null;
->>>>>>> 914365d09f9a134c41203cadf9199f9d231b4ae9
-			}
-			
-		}
+	                    		$scope.rememberme=null;		
+	 
+				   }
+			 							
+				}
+			}	
 		//Login Function Ends here
 
 		//Registration Function starts here
