@@ -1,4 +1,3 @@
-
 	var app=angular.module('ecojobs', ['ngRoute']);
 
 	app.config(function($routeProvider, $locationProvider){
@@ -14,12 +13,26 @@
 			controller:"forgotPasswordCtrl"
 		})
 			.when('/post-blog', {
-			templateUrl:"templates/post-blog.html"
+			templateUrl:"templates/post-blog.html",
+			controller:"postblogCtrl"
 
 		})
 		.when('/post-job', {
 			templateUrl:"Admin/employer-post-job.html",
 			controller:"postjobcntrl"
+		})
+		.when('/admin-profile', {
+			templateUrl:"Admin/admin-profile.html",
+			controller:"adminprofilecntrl"
+		})
+		
+		.when('/company-list', {
+			templateUrl:"Admin/company-list.html"
+			
+		})
+		.when('/blogs', {
+			templateUrl:"Admin/blist.html"
+			
 		})
 		
 		.when('/account-login-page', {
@@ -37,12 +50,12 @@
 		.when('/applied-jobs', {
 			templateUrl:"templates/applied-jobs.html"
 		})
-		.when('/admin-profile', {
-			templateUrl:"templates/admin-profile.html",
+		.when('/user-profile', {
+			templateUrl:"templates/user-profile.html",
 			controller:"profilecntrl"
 		})
-		.when('/admin-saved-job', {
-			templateUrl:"templates/admin-saved-job.html"
+		.when('/user-saved-job', {
+			templateUrl:"templates/user-saved-job.html"
 		})
 		.when('/admin', {
 			templateUrl:"templates/admin.html"
@@ -59,15 +72,13 @@
 			templateUrl:"templates/contact.html",
 			controller:"contactcntrl"
 		})
-		.when('/employee-create-resume', {
-			templateUrl:"templates/employee-create-resume.html"
+		.when('/my-resume', {
+			templateUrl:"templates/my-resume.html"
 		})
 		.when('/employee-detail', {
 			templateUrl:"templates/employee-detail.html"
 		})
-		.when('/employee', {
-			templateUrl:"templates/employee.html"
-		})
+		
 		.when('/add-company', {
 			templateUrl:"Admin/employer-create.html",
 			controller:"addcompanyCtrl"
@@ -84,9 +95,7 @@
 		.when('/faq', {
 			templateUrl:"templates/faq.html"
 		})
-		.when('/job-browse-job', {
-			templateUrl:"templates/job-browse-job.html"
-		})
+		
 		.when('/job-category', {
 			templateUrl:"templates/job-category.html"
 		})
@@ -326,7 +335,7 @@
 	});
 	
 		
-//************************CONTROLLER FOR ADMIN-PROFILE -smita************
+//************************CONTROLLER FOR USER-PROFILE -smita************
 
 app.controller("profilecntrl",function($scope, $http){
 
@@ -903,3 +912,127 @@ app.controller('postjobcntrl',function($scope){
 
 });
 
+//************************CONTROLLER FOR USER-PROFILE -smita************
+
+app.controller("adminprofilecntrl",function($scope, $http){
+
+	
+	$scope.profilelist={};
+    $scope.dob=[];
+   
+
+   var range = [];
+   for(var i=1;i<=30;i++) 
+   {
+          range.push(i);
+   }
+$scope.ddata = range;
+
+
+ var range = [];
+for(var i=1980;i<=2015;i++) 
+{
+  range.push(i);
+}
+$scope.ddata1 = range;
+
+
+
+
+var range=[];
+for(var i=1;i<=12;i++) 
+{
+  range.push(i);
+}
+$scope.ddata2 = range;
+
+
+//adminprofile.json
+
+$http.get('json/adminprofile.json').then(function(res){
+
+	$scope.profilestate=res.data.key.profilestates;
+	$scope.month=res.data.key.profilemonth;
+	$scope.education=res.data.key.profileeducation;
+	$scope.stream=res.data.key.profilestream;
+})
+
+
+  $scope.submitprofile=function(){
+  	
+   if($scope.modelstream==null && $scope.pmodeldate== null && $scope.pmodellast== null && $scope.pmodelemail== null && $scope.pmodeldate==null && $scope.pmodelmonth== null && $scope.pmodelyear== null && $scope.pmodelcity==null && $scope.pmodelstate==null && $scope.pmodelstreet==null && $scope.pmodeledu==null && $scope.pmodelpin==null && $scope.pmodelcontact==null && $scope.pmodelabout==null)
+	    	            {
+	    	        	 
+	    	        	  alertify.log("Fill details before submitting the form. ");
+	    	        	}
+	    	        else
+	    	        	{
+	                   if($scope.modelstream==null || $scope.pmodeldate== null || $scope.pmodellast== null || $scope.pmodelemail== null || $scope.pmodeldate==null || $scope.pmodelmonth== null || $scope.pmodelyear== null || $scope.pmodelcity==null || $scope.pmodelstate==null || $scope.pmodelstreet==null || $scope.pmodeledu==null || $scope.pmodelpin==null || $scope.pmodelcontact==null || $scope.pmodelabout==null)
+	
+	    	                {
+	    	        	      
+	    	        	       alertify.error("Check the remaining field");
+	    	        	     }
+	                      else
+	                         { 
+
+	                         	$scope.dob=$scope.pmodeldate+"-"+$scope.pmodelmonth+"-"+$scope.pmodelyear;
+	    	     	
+	    	     				
+								$scope.profilelist={
+											  		firstName:$scope.pmodelname,
+											  		lastName:$scope.pmodellast,
+											  		email:$scope.pmodelemail,
+											  		dob:$scope.dob,
+											  		address:$scope.pmodeladdress,
+											  		city:$scope.pmodelcity,
+											  		state:$scope.pmodelstate,
+											  		streetName:$scope.pmodelstreet,
+											  		education:$scope.pmodeledu,
+											  		stream:$scope.modelstream,
+											  		pincode:$scope.pmodelpin,
+	 										  		mobile:$scope.pmodelcontact,
+											  		about:$scope.pmodelabout
+											  		
+										           };
+  											console.log($scope.profilelist);
+  											alertify.success("Form successfully submitted..!!!");
+
+
+        				 var config = {
+				                headers : {
+				                    'Content-Type': 'application/json'
+				                          }
+				                      }
+						
+                       var stringurl="http://192.168.2.19:3000/api/updateprofile/"+$scope.pmodelemail;
+                      
+						$http.put(stringurl, $scope.profilelist, config)
+				            .then(function(res){
+				            	console.log(res);
+				            });
+
+	          				
+	          										$scope.modelstream=null;
+													$scope.pmodelname=null;
+											  		$scope.pmodellast=null;
+											  		$scope.pmodelemail=null;
+											  		$scope.dob=null;
+											  		$scope.pmodeladdress=null;
+											  		$scope.pmodelcity=null;
+											  		$scope.pmodelstate=null;
+											  		$scope.pmodelstreet=null;
+											  		$scope.pmodeledu=null;
+											  		$scope.pmodelpin=null;
+											  		$scope.pmodelcontact=null;
+											  		$scope.pmodelabout=null;
+											  		$scope.pmodelcountry=null;
+													$scope.pmodeldate=null;
+													$scope.pmodelmonth=null;
+													$scope.pmodelyear=null;
+	    	             }
+					}
+  	
+  }
+ 
+});
