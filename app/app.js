@@ -482,7 +482,7 @@ $http.get('json/adminprofile.json').then(function(res){
 });
 //**************************contact page controller starts ****************************
 app.controller("contactcntrl",function($scope, $http){
-    	
+
 	    $scope.submitd= function() {
 	        $scope.userdetails={};
 	           
@@ -1088,6 +1088,31 @@ $scope.results2=[];
  $scope.hobby={};
  $scope.allRecord={};
 
+ $scope.removeAll1=function()
+    	{
+    		 $scope.results1=[{}];
+       								
+    	}
+
+    	$scope.removeAll2=function()
+    	{
+    		 
+       	 $scope.results2=[{}];                
+
+    	}
+    	$scope.removeAll3=function()
+    	{
+    		         
+									
+ 		 $scope.refArray=[{}];
+ 									
+    	}
+    	$scope.removeAll4=function()
+    	{
+    		
+ 		 $scope.workArray=[{}];
+    	}
+
 $scope.addRow1=function(){
 
 $scope.tomodel=$scope.tomodel1+"  "+$scope.tomodel2;
@@ -1315,6 +1340,11 @@ if($scope.lang1==null && $scope.lang2==null && $scope.lang3==null && $scope.lang
        								 $scope.lang5=null;
        								 $scope.lang6=null;
        								 $scope.langdetail=null;
+       								 $scope.results1=[{}];
+       								 $scope.results1=[{}];                
+									 $scope.results2=[{}];
+ 									 $scope.refArray=[{}];
+ 									 $scope.workArray=[{}];
 	                        }
 	    	       
 					   }
