@@ -439,42 +439,42 @@
 												<div class="col-sm-4">
 													<div class="form-group">
 														<label>Langauage 1</label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" ng-model="lang1">
 													</div>
 												</div>
 												
 												<div class="col-sm-4">
 													<div class="form-group">
 														<label>Langauage 2</label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" ng-model="lang2">
 													</div>
 												</div>
 												
 												<div class="col-sm-4">
 													<div class="form-group">
 														<label>Langauage 3</label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" ng-model="lang3">
 													</div>
 												</div>
 												
 												<div class="col-sm-4">
 													<div class="form-group">
 														<label>Langauage 4</label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" ng-model="lang4">
 													</div>
 												</div>
 												
 												<div class="col-sm-4">
 													<div class="form-group">
 														<label>Langauage 5</label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" ng-model="lang5">
 													</div>
 												</div>
 												
 												<div class="col-sm-4">
 													<div class="form-group">
 														<label>Langauage 6</label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" ng-model="lang6">
 													</div>
 												</div>
 												
@@ -482,7 +482,7 @@
 												
 													<div class="form-group mb-20">
 														<label>Langauage details:</label>
-														<textarea class="form-control" rows="5"></textarea>
+														<textarea class="form-control" rows="5" ng-model="langdetail"></textarea>
 													</div>
 													
 												</div>
@@ -693,76 +693,76 @@
 													
 														<div class="col-sm-4">
 															<div class="checkbox-block">
-																<input id="checkbox_option-1" name="checkbox_option" type="checkbox" class="checkbox"/>
+																<input id="checkbox_option-1" name="checkbox_option" type="checkbox" class="checkbox" ng-model="travel" value="travel" />
 																<label class="" for="checkbox_option-1">Travel</label>
 															</div>
 														</div>
 														
 														<div class="col-sm-4">
 															<div class="checkbox-block">
-																<input id="checkbox_option-2" name="checkbox_option" type="checkbox" class="checkbox"/>
+																<input id="checkbox_option-2" name="checkbox_option" type="checkbox" class="checkbox" ng-model="graphic" value="graphic" />
 																<label class="" for="checkbox_option-2">Graphic</label>
 															</div>
 														</div>
 														
 														<div class="col-sm-4">
 															<div class="checkbox-block">
-																<input id="checkbox_option-3" name="checkbox_option" type="checkbox" class="checkbox"/>
+																<input id="checkbox_option-3" name="checkbox_option" type="checkbox" class="checkbox" ng-model="music" value="music" />
 																<label class="" for="checkbox_option-3">Music</label>
 															</div>
 														</div>
 														
 														<div class="col-sm-4">
 															<div class="checkbox-block">
-																<input id="checkbox_option-4" name="checkbox_option" type="checkbox" class="checkbox"/>
+																<input id="checkbox_option-4" name="checkbox_option" type="checkbox" class="checkbox" ng-model="photography" value="Photography" />
 																<label class="" for="checkbox_option-4">Photography</label>
 															</div>
 														</div>
 														
 														<div class="col-sm-4">
 															<div class="checkbox-block">
-																<input id="checkbox_option-5" name="checkbox_option" type="checkbox" class="checkbox"/>
+																<input id="checkbox_option-5" name="checkbox_option" type="checkbox" class="checkbox" ng-model="travel2" value="Travel" />
 																<label class="" for="checkbox_option-5">Travel</label>
 															</div>
 														</div>
 														
 														<div class="col-sm-4">
 															<div class="checkbox-block">
-																<input id="checkbox_option-6" name="checkbox_option" type="checkbox" class="checkbox"/>
+																<input id="checkbox_option-6" name="checkbox_option" type="checkbox" class="checkbox" ng-model="graph2" value="Graphic" />
 																<label class="" for="checkbox_option-6">Graphic</label>
 															</div>
 														</div>
 														
 														<div class="col-sm-4">
 															<div class="checkbox-block">
-																<input id="checkbox_option-7" name="checkbox_option" type="checkbox" class="checkbox"/>
+																<input id="checkbox_option-7" name="checkbox_option" type="checkbox" class="checkbox" ng-model="music2" value="Music" />
 																<label class="" for="checkbox_option-7">Music</label>
 															</div>
 														</div>
 														
 														<div class="col-sm-4">
 															<div class="checkbox-block">
-																<input id="checkbox_option-8" name="checkbox_option" type="checkbox" class="checkbox"/>
+																<input id="checkbox_option-8" name="checkbox_option" type="checkbox" class="checkbox" ng-model="photo3" value="Photography"/>
 																<label class="" for="checkbox_option-8">Photography</label>
 															</div>
 														</div>
 														
 													</div>
-			
-													
+				
 												</div>
 												
 												<div class="clear mb-30"></div>
 												<h3 class="heading mb-10">Have you reference</h3>
 
 												<div class="col-sm-12 col-md-12 mb-15">
-													 <input type="radio" name="" value="yes" ng-model="hasclicked" ng-click="showhide()">Yes
-          	
-            <input type="radio" name="" value="No"  ng-model="hasclicked" ng-click="hide()">No
-          </div>
+														<label for="yes">YES</label>
+													 <input type="radio" id="yes" ng-model="hasclicked" ng-click="show()">
+		          		<label for="no">YES</label>
+		            <input type="radio" id="yes" ng-model="hasclicked" ng-click="show()">
+		            <label for="no">no</label>
+		            <input type="radio" id="no" ng-model="hasclicked" ng-click="show()">
+          		 </div>
 											      
-          	
-          	
 
 												<div id="dynamicAddForm4" class="clearfix">
 		 
@@ -773,7 +773,7 @@
 														
 															<div class="dynamic-add-form-item">
 															
-																<div class="dynamic-add-form-inner">
+																<div class="dynamic-add-form-inner" ng-show="IsVisible">
 
 																	<h4 class="heading font700 mb-10 text-primary">Reference <span id="dynamicAddForm4_label"></span></h4>
 																	

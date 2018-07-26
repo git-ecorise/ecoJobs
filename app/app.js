@@ -268,6 +268,14 @@
 	               					};
 	               			console.log($scope.forgotPasswordData);
 	               			alertify.success("Check your Mail box");
+
+
+           			 // $http.post('http://192.168.2.19:3000/api/signin', {
+            			// email: $scope.forgotpasswordemail
+        				// }, config)
+				        //     .then(function(res){
+				        //     	console.log(res);
+				        //     });
 	               			$scope.forgotpasswordemail=null;
 	    					$scope.generateNewPassword=null;
 			    }
@@ -316,7 +324,17 @@
 							confirmPassword:$scope.admincnfpas
 												}
 				        		console.log($scope.admincngpwData);
-				        		alertify.success("Password Saved Successfull!!");		
+				        		alertify.success("Password Saved Successfull!!");	
+
+				        // $http.post('http://192.168.2.19:3000/api/signin', {
+            		        // oldPassword:$scope.currpass,
+							// newPassword:$scope.adminnwpass,
+							// confirmPassword:$scope.admincnfpas
+        				// }, config)
+				        //     .then(function(res){
+				        //     	console.log(res);
+				        //     });
+
 								$scope.currpass=null;
 	                    		$scope.adminnwpass=null;
 	                    		$scope.admincnfpas=null;
@@ -601,6 +619,15 @@ app.controller("contactcntrl",function($scope, $http){
 					userMail:"sample@mail.com",
 					email:"sample@company-domain.com"
 			}
+
+
+			// $http.post('http://192.168.2.19:3000/api/signin', {
+            		        // $scope.jobDetailsData
+							
+        				// }, config)
+				        //     .then(function(res){
+				        //     	console.log(res);
+				        //     });
 			console.log($scope.jobDetailsData);
 		}
 	// send Application Method ends here
@@ -621,7 +648,15 @@ app.controller("contactcntrl",function($scope, $http){
 							$scope.senddate={
 								date: blogDateC
 							};
+
+							 // $http.post('http://192.168.2.19:3000/api/signin', {
+            			// date: $scope.sndDate
+        				// }, config)
+				        //     .then(function(res){
+				        //     	console.log(res);
+				        //     });
 							console.log($scope.senddate);
+
 						};
 					//Send Data with Comment Function 
 						$scope.sendcommentData=function(){
@@ -907,19 +942,13 @@ app.controller('postjobcntrl',function($scope){
 //*********************************createResumeCtrl*******************************
 
 app.controller('createResumeCtrl',function($scope){
-$scope.results1=[];
+$scope.results1=[];                
 $scope.results2=[];
  $scope.refArray=[];
  $scope.workArray=[];
-
- $scope.ishidden=false;
+ $scope.langSkillarr={};
+ $scope.IsVisible = false;
  $scope.hobby={};
-
-
-
-
-
-
 
 $scope.addRow1=function(){
 
@@ -1018,31 +1047,81 @@ $scope.workArray.pop({'jobPosition':$scope.positionmodel,'from':$scope.fromworkm
 
 $scope.submitResume=function(){
 
-       $scope.hobby={
-         hobbiesinfo:$scope.informationmodel
-       }
-       console.log($scope.hobby);
-		console.log($scope.refArray);
-	 console.log($scope.results1);
-	  console.log($scope.results2);
+if($scope.universitymodel== null && $scope.titlemodel==null && $scope.infomodel==null && $scope.typemodel==null &&
+ $scope.detailsmodel==null && $scope.positionmodel==null && $scope.companynamemodel==null && $scope.fromworkmodel1==null)
+	    	            {
+	    	        	  alertify.log("Fill details before Creating Resume ");
+	    	        	}
+	    	        else
+	    	        	{
+	                 	  if($scope.titlemodel==null || $scope.infomodel==null ||
+ 							$scope.levelmodel==null || $scope.detailsmodel==null || $scope.positionmodel==null 
+ 							|| $scope.companynamemodel==null ||
+  							$scope.infomodel==null || $scope.fromworkmodel1==null )
+	    	                {
+	    	        	      
+	    	        	       alertify.error("Check the remaining field");
+	    	        	    }
+	                      else
+	                         {
+								    	     	
+								   	 $scope.hobby={
+							         hobbiesinfo:$scope.informationmodel,
+							         travel:$scope.travel,
+							         graphic:$scope.graphic,
+							         music:$scope.music,
+							         photography:$scope.photography,
+							         travel2:$scope.travel2,
+							         graph2:$scope.graph2,
+							         music2:$scope.music2,
+							         photo3:$scope.photo3
 
-}
+							       }
+
+							       $scope.langSkillarr={
+							       						langOne:$scope.lang1,
+							       						langTwo:$scope.lang2,
+							       						langThree:$scope.lang3,
+							       						langFour:$scope.lang4,
+							       						langFive:$scope.lang5,
+							       						langSix:$scope.lang6,
+							       						langDetail:$scope.langdetail
+							       }
+							      
+
+	       					       console.log($scope.hobby);
+								   console.log($scope.refArray);
+								   console.log($scope.results1);
+								   console.log($scope.results2);
+								   console.log($scope.langSkillarr);
+								   console.log($scope.workArray);
+	       						alertify.success("Resume created successfully..!!!");
+
+						
+
+	           				// 		 $scope.informationmodel=null;
+        							 // $scope.travel=null;
+							         // $scope.graphic=null;
+							         // $scope.music=null;
+							         // $scope.photography=null;
+							         // $scope.travel2=null;
+							         // $scope.graph2=null;
+							         // $scope.music2=null;
+							         // $scope.photo3=null;
+							         // $scope.lang1=null;
+       								 // $scope.lang2=null;
+       								 // $scope.lang3=null;
+       								 // $scope.lang4=null;
+       								 // $scope.lang5=null;
+       								 // $scope.lang6=null;
+       								 // $scope.langdetail=null;
+	                        }
+	    	       
+					   }
+
+	            }
+	  });
 
 
-$scope.showhide=function(){
+       
 
-		if($scope.hasclicked){
-			$scope.ishidden=true;
-		}
-		else
-		{
-			$scope.ishidden=false;
-		}
-	}
-
-	 $scope.hide=function(){
-	 	if($scope.hasclicked){
-	 		$scope.ishidden=false;
-	 	}
-	 }
-})
